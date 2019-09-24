@@ -6,8 +6,16 @@ class Test extends Component {
     API.get().then(res => console.log(res.data))
   }
 
+  login = () => API.googleLogin().then(res => console.log(res.data))
+
   render() {
-    return <div>Hello</div>
+    return (
+      <a href={'/auth/google'}>
+        <button type='button' onClick={this.login}>
+          Log in with Google
+        </button>
+      </a>
+    )
   }
 }
 

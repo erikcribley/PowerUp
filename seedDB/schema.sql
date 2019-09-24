@@ -24,4 +24,13 @@ CREATE TABLE `taskList` (
   REFERENCES `users` (`userId`)
 );
 
-
+DROP TABLE IF EXISTS `characters`;
+CREATE TABLE `characters` (
+  `characterId` INT AUTO_INCREMENT NOT NULL,
+  `userId` INT NOT NULL,
+  `experience` INT(10) NOT NULL,
+  `level` INT(10) NOT NULL,
+  `charAtk` INT(10) NOT NULL,
+  
+  )
+)

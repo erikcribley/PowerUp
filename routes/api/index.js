@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const orm = require('../../orm')
 
-router.route('/').get((_, res) => {
+router.get('/api', (_, res) => {
   orm.tableAll('taskList').then(data => res.json(data))
 })
 
