@@ -11,12 +11,11 @@ class Test extends Component {
   render() {
     return (
       <a href={'/auth/google'}>
-        <button type='button' onClick={this.login}>
-          Log in with Google
-        </button>
+        <button type='button'>Log in with Google</button>
       </a>
     )
   }
 }
 
 export default Test
+// onClick={this.login}

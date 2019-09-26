@@ -43,7 +43,7 @@ router
     (req, res) => {
       // const token = req.user.token
       console.log('Authenticated2:', req.user)
-      res.json(req.user)
+      res.redirect('/home')
     }
   )
 
