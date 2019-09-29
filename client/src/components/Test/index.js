@@ -10,9 +10,14 @@ class Test extends Component {
 
   render() {
     return (
-      <a href={'/auth/google'}>
-        <button type='button'>Log in with Google</button>
-      </a>
+      <div>
+        <a href={'/auth/google'}>
+          <button type='button'>Log in with Google</button>
+        </a>
+        <a href={'/login'}>
+          <button type='button'>Log in with Email</button>
+        </a>
+      </div>
     )
   }
 }

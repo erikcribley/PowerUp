@@ -7,8 +7,10 @@ USE `project3`;
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `userId` INT AUTO_INCREMENT NOT NULL,
-  `userName` VARCHAR(45) NOT NULL UNIQUE,
-  `userPassword` VARCHAR(150) NOT NULL,
+  `userEmail` VARCHAR(100) NOT NULL UNIQUE,
+  `userPassword` VARCHAR(150),
+  `googleId` VARCHAR(100),
+  `name` VARCHAR(100),
   `userCreation` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userId`)
 );
@@ -31,6 +33,5 @@ CREATE TABLE `characters` (
   `experience` INT(10) NOT NULL,
   `level` INT(10) NOT NULL,
   `charAtk` INT(10) NOT NULL,
-  
-  )
-)
+  PRIMARY KEY (`characterId`)
+  );

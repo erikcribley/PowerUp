@@ -1,11 +1,24 @@
 const path = require('path')
 const router = require('express').Router()
+const passport = require('passport')
 const apiRoutes = require('./api')
-const authenticationRoutes = require('./authentication')
+const googleAuth = require('./authentication/googleaAuth')
+const formLogin = require('./authentication/login')
 
-router.use(authenticationRoutes)
+passport.serializeUser((user, done) => {
+  console.log(`Serialize ${user}`)
+  done(null, user)
+})
 
-router.use(apiRoutes)
+passport.deserializeUser((user, done) => {
+  console.log(`Deserialize${user}`)
+  done(null, user)
+})
+
+router
+  .use(googleAuth)
+  .use(formLogin)
+  .use(apiRoutes)
 
 router.use((_, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))

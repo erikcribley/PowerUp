@@ -1,8 +1,8 @@
 
 USE `project3`;
-INSERT INTO `users` (`userName`, `userPassword`)
+INSERT INTO `users` (`userEmail`, `userPassword`)
 VALUE
-('Mitch', '1234');
+('mitch83083@gmail.com', '1234');
 
 USE `project3`;
 INSERT INTO `taskList` (`userId`, `task`)
