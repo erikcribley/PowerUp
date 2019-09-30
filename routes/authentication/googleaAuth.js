@@ -6,10 +6,9 @@ const orm = require('../../orm')
 passport.use(
   new GoogleStrategy(
     {
-      clientID:
-        '9011043381-i0ff2niqqfqho5osvjbf0tcieui56cco.apps.googleusercontent.com',
-      clientSecret: 'dfwLKn4Der9yG1h2thdMcNVP',
-      callbackURL: 'http://localhost:3001/auth/google/callback',
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
       scope: ['email']
     },
 

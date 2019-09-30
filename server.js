@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const routes = require('./routes')
 const app = express()
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 // Express Session
 app.use(
   session({
-    secret: 'secret',
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
     resave: true
   })

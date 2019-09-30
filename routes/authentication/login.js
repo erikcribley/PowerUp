@@ -20,6 +20,15 @@ const login = (req, res) => {
     .catch(err => console.error(err))
 }
 
+// checks to see if user is logged in, use on pages that should only be visible to logged in users
+const isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next()
+  } else {
+    res.redirect('/')
+  }
+}
+
 // hashes password provided and saves new user to database
 const hash = (req, res) => {
   bcrypt.hash(req.body.password, saltRounds).then(hash => {
@@ -43,15 +52,6 @@ const updateHash = (password, user, req, res) => {
       .then(result => login(req, res))
       .catch(err => console.error(err))
   })
-}
-
-// checks to see if user is logged in, use on pages that should only be visible to logged in users
-const isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    next()
-  } else {
-    res.redirect('/')
-  }
 }
 
 passport.use(
