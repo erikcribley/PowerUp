@@ -8,3 +8,13 @@ USE `project3`;
 INSERT INTO `taskList` (`userId`, `task`)
 VALUE
 ('1', 'Testing things out');
+
+USE `project3`;
+INSERT INTO `upgradeType` (`upgradeType`)
+VALUE
+('thrust'),
+('armor'),
+('shield'),
+('lasers');
+
+

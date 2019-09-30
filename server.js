@@ -27,6 +27,16 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+passport.serializeUser((user, done) => {
+  // console.log(`Serialize ${user}`)
+  done(null, user)
+})
+
+passport.deserializeUser((user, done) => {
+  // console.log(`Deserialize${user}`)
+  done(null, user)
+})
+
 app.use(routes)
 
 // Start the API server
