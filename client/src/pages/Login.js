@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Input, Button } from 'antd'
-import API from '../../utils/API'
+import API from '../utils/API'
 
 const pStyle = {
   marginTop: "1.5em",
