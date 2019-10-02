@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import Test from './components/Test'
 import * as serviceWorker from './serviceWorker'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
