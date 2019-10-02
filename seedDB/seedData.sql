@@ -17,4 +17,7 @@ VALUE
 ('shield'),
 ('lasers');
 
-
+USE `project3`;
+INSERT INTO `defaultShip` (`attack`, `defense`, `speed`, `maxHP`, `name`)
+VALUE
+(10, 10, 10, 50, 'Starter Ship');

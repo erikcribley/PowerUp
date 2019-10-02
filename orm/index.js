@@ -60,6 +60,21 @@ const orm = {
         }
       )
     })
+  },
+
+  userJoin: (displayCols, colVal) => {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT ?? FROM users U
+      JOIN taskList T ON T.userId = U.userId
+      JOIN playerShip P ON P.userId = U.userId
+      WHERE U.userId = ?`
+      connection.query(query, [displayCols, colVal], (err, res) => {
+        if (err) {
+          return reject(new Error(err))
+        }
+        return resolve(res)
+      })
+    })
   }
 }
 

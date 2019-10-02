@@ -24,6 +24,7 @@ passport.use(
   )
 )
 
+// logs the user in after they have been authenticated by google
 const login = (req, res) => {
   orm
     .tableWhere('users', 'userEmail', req.user.email)
@@ -41,6 +42,7 @@ const login = (req, res) => {
     .catch(err => console.error(err))
 }
 
+// saves new user to db
 const newUser = (req, res) => {
   orm
     .insertOne('users', {
@@ -51,6 +53,7 @@ const newUser = (req, res) => {
     .catch(err => console.error(err))
 }
 
+// adds google id to existing user
 const existingUser = (req, res) => {
   orm
     .updateOne('users', 'googleId', req.user.id, 'userEmail', req.user.email)

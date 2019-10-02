@@ -26,6 +26,17 @@ CREATE TABLE `taskList` (
   REFERENCES `users` (`userId`)
 );
 
+DROP TABLE IF EXISTS `defaultShip`;
+CREATE TABLE `defaultShip` (
+  `defaultShipId` INT AUTO_INCREMENT NOT NULL,
+  `attack` INT(10) NOT NULL,
+  `defense` INT(10) NOT NULL,
+  `speed` INT(10) NOT NULL,
+  `maxHP` INT(10) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`defaultShipId`)
+);
+
 DROP TABLE IF EXISTS `playerShip`;
 CREATE TABLE `playerShip` (
   `shipId` INT AUTO_INCREMENT NOT NULL,
