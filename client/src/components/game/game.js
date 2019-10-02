@@ -14,11 +14,11 @@ let ship = {
   credits: 100 
 }
 
-let prizzompts = {
+let prompts = {
   id:  1,
   prompt:  "You recieve a distress signal from a disabled ship. Do you respond?",
   options:  "Yep, Nope",
-  events:  "console.log('doodoo'), console.log('doubledoodoo)"
+  events:  "console.log('do the thing'), console.log('don't do the thing)"
 }
 
 let enemy = {
@@ -29,19 +29,19 @@ let enemy = {
 }
 
 //randomizer function
-const random = (num) => Math.floor(Math.random() * num + 1)
+// const random = (num) => Math.floor(Math.random() * num + 1)
 
 //attack function
-toHit = (attackMod, defMod) => {
-  const attack = random(20) + attackMod
-  const defense = random(20) + defMod
-  console.log(attack, defense)
-  if (attack >= defense) {
-    return random(10)
-  } else {
-    return 0
-  }
-}
+// toHit = (attackMod, defMod) => {
+//   const attack = random(20) + attackMod
+//   const defense = random(20) + defMod
+//   console.log(attack, defense)
+//   if (attack >= defense) {
+//     return random(10)
+//   } else {
+//     return 0
+//   }
+// }
 
 class Game extends React.Component {
 
@@ -52,6 +52,8 @@ class Game extends React.Component {
   //render on screen elements
 
   //on screen stat boxes?
+
+  //load value from database, change value in data base,
 
   render() {
     return (
@@ -67,11 +69,13 @@ class Game extends React.Component {
 
         />
         <PromptBox
-          prompt={prizzompts.prompt}
-          options={prizzompts.options}
-          events={prizzompts.events}
+          prompt={prompts.prompt}
+          options={prompts.options}
+          events={prompts.events}
         />
       </div>
     )
   }
 }
+
+export default Game

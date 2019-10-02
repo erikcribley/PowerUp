@@ -1,5 +1,7 @@
 import React from 'react'
 
+//make sure stats are from current user
+
 function StatBlock (props) {
   return (
     <div className="stat-block">

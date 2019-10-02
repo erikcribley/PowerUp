@@ -1,5 +1,7 @@
 import React from 'react'
 
+//prompts lead to other prompts
+
 function PromptBox (props) {
   createButtons = () => {
     for (i = 0; i < props.options.split(', ').length; i++) {
