@@ -1,0 +1,15 @@
+html {
+    height: 0px !important;
+}
+
+h3 {
+    margin-top: 1em !important;
+    margin-bottom: 4em !important;
+}
+
+.ant-carousel .slick-dots li button {
+    height: 16px !important;
+    border-radius: 50px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
