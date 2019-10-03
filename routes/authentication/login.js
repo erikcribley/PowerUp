@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 const router = require('express').Router()
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+const passport = require('./passport')
+// const LocalStrategy = require('passport-local').Strategy
 const orm = require('../../orm')
 
 // Authorizes with passport, redirect to route we want to land on after login
@@ -54,27 +54,27 @@ const updateHash = (password, user, req, res) => {
   })
 }
 
-passport.use(
-  new LocalStrategy((userEmail, userPass, done) => {
-    orm
-      .tableWhere('users', 'userEmail', userEmail)
-      .then(user => {
-        if (user.length === 0) {
-          return done(null, false, { message: 'Unknown User' })
-        }
-        bcrypt.compare(userPass, user[0].userPassword, (err, res) => {
-          if (err) {
-            return done(err)
-          }
-          if (!res) {
-            return done(null, false, { message: 'Invalid Password' })
-          }
-          return done(null, user)
-        })
-      })
-      .catch(err => console.error(err))
-  })
-)
+// passport.use(
+//   new LocalStrategy((userEmail, userPass, done) => {
+//     orm
+//       .tableWhere('users', 'userEmail', userEmail)
+//       .then(user => {
+//         if (user.length === 0) {
+//           return done(null, false, { message: 'Unknown User' })
+//         }
+//         bcrypt.compare(userPass, user[0].userPassword, (err, res) => {
+//           if (err) {
+//             return done(err)
+//           }
+//           if (!res) {
+//             return done(null, false, { message: 'Invalid Password' })
+//           }
+//           return done(null, { userId: user[0].userId, name: user[0].name })
+//         })
+//       })
+//       .catch(err => console.error(err))
+//   })
+// )
 
 router
   // Endpoint to create a new account
@@ -96,9 +96,16 @@ router
   })
   // Endpoint to login
   // must name the incoming fields username / password
-  .post('/login', passport.authenticate('local'), (req, res) => {
-    res.send(req.user)
-  })
+  .post(
+    '/login',
+    passport.authenticate('local', {
+      successRedirect: '/tasks',
+      failureRedirect: '/'
+    })
+  )
+  //   (req, res) => {
+  //   res.json(req.user)
+  // })
 
   // Endpoint to get current user
   .get('/user', isLoggedIn, (req, res) => {
