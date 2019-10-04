@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Layout, Row, Col } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
-import PlayerSnapshot from '../components/PlayerSnapshot'
+import PlayerImage from '../components/PlayerImage'
 
 import API from '../utils/API'
 
@@ -25,7 +25,7 @@ class Tasks extends Component {
 
             <Row type='flex' justify='center' gutter={32}>
                 <Col xs={14} lg={6} style={{textAlign: "center", backgroundColor: "gray"}}>
-                  <PlayerSnapshot />
+                  <PlayerImage />
                 </Col>
                 <Col xs={14} lg={6} style={{textAlign: "center", backgroundColor: "orange"}}>
                   <Row>

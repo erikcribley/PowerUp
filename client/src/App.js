@@ -14,11 +14,11 @@ function App() {
     <Router>
       <div className='main-container'>
           <Route exact path="/" component={Login} />
-          <Route exact path="/Characters" component={Characters} />
-          <Route exact path="/Stats" component={StatsPage} />
-          <Route exact path="/Tasks" component={Tasks} />
-          <Route exact path="/Store" component={Store} />
-          <Route exact path="/Gameplay" component={Gameplay} />
+          <Route exact path="/characters" component={Characters} />
+          <Route exact path="/stats" component={StatsPage} />
+          <Route exact path="/tasks" component={Tasks} />
+          <Route exact path="/store" component={Store} />
+          <Route exact path="/gameplay" component={Gameplay} />
       </div>
     </Router>
   )
