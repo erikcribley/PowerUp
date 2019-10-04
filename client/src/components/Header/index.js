@@ -1,29 +1,54 @@
-import React from 'react'
-import { Layout, Menu } from 'antd'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import RightMenu from './right-menu'
+import { Drawer, Button } from 'antd'
 import './style.css'
 
-const { Header } = Layout
+class Navbar extends Component {
+  state = {
+    current: 'mail',
+    visible: false
+  }
 
-function TopNav() {
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    })
+  }
+
+onClose = () => {
+    this.setState({
+      visible: false,
+    })
+  }
+
+render() {
     return (
-        <Header>
+        <nav className="menuBar">
             <div className="logo">
-            <img src="./images/Power-Up-logo.png" alt="Power Up logo" style={{ maxHeight: '50px', marginRight: '15px' }} />
+                <a href="/stats">
+                  <img src='./images/Power-Up-logo.png' alt='Power Up logo' />
+                </a>
             </div>
-            <Menu
-                theme="dark"
-                mode="horizontal"
-                defaultSelectedKeys={['1']}
-                style={{ lineHeight: '64px' }}
-            >
-                <Menu.Item key="1" as={Link} to='/Stats'>Stats</Menu.Item>
-                <Menu.Item key="2">Tasks</Menu.Item>
-                <Menu.Item key="3">Store</Menu.Item>
-                <Menu.Item key="4">Gameplay</Menu.Item>
-            </Menu>
-        </Header>
+            <div className="menuCon">
+                <div className="rightMenu">
+                <RightMenu />
+                </div>
+                <Button className="barsMenu" type="primary" onClick={this.showDrawer}>
+                <span className="barsBtn"></span>
+                </Button>
+                <Drawer
+                title="Basic Drawer"
+                placement="right"
+                closable={false}
+                onClose={this.onClose}
+                visible={this.state.visible}
+                >
+                <RightMenu />
+                </Drawer>
+            </div>
+        </nav>
     )
+  }
 }
 
-export default TopNav
+export default Navbar
