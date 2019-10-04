@@ -1,0 +1,19 @@
+.ant-table-pagination.ant-pagination {
+    display: none !important;
+}
+
+th {
+    background-color: #00803e !important;
+    color: white !important;
+}
+
+.ant-table-column-title {
+    text-transform: uppercase;  
+    font-weight: 900;
+    color: #0f0f0c;
+}
+
+tr {
+    color: white;
+    letter-spacing: 3px;
+}
