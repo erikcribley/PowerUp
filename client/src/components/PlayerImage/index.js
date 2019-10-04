@@ -2,9 +2,9 @@ import React from 'react'
 import { Row } from 'antd'
 import './style.css'
 
-function PlayerSnapshot() {
+function PlayerImage() {
     return (
-        <div>
+        <div >
             <Row>
                 <img src='./images/cruiser-md.svg' alt='Player Name' />
             </Row>
@@ -12,4 +12,4 @@ function PlayerSnapshot() {
     )
 }
 
-export default PlayerSnapshot
+export default PlayerImage
