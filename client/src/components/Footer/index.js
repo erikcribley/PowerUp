@@ -6,7 +6,7 @@ const { Footer } = Layout
 
 function Foot() {
     return (
-        <Footer style={{ textAlign: 'center', bottom: 0 }}>PowerUp ©2019 Mitch, Erik and Matt</Footer>
+        <Footer>Power Up ©2019 Mitch, Erik &amp; Matt</Footer>
     )
 }
 

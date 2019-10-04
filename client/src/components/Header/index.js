@@ -9,7 +9,7 @@ function TopNav() {
     return (
         <Header>
             <div className="logo">
-            <img src="./images/logo.svg" />
+            <img src="./images/Power-Up-logo.png" alt="Power Up logo" style={{ maxHeight: '50px', marginRight: '15px' }} />
             </div>
             <Menu
                 theme="dark"

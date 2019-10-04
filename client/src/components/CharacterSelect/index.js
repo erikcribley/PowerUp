@@ -8,23 +8,23 @@ function onChange(a, b, c) {
 
 function CharacterSelect(){
   return (
-    <Row style={{marginTop: 100}}>
+    <Row style={{marginTop: 80}}>
       <Col>
           <Carousel afterChange={onChange}>
             <div align='middle'>
-              <img style={{maxWidth: 300}} src='./images/test-01.svg' alt='Character One'/>
-              <h3>Character One</h3>
+              <img style={{maxWidth: 320}} src='./images/cruiser-sm.svg' alt='Outpost Cruiser' />
+              <h3>Outpost Cruiser</h3>
             </div>
             <div align='middle'>
-              <img style={{maxWidth: 300}} src='./images/test-02.svg' alt='Character Two'/>
-              <h3>Character Two</h3>
+              <img style={{maxWidth: 320}} src='./images/pod.svg' alt='Alien Pod' />
+              <h3>Alien Pod</h3>
             </div>
             <div align='middle'>
-              <img style={{maxWidth: 300}} src='./images/test-03.svg' alt='Character Three'/>
-              <h3>Character Three</h3>
+              <img style={{maxWidth: 320}} src='./images/sphere.svg' alt='Android Sphere' />
+              <h3>Android Sphere</h3>
             </div>
             <div align='middle'>
-              <img style={{maxWidth: 300}} src='./images/test-04.svg' alt='Character Four'/>
+              <img style={{maxWidth: 320}} src='./images/' alt='Character Four' />
               <h3>Character Four</h3>
             </div>
           </Carousel>

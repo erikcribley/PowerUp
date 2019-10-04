@@ -31,15 +31,15 @@ class Stats extends Component {
         <TopNav />
 
         <Content>
-          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+          <div style={{ minHeight: 280 }}>
 
             <Row type='flex' justify='center' gutter={32}>
-                <Col xs={14} lg={6} style={{textAlign: "center", backgroundColor: "gray"}}>
+                <Col xs={14} lg={6} style={{ textAlign: "center" }}>
                   <PlayerSnapshot />
                 </Col>
-                <Col xs={14} lg={6} style={{textAlign: "center", backgroundColor: "orange"}}>
+                <Col xs={14} lg={6} style={{ textAlign: "center", backgroundColor: "orange" }}>
                   <Row>
-                    Stats
+                    PlayerName Stats
                   </Row>
                   <Row style={{textAlign: "left"}}>
                       <List

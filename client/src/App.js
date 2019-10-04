@@ -12,7 +12,7 @@ import './App.css'
 function App() {
   return (
     <Router>
-      <div>
+      <div className='main-container'>
           <Route exact path="/" component={Login} />
           <Route exact path="/Characters" component={Characters} />
           <Route exact path="/Stats" component={StatsPage} />

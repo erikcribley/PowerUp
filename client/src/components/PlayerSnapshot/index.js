@@ -6,10 +6,7 @@ function PlayerSnapshot() {
     return (
         <div>
             <Row>
-                <img src='https://via.placeholder.com/150' />
-            </Row>
-            <Row>
-                Character Name
+                <img src='./images/cruiser-md.svg' alt='Player Name' />
             </Row>
         </div>
     )

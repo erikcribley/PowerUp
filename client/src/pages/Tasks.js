@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Layout, Row, Col, List } from 'antd'
+import { Layout, Row, Col } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
 import PlayerSnapshot from '../components/PlayerSnapshot'
