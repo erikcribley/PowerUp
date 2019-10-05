@@ -29,7 +29,9 @@ passport.use(
           if (!res) {
             return done(null, false, { message: 'Invalid Password' })
           }
-          return done(null, { userId: user[0].userId, name: user[0].name })
+          const userData = { userId: user[0].userId, name: user[0].name }
+          console.log('Strategy:' + userData)
+          return done(null, userData)
         })
       })
       .catch(err => console.error(err))
@@ -52,6 +54,7 @@ passport.use(
         name: profile.displayName,
         token: accessToken
       }
+      console.log('Google' + userData)
       return done(null, userData)
     }
   )

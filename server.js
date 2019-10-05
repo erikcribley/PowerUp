@@ -20,8 +20,9 @@ if (process.env.NODE_ENV === 'production') {
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    saveUninitialized: true,
-    resave: true
+    saveUninitialized: false,
+    resave: true,
+    cookie: { httpOnly: true, secure: 'auto', maxAge: 900000, rolling: true }
   })
 )
 

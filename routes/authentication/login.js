@@ -14,14 +14,14 @@ const login = (req, res) => {
         if (err) {
           return console.error(err)
         }
-        return res.redirect('/user')
+        return res.redirect('/tasks')
       })
     })
     .catch(err => console.error(err))
 }
 
 // checks to see if user is logged in, use on pages that should only be visible to logged in users
-const isLoggedIn = (req, res, next) => {
+const isAuth = (req, res, next) => {
   if (req.isAuthenticated()) {
     next()
   } else {
@@ -54,28 +54,6 @@ const updateHash = (password, user, req, res) => {
   })
 }
 
-// passport.use(
-//   new LocalStrategy((userEmail, userPass, done) => {
-//     orm
-//       .tableWhere('users', 'userEmail', userEmail)
-//       .then(user => {
-//         if (user.length === 0) {
-//           return done(null, false, { message: 'Unknown User' })
-//         }
-//         bcrypt.compare(userPass, user[0].userPassword, (err, res) => {
-//           if (err) {
-//             return done(err)
-//           }
-//           if (!res) {
-//             return done(null, false, { message: 'Invalid Password' })
-//           }
-//           return done(null, { userId: user[0].userId, name: user[0].name })
-//         })
-//       })
-//       .catch(err => console.error(err))
-//   })
-// )
-
 router
   // Endpoint to create a new account
   .post('/register', (req, res) => {
@@ -83,9 +61,7 @@ router
       .tableWhere('users', 'userEmail', req.body.username)
       .then(user => {
         if (user.length > 0 && user[0].googleId === null) {
-          return res
-            .send('That email address is already registered to an account')
-            .redirect('/')
+          return res.status(403).redirect('/')
         }
         if (user.length > 0 && user[0].userPassword === null) {
           return updateHash(req.body.password, user, req, res)
@@ -98,18 +74,16 @@ router
   // must name the incoming fields username / password
   .post(
     '/login',
-    passport.authenticate('local', {
-      successRedirect: '/tasks',
-      failureRedirect: '/'
-    })
+    passport.authenticate('local', { failureRedirect: '/', session: true }),
+    (req, res) => {
+      console.log('login' + req.user)
+      res.status(200).redirect('/tasks')
+    }
   )
-  //   (req, res) => {
-  //   res.json(req.user)
-  // })
 
   // Endpoint to get current user
-  .get('/user', isLoggedIn, (req, res) => {
-    res.send(req.user)
+  .get('/user', isAuth, (req, res) => {
+    res.json(req.user)
   })
 
   // Endpoint to logout

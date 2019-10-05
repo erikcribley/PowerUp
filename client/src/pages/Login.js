@@ -9,8 +9,26 @@ const pStyle = {
 }
 
 class Login extends Component {
-  componentDidMount() {
-    API.tasks().then(res => console.log(res.data))
+  // componentDidMount () {
+  //   API.login('mitch', '1234').then(res => console.log(res.data))
+  // }
+
+  state = {
+    userEmail: '',
+    password: ''
+  }
+
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleLoginSubmit = e => {
+    e.preventDefault()
+    if (this.state.userEmail && this.state.password) {
+      API.login(this.state.userEmail, this.state.password)
+        .then(res => console.log(res))
+        .catch(err => console.error(err))
+    }
   }
 
   render() {
@@ -25,12 +43,22 @@ class Login extends Component {
           <Input
             style={{ marginBottom: '.5em' }}
             placeholder='Enter your email'
+            name='userEmail'
+            value={this.state.userEmail}
+            onChange={this.handleInputChange}
           />
           <Input.Password
             style={{ marginBottom: '.5em' }}
             placeholder='input password'
+            name='password'
+            value={this.state.password}
+            onChange={this.handleInputChange}
           />
-          <Button type='primary' block>
+          <Button
+            type='primary'
+            block
+            disabled={!this.state.userEmail && this.state.password}
+            onClick={this.handleLoginSubmit}>
             Log In
           </Button>
           <p style={pStyle}>log in with Google</p>
