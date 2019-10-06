@@ -57,7 +57,7 @@ const orm = {
         if (err) {
           return reject(new Error(err))
         }
-        return resolve(res.affectedRows)
+        return resolve(res.insertId)
       })
     })
   },

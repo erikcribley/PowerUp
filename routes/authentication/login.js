@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 const router = require('express').Router()
-const passport = require('./passport')
-// const LocalStrategy = require('passport-local').Strategy
+const { passport, isAuth } = require('./passport')
+const validate = require('../validation')
 const orm = require('../../orm')
 
-// Authorizes with passport, redirect to route we want to land on after login
+// Authorizes with passport
 const login = (req, res) => {
   orm
     .tableWhere('users', 'userEmail', req.body.username)
@@ -14,19 +14,10 @@ const login = (req, res) => {
         if (err) {
           return console.error(err)
         }
-        return res.redirect('/tasks')
+        return res.status(200).send(true)
       })
     })
     .catch(err => console.error(err))
-}
-
-// checks to see if user is logged in, use on pages that should only be visible to logged in users
-const isAuth = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    next()
-  } else {
-    res.redirect('/')
-  }
 }
 
 // hashes password provided and saves new user to database
@@ -56,12 +47,12 @@ const updateHash = (password, user, req, res) => {
 
 router
   // Endpoint to create a new account
-  .post('/register', (req, res) => {
+  .post('/register', validate.register, validate.result, (req, res) => {
     orm
       .tableWhere('users', 'userEmail', req.body.username)
       .then(user => {
         if (user.length > 0 && user[0].googleId === null) {
-          return res.status(403).redirect('/')
+          return res.status(401).send(false)
         }
         if (user.length > 0 && user[0].userPassword === null) {
           return updateHash(req.body.password, user, req, res)
@@ -74,10 +65,12 @@ router
   // must name the incoming fields username / password
   .post(
     '/login',
-    passport.authenticate('local', { failureRedirect: '/', session: true }),
+    validate.login,
+    validate.result,
+    passport.authenticate('local', { session: true }),
+    isAuth,
     (req, res) => {
-      console.log('login' + req.user)
-      res.status(200).redirect('/tasks')
+      res.status(200).send(true)
     }
   )
 

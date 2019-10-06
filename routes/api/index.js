@@ -1,19 +1,20 @@
 const router = require('express').Router()
-const passport = require('../authentication/passport')
 const orm = require('../../orm')
+const { isAuth } = require('../authentication/passport')
 
-const isAuth = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    next()
-  } else {
-    res.status(403).redirect('/')
-  }
-}
-
-router.get('/tasks', isAuth, (req, res) => {
-  orm
-    .tableColumnWhere('task', 'taskList', 'userId', req.user.userId)
-    .then(data => res.send(data))
-})
+router
+  .get('/tasks', isAuth, (req, res) => {
+    orm
+      .tableColumnWhere('task', 'taskList', 'userId', req.user.userId)
+      .then(data => res.status(200).json(data))
+  })
+  .post('/tasks', isAuth, (req, res) => {
+    orm
+      .insertOne('taskList', {
+        userId: req.user.userId,
+        task: req.body.task
+      })
+      .then(data => res.status(200).json(data))
+  })
 
 module.exports = router

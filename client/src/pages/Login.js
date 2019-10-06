@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { Row, Col, Input, Button } from 'antd'
 import API from '../utils/API'
 
@@ -15,7 +16,8 @@ class Login extends Component {
 
   state = {
     userEmail: '',
-    password: ''
+    password: '',
+    loggedIn: false
   }
 
   handleInputChange = e => {
@@ -26,12 +28,19 @@ class Login extends Component {
     e.preventDefault()
     if (this.state.userEmail && this.state.password) {
       API.login(this.state.userEmail, this.state.password)
-        .then(res => console.log(res))
+        .then(res => {
+          if (res.data === true) {
+            this.setState({ loggedIn: true })
+          }
+        })
         .catch(err => console.error(err))
     }
   }
 
   render() {
+    if (this.state.loggedIn) {
+      return <Redirect to='/tasks' />
+    }
     return (
       <Row
         style={{ minHeight: 500 }}
@@ -63,7 +72,7 @@ class Login extends Component {
           </Button>
           <p style={pStyle}>log in with Google</p>
           <Button type='primary' block>
-            Google
+            <a href='/auth/google'>Google</a>
           </Button>
           <p style={pStyle}>log in with Facebook</p>
           <Button type='primary' block>

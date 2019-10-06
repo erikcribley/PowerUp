@@ -4,13 +4,22 @@ const LocalStrategy = require('passport-local').Strategy
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const orm = require('../../orm')
 
+// Checks to see if user is logged in and should have access to this route
+const isAuth = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next()
+  } else {
+    res.status(401).redirect('/')
+  }
+}
+
 passport.serializeUser((user, done) => {
-  console.log(`Serialize ${user}`)
+  // console.log(`Serialize ${user}`)
   done(null, user)
 })
 
 passport.deserializeUser((user, done) => {
-  console.log(`Deserialize${user}`)
+  // console.log(`Deserialize${user}`)
   done(null, user)
 })
 
@@ -30,7 +39,6 @@ passport.use(
             return done(null, false, { message: 'Invalid Password' })
           }
           const userData = { userId: user[0].userId, name: user[0].name }
-          console.log('Strategy:' + userData)
           return done(null, userData)
         })
       })
@@ -54,10 +62,9 @@ passport.use(
         name: profile.displayName,
         token: accessToken
       }
-      console.log('Google' + userData)
       return done(null, userData)
     }
   )
 )
 
-module.exports = passport
+module.exports = { passport: passport, isAuth: isAuth }

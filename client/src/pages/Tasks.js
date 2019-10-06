@@ -9,11 +9,11 @@ import API from '../utils/API'
 const { Content } = Layout
 
 class Tasks extends Component {
-  componentDidMount() {
-    API.tasks().then(res => console.log(res.data))
+  componentDidMount () {
+    API.getTasks().then(res => console.log(res.data))
   }
 
-  render() {
+  render () {
     return (
       <div>
         <TopNav />
@@ -24,13 +24,15 @@ class Tasks extends Component {
               <Col
                 xs={14}
                 lg={6}
-                style={{ textAlign: 'center', backgroundColor: 'gray' }}>
+                style={{ textAlign: 'center', backgroundColor: 'gray' }}
+              >
                 <PlayerSnapshot />
               </Col>
               <Col
                 xs={14}
                 lg={6}
-                style={{ textAlign: 'center', backgroundColor: 'orange' }}>
+                style={{ textAlign: 'center', backgroundColor: 'orange' }}
+              >
                 <Row>Tasks go here.</Row>
               </Col>
             </Row>

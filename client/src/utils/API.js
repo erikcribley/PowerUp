@@ -1,10 +1,6 @@
 import axios from 'axios'
 
 export default {
-  tasks: () => {
-    return axios.get('/tasks')
-  },
-
   register: (userName, password, name) => {
     return axios.post('/register', {
       username: userName,
@@ -18,5 +14,13 @@ export default {
       username: userName,
       password: password
     })
+  },
+
+  getTasks: () => {
+    return axios.get('/tasks')
+  },
+
+  addTasks: task => {
+    return axios.post('/tasks')
   }
 }

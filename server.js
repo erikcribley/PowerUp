@@ -3,7 +3,7 @@ const express = require('express')
 const routes = require('./routes')
 const app = express()
 const bodyParser = require('body-parser')
-const passport = require('./routes/authentication/passport')
+const { passport } = require('./routes/authentication/passport')
 const session = require('express-session')
 const PORT = process.env.PORT || 3001
 // just here for testing queries easily as I make them will delete later
@@ -30,20 +30,10 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-// passport.serializeUser((user, done) => {
-//   console.log(`Serialize ${user}`)
-//   done(null, user)
-// })
-
-// passport.deserializeUser((user, done) => {
-//   console.log(`Deserialize${user}`)
-//   done(null, user)
-// })
-
 app.use(routes)
 
 // Start the API server
-app.listen(PORT, function () {
+app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
 })
 
