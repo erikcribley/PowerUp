@@ -1,20 +1,15 @@
 const router = require('express').Router()
-const orm = require('../../orm')
-const { isAuth } = require('../authentication/passport')
+const character = require('./character')
+const gameplay = require('./gameplay')
+const stats = require('./stats')
+const store = require('./store')
+const tasks = require('./tasks')
 
 router
-  .get('/tasks', isAuth, (req, res) => {
-    orm
-      .tableColumnWhere('task', 'taskList', 'userId', req.user.userId)
-      .then(data => res.status(200).json(data))
-  })
-  .post('/tasks', isAuth, (req, res) => {
-    orm
-      .insertOne('taskList', {
-        userId: req.user.userId,
-        task: req.body.task
-      })
-      .then(data => res.status(200).json(data))
-  })
+  .use(character)
+  .use(gameplay)
+  .use(stats)
+  .use(store)
+  .use(tasks)
 
 module.exports = router

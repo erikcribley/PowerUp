@@ -16,11 +16,19 @@ export default {
     })
   },
 
-  getTasks: () => {
-    return axios.get('/tasks')
+  getTasks: (taskId, numTasks) => {
+    return axios.get(`/tasks/${taskId}/${numTasks}`)
   },
 
   addTasks: task => {
-    return axios.post('/tasks')
+    return axios.post('/tasks', { task: task })
+  },
+
+  updateTasks: (taskId, task) => {
+    return axios.put('/tasks', { taskId: taskId, task: task })
+  },
+
+  deleteTasks: taskId => {
+    return axios.delete('/tasks', { taskId: taskId })
   }
 }

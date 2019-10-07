@@ -9,11 +9,34 @@ import API from '../utils/API'
 const { Content } = Layout
 
 class Tasks extends Component {
-  componentDidMount () {
-    API.getTasks().then(res => console.log(res.data))
+  state = {
+    tasks: [],
+    newTask: '',
+    updateTask: '',
+    lastTaskId: 0,
+    numOfTasksShown: 10
+  }
+  componentDidMount() {
+    this.loadTasks()
   }
 
-  render () {
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  loadTasks = () => {
+    API.getTasks(this.state.lastTaskId, this.state.numOfTasksShown)
+      .then(res => this.setState({ tasks: res.data, newTask: '' }))
+      .catch(err => console.error(err))
+  }
+
+  deleteTask = id => {
+    API.deleteTasks(id)
+      .then(res => this.loadTasks())
+      .catch(err => console.error(err))
+  }
+
+  render() {
     return (
       <div>
         <TopNav />
@@ -24,15 +47,13 @@ class Tasks extends Component {
               <Col
                 xs={14}
                 lg={6}
-                style={{ textAlign: 'center', backgroundColor: 'gray' }}
-              >
+                style={{ textAlign: 'center', backgroundColor: 'gray' }}>
                 <PlayerSnapshot />
               </Col>
               <Col
                 xs={14}
                 lg={6}
-                style={{ textAlign: 'center', backgroundColor: 'orange' }}
-              >
+                style={{ textAlign: 'center', backgroundColor: 'orange' }}>
                 <Row>Tasks go here.</Row>
               </Col>
             </Row>

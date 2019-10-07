@@ -21,11 +21,11 @@ const orm = {
     })
   },
 
-  tableWhere: (table, column, value) => {
+  tableWhere: (table, whereCol, whereVal) => {
     return new Promise((resolve, reject) => {
       connection.query(
         'SELECT * FROM ?? WHERE ?? = (?)',
-        [table, column, value],
+        [table, whereCol, whereVal],
         (err, res) => {
           if (err) {
             return reject(new Error(err))
@@ -72,6 +72,40 @@ const orm = {
             return reject(new Error(err))
           }
           return resolve(res.affectedRows)
+        }
+      )
+    })
+  },
+
+  deleteOne: (table, whereCol, whereVal) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        'DELETE FROM ?? WHERE ?? = ?',
+        [table, whereCol, whereVal],
+        (err, res) => {
+          if (err) {
+            return reject(new Error(err))
+          }
+          return resolve(res.affectedRows)
+        }
+      )
+    })
+  },
+
+  taskPages: (userId, lastTaskId = 0, limit = 10) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        `SELECT taskId, task FROM taskList
+         WHERE userId = ?
+         AND taskId > ? 
+         ORDER BY taskId
+         LIMIT ?`,
+        [userId, lastTaskId, limit],
+        (err, res) => {
+          if (err) {
+            return reject(new Error(err))
+          }
+          return resolve(res)
         }
       )
     })
