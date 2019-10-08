@@ -8,7 +8,7 @@ function onChange(a, b, c) {
 
 function CharacterSelect(){
   return (
-    <Row style={{marginTop: 80}}>
+    <Row style={{marginTop: 40}}>
       <Col>
           <Carousel afterChange={onChange}>
             <div align='middle'>
