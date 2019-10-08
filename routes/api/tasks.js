@@ -5,26 +5,40 @@ const { isAuth } = require('../authentication/passport')
 router
   .get('/tasks/:taskId/:numTasks', isAuth, (req, res) => {
     orm
-      .taskPages(req.user.userId, req.params.taskId, req.params.numTasks)
+      .taskPages(
+        Number(req.user.userId),
+        Number(req.params.taskId),
+        Number(req.params.numTasks)
+      )
       .then(data => res.status(200).json(data))
+      .catch(err => console.error(err))
   })
   .post('/tasks', isAuth, (req, res) => {
     orm
       .insertOne('taskList', {
-        userId: req.user.userId,
+        userId: Number(req.user.userId),
         task: req.body.task
       })
       .then(data => res.status(200).json(data))
+      .catch(err => console.error(err))
   })
   .put('/tasks', isAuth, (req, res) => {
     orm
-      .updateOne('taskList', 'task', req.body.task, 'taskId', req.body.taskId)
+      .updateOne(
+        'taskList',
+        'task',
+        req.body.task,
+        'taskId',
+        Number(req.body.taskId)
+      )
       .then(data => res.status(200).json(data))
+      .catch(err => console.error(err))
   })
   .delete('/tasks', isAuth, (req, res) => {
     orm
-      .deleteOne('taskList', 'taskId', req.body.taskId)
+      .deleteOne('taskList', 'taskId', Number(req.body.taskId))
       .then(data => res.status(200).json(data))
+      .catch(err => console.error(err))
   })
 
 module.exports = router
