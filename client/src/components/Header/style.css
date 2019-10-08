@@ -5,6 +5,7 @@
 
 .logo {
     float: left;
+    margin: 16px 24px;
 }
 
 .logo a img {
@@ -26,18 +27,25 @@
     padding: 10px 15px;
 }
 
-.rightMenu {
+.rightMenu > .ant-menu {   
     float: right;
+    background-color: transparent !important;
 }
 
-.ant-btn-primary {
-    background-color: transparent !important;
-    border: none !important;
+.ant-menu-horizontal > .ant-menu-item > a {
+    color: white !important;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 3px;
+
+}
+
+.ant-menu.item > a {
     color: white !important;
 }
 
-.ant-btn {
-    display: none !important;
+.ant-menu.item > a:hover {
+    color: white !important;
+    /* border-bottom: #00803e; */
 }
 
 .barsMenu {
@@ -45,7 +53,7 @@
     height: 32px;
     padding: 6px;
     margin-top: 8px;
-    display: none;
+    display: none !important;
     background: none;
 }
 
@@ -73,8 +81,13 @@
     bottom: -6px;
 }
 
-.ant-drawer-body {
-    padding: 0;
+.ant-drawer-content {
+    background-color: transparent;
+}
+
+.ant-drawer-wrapper-body {
+    background-color: #00803e;
+    /* background-color: rgba(0, 0, 0, .5); */
 }
 
 .ant-drawer-body .ant-menu-horizontal>.ant-menu-item,
@@ -91,8 +104,28 @@
     border-bottom-color: transparent;
 }
 
+.ant-drawer-body > ul {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 3px;
+    background-color: transparent;
+}
+
+.ant-menu-vertical {
+    color: white;
+    border-right: 0px none transparent !important;
+}
+
+.ant-menu-horizontal {
+    border-bottom: 0px none transparent !important;
+}
+
+button.ant-btn.barsMenu.ant-btn-primary {
+    background-color: transparent;
+    border: none;
+    margin: 16px 24px;
+}
+
 @media(max-width: 767px) {
-    .ant-btn,
     .barsMenu {
         display: inline-block !important;
     }
