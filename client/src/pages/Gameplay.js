@@ -42,7 +42,6 @@ class Gameplay extends Component {
   render() {
     return (
       <div>
-
         <TopNav />
 
         <Content>
@@ -62,9 +61,8 @@ class Gameplay extends Component {
         </Content>
 
         <Foot />
-
       </div>
-    );
+    )
   }
 }
 

@@ -15,6 +15,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`userId`)
 );
 
+USE `project3`;
 DROP TABLE IF EXISTS `taskList`;
 CREATE TABLE `taskList` (
   `taskId` INT AUTO_INCREMENT NOT NULL,
@@ -26,6 +27,7 @@ CREATE TABLE `taskList` (
   REFERENCES `users` (`userId`)
 );
 
+USE `project3`;
 DROP TABLE IF EXISTS `defaultShip`;
 CREATE TABLE `defaultShip` (
   `defaultShipId` INT AUTO_INCREMENT NOT NULL,
@@ -34,9 +36,11 @@ CREATE TABLE `defaultShip` (
   `speed` INT(10) NOT NULL,
   `maxHP` INT(10) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
+  `picture` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`defaultShipId`)
 );
 
+USE `project3`;
 DROP TABLE IF EXISTS `playerShip`;
 CREATE TABLE `playerShip` (
   `shipId` INT AUTO_INCREMENT NOT NULL,
@@ -47,22 +51,24 @@ CREATE TABLE `playerShip` (
   `maxHP` INT(10) NOT NULL,
   `credits` INT(10) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
+  `picture` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`shipId`),
   CONSTRAINT `FK_002` FOREIGN KEY `fkIdx_002` (`userId`)
   REFERENCES `users` (`userId`)
   );
 
-DROP TABLE IF EXISTS `upgradeType`;
-CREATE TABLE `upgradeType` (
-  `upgradeTypeId` INT AUTO_INCREMENT NOT NULL,
-  `upgradeType` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`upgradeTypeId`)
-);
+-- DROP TABLE IF EXISTS `upgradeType`;
+-- CREATE TABLE `upgradeType` (
+--   `upgradeTypeId` INT AUTO_INCREMENT NOT NULL,
+--   `upgradeType` VARCHAR(45) NOT NULL,
+--   PRIMARY KEY (`upgradeTypeId`)
+-- );
 
+USE `project3`;
 DROP TABLE IF EXISTS `upgrades`;
 CREATE TABLE `upgrades` (
   `upgradeId` INT AUTO_INCREMENT NOT NULL,
-  `upgradeTypeId` INT NOT NULL,
+  `upgradeType` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `bonus` INT(10) NOT NULL,
   `cost` INT(10) NOT NULL,
@@ -72,6 +78,7 @@ CREATE TABLE `upgrades` (
   REFERENCES `upgradeType` (`upgradeTypeId`)
 );
 
+USE `project3`;
 DROP TABLE IF EXISTS `prompts`;
 CREATE TABLE `prompts` (
   `promptId` INT AUTO_INCREMENT NOT NULL,

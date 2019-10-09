@@ -1,28 +1,6 @@
 const router = require('express').Router()
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth20').Strategy
+const { passport } = require('./passport')
 const orm = require('../../orm')
-
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL,
-      scope: ['email']
-    },
-
-    (accessToken, refreshToken, profile, done) => {
-      const userData = {
-        googleId: profile.id,
-        email: profile.emails[0].value,
-        name: profile.displayName,
-        token: accessToken
-      }
-      return done(null, userData)
-    }
-  )
-)
 
 // logs the user in after they have been authenticated by google
 const login = (req, res) => {
@@ -35,7 +13,7 @@ const login = (req, res) => {
           if (err) {
             return console.error(err)
           }
-          return res.redirect('/user')
+          return res.status(200).redirect('/tasks')
         }
       )
     })
@@ -47,16 +25,15 @@ const newUser = (req, res) => {
   orm
     .insertOne('users', {
       userEmail: req.user.email,
-      googleId: req.user.googleId,
-      name: req.user.name
+      googleId: req.user.googleId
     })
     .catch(err => console.error(err))
 }
 
 // adds google id to existing user
-const existingUser = (req, res) => {
+const existingUser = (userId, req, res) => {
   orm
-    .updateOne('users', 'googleId', req.user.id, 'userEmail', req.user.email)
+    .updateOne('users', 'googleId', req.user.googleId, 'userId', userId)
     .catch(err => console.error(err))
 }
 
@@ -67,15 +44,15 @@ router
   )
   .get(
     '/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/', session: false }),
+    passport.authenticate('google', { failureRedirect: '/', session: true }),
     (req, res) => {
       orm
         .tableWhere('users', 'userEmail', req.user.email)
-        .then(data => {
-          if (data.length > 0 && data[0].googleId === null) {
-            return existingUser(req, res)
+        .then(user => {
+          if (user.length > 0 && user[0].googleId === null) {
+            return existingUser(user[0].userId, req, res)
           }
-          if (data.length === 0) {
+          if (user.length === 0) {
             return newUser(req, res)
           }
         })

@@ -7,7 +7,26 @@ VALUE
 USE `project3`;
 INSERT INTO `taskList` (`userId`, `task`)
 VALUE
-('1', 'Testing things out');
+(9, 'Testing user 1'),
+(9, 'still testing user 1'),
+(9, '3rd test for user 1'),
+(9, 'Testing user 2'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 test'),
+(9, 'User 2 3rd test value');
 
 USE `project3`;
 INSERT INTO `upgradeType` (`upgradeType`)
