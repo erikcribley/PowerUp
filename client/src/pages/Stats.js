@@ -17,7 +17,6 @@ class StatsPage extends Component {
   render() {
     return (
       <div>
-
         <TopNav />
 
         <Content>
@@ -34,14 +33,12 @@ class StatsPage extends Component {
                   <StatsList />
                 </Col>
             </Row>
-          
           </div>
         </Content>
 
         <Foot />
-
       </div>
-    );
+    )
   }
 }
 

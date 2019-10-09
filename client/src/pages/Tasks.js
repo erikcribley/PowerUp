@@ -10,6 +10,11 @@ const { Content } = Layout
 const marginBtm = {
   marginBottom: '.5em',
 }
+  state = {
+    tasks: [],
+    newTask: '',
+    updateTask: ''
+  }
 
 const hStyle = {
   fontFamily: 'Orbitron, sans-serif',
@@ -45,22 +50,37 @@ class TaskList extends Component {
 
 class Tasks extends Component {
   componentDidMount() {
-    API.get().then(res => console.log(res.data))
+    this.loadTasks()
   }
 
-  state = {
-    task: ''
+  loadTasks = () => {
+    API.getTasks()
+      .then(res =>
+        this.setState({ tasks: res.data, newTask: '', updateTask: '' })
+      )
+      .catch(err => console.error(err))
   }
 
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+  deleteTask = id => {
+    API.deleteTasks(id)
+      .then(res => this.loadTasks())
+      .catch(err => console.error(err))
   }
 
-  handleTaskSubmit = e => {
+  newTask = e => {
     e.preventDefault()
-    if (this.state.task) {
-      API.login(this.state.task)
-        .then(res => console.log(res))
+    if (this.state.newTask.length > 0) {
+      API.addTasks(this.state.newTask)
+        .then(res => this.loadTasks())
+        .catch(err => console.error(err))
+    }
+  }
+
+  updateTask = e => {
+    e.preventDefault()
+    if (this.state.updateTask.length > 0) {
+      API.addTasks(e.target.taskId, this.state.updateTask)
+        .then(res => this.loadTasks())
         .catch(err => console.error(err))
     }
   }
@@ -68,7 +88,6 @@ class Tasks extends Component {
   render() {
     return (
       <div>
-
         <TopNav />
 
         <Content>
@@ -98,14 +117,12 @@ class Tasks extends Component {
                   </Row>
                 </Col>
             </Row>
-          
           </div>
         </Content>
 
         <Foot />
-
       </div>
-    );
+    )
   }
 }
 

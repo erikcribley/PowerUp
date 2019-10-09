@@ -1,8 +1,15 @@
 const router = require('express').Router()
-const orm = require('../../orm')
+const character = require('./character')
+const gameplay = require('./gameplay')
+const stats = require('./stats')
+const store = require('./store')
+const tasks = require('./tasks')
 
-router.get('/api', (_, res) => {
-  orm.tableAll('taskList').then(data => res.json(data))
-})
+router
+  .use(character)
+  .use(gameplay)
+  .use(stats)
+  .use(store)
+  .use(tasks)
 
 module.exports = router

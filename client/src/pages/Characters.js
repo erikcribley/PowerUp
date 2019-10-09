@@ -15,9 +15,9 @@ const primaryBtn = {
 }
 
 class Characters extends Component {
-  componentDidMount() {
-    API.get().then(res => console.log(res.data))
-  }
+  // componentDidMount() {
+  //   API.get().then(res => console.log(res.data))
+  // }
 
   state = {
     userName: ''

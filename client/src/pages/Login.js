@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { Row, Col, Input, Button } from 'antd'
 import Foot from '../components/Footer'
 import API from '../utils/API'
@@ -29,9 +30,14 @@ const secondaryBtn = {
 }
 
 class Login extends Component {
+  // componentDidMount () {
+  //   API.login('mitch', '1234').then(res => console.log(res.data))
+  // }
+
   state = {
     userEmail: '',
-    password: ''
+    password: '',
+    loggedIn: false
   }
 
   handleInputChange = e => {
@@ -42,12 +48,19 @@ class Login extends Component {
     e.preventDefault()
     if (this.state.userEmail && this.state.password) {
       API.login(this.state.userEmail, this.state.password)
-        .then(res => console.log(res))
+        .then(res => {
+          if (res.data === true) {
+            this.setState({ loggedIn: true })
+          }
+        })
         .catch(err => console.error(err))
     }
   }
 
   render() {
+    if (this.state.loggedIn) {
+      return <Redirect to='/tasks' />
+    }
     return (
       <div>
         <Row
