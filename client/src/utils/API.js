@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 export default {
-  get: () => {
-    return axios.get('/api')
-  }
+
+  getShip: userId => {
+    return axios.get(`/gameplay/${userId}`)
+  } 
+
 }
