@@ -1,25 +1,15 @@
 import React, { Component } from 'react'
-import { Layout, Row, Col, List } from 'antd'
+import { Layout, Row, Col } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
-import PlayerSnapshot from '../components/PlayerSnapshot'
+import PlayerImage from '../components/PlayerImage'
+import StatsList from '../components/StatsList'
 
 import API from '../utils/API'
 
 const { Content } = Layout
 
-const data = [
-  'XP:',
-  'Ore:',
-  'Health:',
-  'Attack:',
-  'Defense:',
-  'Speed:',
-  'Rank:',
-  'Travel:',
-] 
-
-class Stats extends Component {
+class StatsPage extends Component {
   componentDidMount() {
     API.get().then(res => console.log(res.data))
   }
@@ -31,23 +21,17 @@ class Stats extends Component {
         <TopNav />
 
         <Content>
-          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+          <div style={{ marginTop: '3em', minHeight: 280 }}>
 
             <Row type='flex' justify='center' gutter={32}>
-                <Col xs={14} lg={6} style={{textAlign: "center", backgroundColor: "gray"}}>
-                  <PlayerSnapshot />
+                <Col xs={14} lg={6} style={{ textAlign: "center" }}>
+                  <PlayerImage />
                 </Col>
-                <Col xs={14} lg={6} style={{textAlign: "center", backgroundColor: "orange"}}>
-                  <Row>
-                    Stats
+                <Col xs={14} lg={6} style={{ textAlign: "center", color: 'white' }}>
+                  <Row style={{letterSpacing: '3px', marginBottom: '2em'}}>
+                    Outpost Cruiser Beta
                   </Row>
-                  <Row style={{textAlign: "left"}}>
-                      <List
-                        size="small"
-                        dataSource={data}
-                        renderItem={item => <List.Item>{item}</List.Item>}
-                      />
-                  </Row>
+                  <StatsList />
                 </Col>
             </Row>
           
@@ -61,4 +45,4 @@ class Stats extends Component {
   }
 }
 
-export default Stats
+export default StatsPage
