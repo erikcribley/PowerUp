@@ -92,15 +92,13 @@ const orm = {
     })
   },
 
-  taskPages: (userId, lastTaskId = 0, limit = 10) => {
+  taskPages: userId => {
     return new Promise((resolve, reject) => {
       connection.query(
         `SELECT taskId, task FROM taskList
-         WHERE userId = ?
-         AND taskId > ? 
-         ORDER BY taskId
-         LIMIT ?`,
-        [userId, lastTaskId, limit],
+         WHERE userId = ? 
+         ORDER BY taskId`,
+        [userId],
         (err, res) => {
           if (err) {
             return reject(new Error(err))

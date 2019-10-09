@@ -1,11 +1,10 @@
 import axios from 'axios'
 
 export default {
-  register: (userName, password, name) => {
+  register: (userName, password) => {
     return axios.post('/register', {
       username: userName,
-      password: password,
-      name: name
+      password: password
     })
   },
 

@@ -26,8 +26,7 @@ const hash = (req, res) => {
     return orm
       .insertOne('users', {
         userEmail: req.body.username,
-        userPassword: hash,
-        name: req.body.name
+        userPassword: hash
       })
       .then(result => login(req, res))
       .catch(err => console.error(err))

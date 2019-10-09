@@ -12,10 +12,9 @@ class Tasks extends Component {
   state = {
     tasks: [],
     newTask: '',
-    updateTask: '',
-    lastTaskId: 0,
-    numOfTasksShown: 10
+    updateTask: ''
   }
+
   componentDidMount() {
     this.loadTasks()
   }
@@ -25,8 +24,10 @@ class Tasks extends Component {
   }
 
   loadTasks = () => {
-    API.getTasks(this.state.lastTaskId, this.state.numOfTasksShown)
-      .then(res => this.setState({ tasks: res.data, newTask: '' }))
+    API.getTasks()
+      .then(res =>
+        this.setState({ tasks: res.data, newTask: '', updateTask: '' })
+      )
       .catch(err => console.error(err))
   }
 
@@ -34,6 +35,24 @@ class Tasks extends Component {
     API.deleteTasks(id)
       .then(res => this.loadTasks())
       .catch(err => console.error(err))
+  }
+
+  newTask = e => {
+    e.preventDefault()
+    if (this.state.newTask.length > 0) {
+      API.addTasks(this.state.newTask)
+        .then(res => this.loadTasks())
+        .catch(err => console.error(err))
+    }
+  }
+
+  updateTask = e => {
+    e.preventDefault()
+    if (this.state.updateTask.length > 0) {
+      API.addTasks(e.target.taskId, this.state.updateTask)
+        .then(res => this.loadTasks())
+        .catch(err => console.error(err))
+    }
   }
 
   render() {

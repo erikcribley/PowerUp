@@ -3,13 +3,9 @@ const orm = require('../../orm')
 const { isAuth } = require('../authentication/passport')
 
 router
-  .get('/tasks/:taskId/:numTasks', isAuth, (req, res) => {
+  .get('/tasks', isAuth, (req, res) => {
     orm
-      .taskPages(
-        Number(req.user.userId),
-        Number(req.params.taskId),
-        Number(req.params.numTasks)
-      )
+      .taskPages(Number(req.user.userId))
       .then(data => res.status(200).json(data))
       .catch(err => console.error(err))
   })
