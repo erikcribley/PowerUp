@@ -3,8 +3,10 @@ html {
 }
 
 h3 {
-    margin-top: 1em !important;
+    color: white !important;
+    /* margin-top: 1em !important; */
     margin-bottom: 4em !important;
+    letter-spacing: 3px;
 }
 
 .ant-carousel .slick-dots li button {

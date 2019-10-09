@@ -21,15 +21,9 @@ const primaryBtn = {
   border: '1px solid #00803e'
 }
 
-const secondaryBtn = {
-  color: '#00803e',
-  marginBottom: '.5em',
-  backgroundColor: 'transparent',
-  border: '1px solid #00803e'
-}
-
-class Login extends Component {
+class Register extends Component {
   state = {
+    userName: '',
     userEmail: '',
     password: ''
   }
@@ -40,8 +34,8 @@ class Login extends Component {
 
   handleLoginSubmit = e => {
     e.preventDefault()
-    if (this.state.userEmail && this.state.password) {
-      API.login(this.state.userEmail, this.state.password)
+    if (this.state.userName && this.state.userEmail && this.state.password) {
+      API.login(this.state.userName, this.state.userEmail, this.state.password)
         .then(res => console.log(res))
         .catch(err => console.error(err))
     }
@@ -56,7 +50,14 @@ class Login extends Component {
           justify='space-around'
           align='middle'>
           <Col style={{ maxWidth: 300 }}>
-            <h1 style={hStyle}>Log In</h1>
+            <h1 style={hStyle}>Register</h1>
+            {/* <Input
+              style={ marginBtm }
+              placeholder='username'
+              name='userName'
+              value={this.state.userName}
+              onChange={this.handleInputChange}
+            /> */}
             <Input
               style={ marginBtm }
               placeholder='email'
@@ -77,27 +78,6 @@ class Login extends Component {
               block
               disabled={!this.state.userEmail && this.state.password}
               onClick={this.handleLoginSubmit}>
-              Log In
-            </Button>
-            <Button
-              style={ secondaryBtn }
-              type='primary'
-              block
-              href='/auth/google'>
-              Log In with Google
-            </Button>
-            {/* <Button
-              style={ secondaryBtn }
-              type='primary'
-              block>
-              log in with Facebook
-            </Button> */}
-            <h1 style={hStyle}>New User?</h1>
-            <Button
-              style={ primaryBtn }
-              type='primary'
-              block
-              href= '/register'>
               Register
             </Button>
           </Col>
@@ -108,4 +88,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default Register
