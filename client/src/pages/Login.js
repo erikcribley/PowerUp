@@ -5,14 +5,14 @@ import Foot from '../components/Footer'
 import API from '../utils/API'
 
 const marginBtm = {
-  marginBottom: '.5em',
+  marginBottom: '.5em'
 }
 
 const hStyle = {
   fontFamily: 'Orbitron, sans-serif',
   color: 'white',
   textAlign: 'center',
-  marginTop: '1em' 
+  marginTop: '1em'
 }
 
 const primaryBtn = {
@@ -71,21 +71,21 @@ class Login extends Component {
           <Col style={{ maxWidth: 300 }}>
             <h1 style={hStyle}>Log In</h1>
             <Input
-              style={ marginBtm }
+              style={marginBtm}
               placeholder='email'
               name='userEmail'
               value={this.state.userEmail}
               onChange={this.handleInputChange}
             />
             <Input.Password
-              style={ marginBtm }
+              style={marginBtm}
               placeholder='password'
               name='password'
               value={this.state.password}
               onChange={this.handleInputChange}
             />
             <Button
-              style={ primaryBtn }
+              style={primaryBtn}
               type='primary'
               block
               disabled={!this.state.userEmail && this.state.password}
@@ -93,7 +93,7 @@ class Login extends Component {
               Log In
             </Button>
             <Button
-              style={ secondaryBtn }
+              style={secondaryBtn}
               type='primary'
               block
               href='/auth/google'>
@@ -106,16 +106,12 @@ class Login extends Component {
               log in with Facebook
             </Button> */}
             <h1 style={hStyle}>New User?</h1>
-            <Button
-              style={ primaryBtn }
-              type='primary'
-              block
-              href= '/register'>
+            <Button style={primaryBtn} type='primary' block href='/register'>
               Register
             </Button>
           </Col>
         </Row>
-      <Foot />
+        <Foot />
       </div>
     )
   }
