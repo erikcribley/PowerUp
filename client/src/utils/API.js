@@ -30,4 +30,9 @@ export default {
   deleteTasks: taskId => {
     return axios.delete('/tasks', { taskId: taskId })
   }
+
+  getShip: userId => {
+    return axios.get(`/gameplay/${userId}`)
+  } 
+
 }
