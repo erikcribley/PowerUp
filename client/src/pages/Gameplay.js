@@ -45,7 +45,7 @@ class Gameplay extends Component {
         <TopNav />
 
         <Content>
-          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+          <div style={{ padding: 24, minHeight: 280 }}>
 
             <StatsList 
               shipName={this.state.shipName}

@@ -7,22 +7,6 @@ import API from '../utils/API'
 
 const { Content } = Layout
 
-const marginBtm = {
-  marginBottom: '.5em'
-}
-
-const hStyle = {
-  fontFamily: 'Orbitron, sans-serif',
-  color: 'white',
-  textAlign: 'center',
-  marginTop: '1em'
-}
-
-const primaryBtn = {
-  color: '#0f0f0c',
-  marginBottom: '.5em',
-  backgroundColor: '#00803e',
-  border: '1px solid #00803e'
 }
 
 class Tasks extends Component {
@@ -78,7 +62,6 @@ class Tasks extends Component {
     return (
       <div>
         <TopNav />
-
         <Content>
           <div style={{ marginTop: '3em', minHeight: 280 }}>
             <Row type='flex' justify='center' gutter={32}>
