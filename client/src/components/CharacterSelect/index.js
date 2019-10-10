@@ -12,20 +12,20 @@ function CharacterSelect(){
       <Col>
           <Carousel afterChange={onChange}>
             <div align='middle'>
-              <img style={{maxWidth: 320}} src='./images/cruiser-sm.svg' alt='Outpost Cruiser' />
+              <img style={{maxWidth: 320}} src='./images/cruiser-sm.svg' alt='Outpost Cruiser' id='1' />
               <h3>Outpost Cruiser</h3>
             </div>
             <div align='middle'>
-              <img style={{maxWidth: 320}} src='./images/pod.svg' alt='Alien Pod' />
+              <img style={{maxWidth: 320}} src='./images/pod.svg' alt='Alien Pod' id='2' />
               <h3>Alien Pod</h3>
             </div>
             <div align='middle'>
-              <img style={{maxWidth: 320}} src='./images/sphere.svg' alt='Android Sphere' />
+              <img style={{maxWidth: 320}} src='./images/sphere.svg' alt='Android Sphere' id='3' />
               <h3>Android Sphere</h3>
             </div>
             <div align='middle'>
-              <img style={{maxWidth: 320}} src='./images/' alt='Character Four' />
-              <h3>Character Four</h3>
+              <img style={{maxWidth: 320}} src='./images/craft.svg' alt='Cyborg Craft' id='4' />
+              <h3>Cyborg Craft</h3>
             </div>
           </Carousel>
       </Col>  
