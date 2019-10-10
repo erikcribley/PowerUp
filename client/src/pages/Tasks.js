@@ -96,11 +96,7 @@ class Tasks extends Component {
                     style={primaryBtn}
                     type='primary'
                     block
-                    disabled={
-                      !this.state.task &&
-                      this.state.description &&
-                      this.state.stars
-                    }
+                    disabled={!this.state.newTask}
                     onClick={this.newTask}>
                     Add Task
                   </Button>

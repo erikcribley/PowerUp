@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { Row, Col, Input, Button } from 'antd'
 import Foot from '../components/Footer'
 import API from '../utils/API'
 
 const marginBtm = {
-  marginBottom: '.5em',
+  marginBottom: '.5em'
 }
 
 const hStyle = {
   fontFamily: 'Orbitron, sans-serif',
   color: 'white',
   textAlign: 'center',
-  marginTop: '1em' 
+  marginTop: '1em'
 }
 
 const primaryBtn = {
@@ -23,9 +24,9 @@ const primaryBtn = {
 
 class Register extends Component {
   state = {
-    userName: '',
     userEmail: '',
-    password: ''
+    password: '',
+    loggedIn: false
   }
 
   handleInputChange = e => {
@@ -34,14 +35,21 @@ class Register extends Component {
 
   handleLoginSubmit = e => {
     e.preventDefault()
-    if (this.state.userName && this.state.userEmail && this.state.password) {
-      API.login(this.state.userName, this.state.userEmail, this.state.password)
-        .then(res => console.log(res))
+    if (this.state.userEmail && this.state.password) {
+      API.register(this.state.userEmail, this.state.password)
+        .then(res => {
+          if (res.data === true) {
+            this.setState({ loggedIn: true })
+          }
+        })
         .catch(err => console.error(err))
     }
   }
 
   render() {
+    if (this.state.loggedIn) {
+      return <Redirect to='/tasks' />
+    }
     return (
       <div>
         <Row
@@ -59,21 +67,21 @@ class Register extends Component {
               onChange={this.handleInputChange}
             /> */}
             <Input
-              style={ marginBtm }
+              style={marginBtm}
               placeholder='email'
               name='userEmail'
               value={this.state.userEmail}
               onChange={this.handleInputChange}
             />
             <Input.Password
-              style={ marginBtm }
+              style={marginBtm}
               placeholder='password'
               name='password'
               value={this.state.password}
               onChange={this.handleInputChange}
             />
             <Button
-              style={ primaryBtn }
+              style={primaryBtn}
               type='primary'
               block
               disabled={!this.state.userEmail && this.state.password}
@@ -82,7 +90,7 @@ class Register extends Component {
             </Button>
           </Col>
         </Row>
-      <Foot />
+        <Foot />
       </div>
     )
   }
