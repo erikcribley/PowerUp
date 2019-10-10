@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 const router = require('express').Router()
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+const { passport, isAuth } = require('./passport')
+const validate = require('../validation')
 const orm = require('../../orm')
 
-// Authorizes with passport, redirect to route we want to land on after login
+// Authorizes with passport
 const login = (req, res) => {
   orm
     .tableWhere('users', 'userEmail', req.body.username)
@@ -14,19 +14,10 @@ const login = (req, res) => {
         if (err) {
           return console.error(err)
         }
-        return res.redirect('/user')
+        return res.status(200).send(true)
       })
     })
     .catch(err => console.error(err))
-}
-
-// checks to see if user is logged in, use on pages that should only be visible to logged in users
-const isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    next()
-  } else {
-    res.redirect('/')
-  }
 }
 
 // hashes password provided and saves new user to database
@@ -35,8 +26,7 @@ const hash = (req, res) => {
     return orm
       .insertOne('users', {
         userEmail: req.body.username,
-        userPassword: hash,
-        name: req.body.name
+        userPassword: hash
       })
       .then(result => login(req, res))
       .catch(err => console.error(err))
@@ -54,41 +44,20 @@ const updateHash = (password, user, req, res) => {
   })
 }
 
-passport.use(
-  new LocalStrategy((userEmail, userPass, done) => {
-    orm
-      .tableWhere('users', 'userEmail', userEmail)
-      .then(user => {
-        if (user.length === 0) {
-          return done(null, false, { message: 'Unknown User' })
-        }
-        bcrypt.compare(userPass, user[0].userPassword, (err, res) => {
-          if (err) {
-            return done(err)
-          }
-          if (!res) {
-            return done(null, false, { message: 'Invalid Password' })
-          }
-          return done(null, user)
-        })
-      })
-      .catch(err => console.error(err))
-  })
-)
-
 router
   // Endpoint to create a new account
-  .post('/register', (req, res) => {
+  .post('/register', validate.register, validate.result, (req, res) => {
     orm
       .tableWhere('users', 'userEmail', req.body.username)
       .then(user => {
         if (user.length > 0 && user[0].googleId === null) {
-          return res
-            .send('That email address is already registered to an account')
-            .redirect('/')
+          return res.status(401).send(false)
         }
         if (user.length > 0 && user[0].userPassword === null) {
           return updateHash(req.body.password, user, req, res)
+        }
+        if (user.length > 0 && user[0].userPassword) {
+          return res.status(401).send(false)
         }
         return hash(req, res)
       })
@@ -96,13 +65,20 @@ router
   })
   // Endpoint to login
   // must name the incoming fields username / password
-  .post('/login', passport.authenticate('local'), (req, res) => {
-    res.send(req.user)
-  })
+  .post(
+    '/login',
+    validate.login,
+    validate.result,
+    passport.authenticate('local', { session: true }),
+    isAuth,
+    (req, res) => {
+      res.status(200).send(true)
+    }
+  )
 
   // Endpoint to get current user
-  .get('/user', isLoggedIn, (req, res) => {
-    res.send(req.user)
+  .get('/user', isAuth, (req, res) => {
+    res.json(req.user)
   })
 
   // Endpoint to logout

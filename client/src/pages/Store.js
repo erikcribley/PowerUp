@@ -6,16 +6,14 @@ import API from '../utils/API'
 
 const { Content } = Layout
 
-
 class Store extends Component {
-  componentDidMount() {
-    API.get().then(res => console.log(res.data))
-  }
+  // componentDidMount() {
+  //   API.get().then(res => console.log(res.data))
+  // }
 
   render() {
     return (
       <div>
-
         <TopNav />
 
         <Content>
@@ -27,9 +25,8 @@ class Store extends Component {
         </Content>
 
         <Foot />
-
       </div>
-    );
+    )
   }
 }
 

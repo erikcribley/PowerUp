@@ -7,42 +7,56 @@ import API from '../utils/API'
 
 const { Content } = Layout
 
-let item2 = <TaskItem message="a new message" />
-let item3 = <TaskItem message="another message" />
-let item4 = <TaskItem message="one more task" />
-
-let allTasks = [item2, item3, item4]
-
-class TaskList extends Component {
-  render (){
-    let tasks = allTasks.map(thing => thing);
-    return (
-        <h4 className='taskItem'>{tasks}</h4>
-    )
-  }
 }
 
 class Tasks extends Component {
-  componentDidMount() {
-    API.get().then(res => console.log(res.data))
+  state = {
+    tasks: [],
+    newTask: '',
+    updateTask: ''
   }
 
-  state = {
-    task: ''
+  componentDidMount() {
+    this.loadTasks()
   }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  handleTaskSubmit = e => {
+  loadTasks = () => {
+    API.getTasks()
+      .then(res =>
+        this.setState({ tasks: res.data, newTask: '', updateTask: '' })
+      )
+      .catch(err => console.error(err))
+  }
+
+  deleteTask = id => {
+    API.deleteTasks(id)
+      .then(res => this.loadTasks())
+      .catch(err => console.error(err))
+  }
+
+  newTask = e => {
     e.preventDefault()
-    if (this.state.task) {
-      API.login(this.state.task)
-        .then(res => console.log(res))
+    if (this.state.newTask.length > 0) {
+      API.addTasks(this.state.newTask)
+        .then(res => this.loadTasks())
         .catch(err => console.error(err))
     }
   }
+
+  // Just left this here in case we want to add the function later
+
+  // updateTask = e => {
+  //   e.preventDefault()
+  //   if (this.state.updateTask.length > 0) {
+  //     API.addTasks(e.target.taskId, this.state.updateTask)
+  //       .then(res => this.loadTasks())
+  //       .catch(err => console.error(err))
+  //   }
+  // }
 
   render() {
     return (
@@ -50,37 +64,43 @@ class Tasks extends Component {
         <TopNav />
         <Content>
           <div style={{ marginTop: '3em', minHeight: 280 }}>
-
             <Row type='flex' justify='center' gutter={32}>
-                <Col xs={12} lg={12} style={{textAlign: "center" }}>
-                  <Row>
-                    <h1 className='hStyle'>Add a Task</h1> 
-                    <Input
-                      className='marginBtm'
-                      placeholder='e.g.: Spacewalk the dog'
-                      name='task'
-                      value={this.state.task}
-                      onChange={this.handleInputChange}
-                    />
-                    <Button
-                      className='primaryBtn'
-                      type='primary'
-                      block
-                      // disabled={!this.state.task}
-                      onClick={this.handleTaskSubmit}>
-                      Add Task
-                    </Button>
-                    <h1 className='hStyle'>Current Tasks</h1> 
-                    <TaskList />
-                  </Row>
-                </Col>
+              <Col xs={12} lg={12} style={{ textAlign: 'center' }}>
+                <Row>
+                  <h1 style={hStyle}>Add a Task</h1>
+                  <Input
+                    style={marginBtm}
+                    placeholder='e.g.: Walk the dog'
+                    name='newTask'
+                    value={this.state.newTask}
+                    onChange={this.handleInputChange}
+                  />
+                  <Button
+                    style={primaryBtn}
+                    type='primary'
+                    block
+                    disabled={!this.state.newTask}
+                    onClick={this.newTask}>
+                    Add Task
+                  </Button>
+                  <h1 style={hStyle}>Current Tasks</h1>
+                  <div>
+                    {this.state.tasks.map(task => (
+                      <TaskItem
+                        key={task.taskId}
+                        id={task.taskId}
+                        message={task.task}
+                        delete={this.deleteTask}
+                      />
+                    ))}
+                  </div>
+                </Row>
+              </Col>
             </Row>
-          
           </div>
         </Content>
 
         <Foot />
-
       </div>
     )
   }
