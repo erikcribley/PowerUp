@@ -33,5 +33,9 @@ export default {
 
   getShip: userId => {
     return axios.get(`/gameplay/${userId}`)
+  },
+
+  getPrompt: promptId => {
+    return axios.get(`/prompt/${promptId}`)
   }
 }
