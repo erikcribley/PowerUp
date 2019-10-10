@@ -20,9 +20,9 @@ class Gameplay extends Component {
         <TopNav />
 
         <Content>
-          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+          <div style={{ padding: 24, minHeight: 280 }}>
 
-            <h1>Under Construction.</h1>
+          <h1 style={{padding: 24, color: 'white', textAlign: 'center'}}>Under Construction...</h1>
           
           </div>
         </Content>

@@ -3,31 +3,6 @@ import { Row, Col, Input, Button } from 'antd'
 import Foot from '../components/Footer'
 import API from '../utils/API'
 
-const marginBtm = {
-  marginBottom: '.5em',
-}
-
-const hStyle = {
-  fontFamily: 'Orbitron, sans-serif',
-  color: 'white',
-  textAlign: 'center',
-  marginTop: '1em' 
-}
-
-const primaryBtn = {
-  color: '#0f0f0c',
-  marginBottom: '.5em',
-  backgroundColor: '#00803e',
-  border: '1px solid #00803e'
-}
-
-const secondaryBtn = {
-  color: '#00803e',
-  marginBottom: '.5em',
-  backgroundColor: 'transparent',
-  border: '1px solid #00803e'
-}
-
 class Login extends Component {
   state = {
     userEmail: '',
@@ -56,23 +31,23 @@ class Login extends Component {
           justify='space-around'
           align='middle'>
           <Col style={{ maxWidth: 300 }}>
-            <h1 style={hStyle}>Log In</h1>
+            <h1 className='hStyle'>Log In</h1>
             <Input
-              style={ marginBtm }
+              className='marginBtm'
               placeholder='email'
               name='userEmail'
               value={this.state.userEmail}
               onChange={this.handleInputChange}
             />
             <Input.Password
-              style={ marginBtm }
+              className='marginBtm'
               placeholder='password'
               name='password'
               value={this.state.password}
               onChange={this.handleInputChange}
             />
             <Button
-              style={ primaryBtn }
+              className='primaryBtn'
               type='primary'
               block
               disabled={!this.state.userEmail && this.state.password}
@@ -80,7 +55,7 @@ class Login extends Component {
               Log In
             </Button>
             <Button
-              style={ secondaryBtn }
+              className='secondaryBtn'
               type='primary'
               block
               href='/auth/google'>
@@ -92,9 +67,9 @@ class Login extends Component {
               block>
               log in with Facebook
             </Button> */}
-            <h1 style={hStyle}>New User?</h1>
+            <h1 className='hStyle'>New User?</h1>
             <Button
-              style={ primaryBtn }
+              className='primaryBtn'
               type='primary'
               block
               href= '/register'>

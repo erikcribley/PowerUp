@@ -3,17 +3,6 @@ import { Row, Col, Input, Button } from 'antd'
 import CharacterSelect from '../components/CharacterSelect'
 import API from '../utils/API'
 
-const marginBtm = {
-  marginBottom: '.5em'
-}
-
-const primaryBtn = {
-  color: '#0f0f0c',
-  marginBottom: '.5em',
-  backgroundColor: '#00803e',
-  border: '1px solid #00803e'
-}
-
 class Characters extends Component {
   componentDidMount() {
     API.get().then(res => console.log(res.data))
@@ -49,15 +38,14 @@ class Characters extends Component {
           <Col style={{ maxWidth: 300 }}>
 
             <Input
-            style={ marginBtm }
+            className='marginBtm'
             placeholder='username'
             name='username'
             />  
             <Button
-              style={ primaryBtn }
+              className='primaryBtn'
               type='primary'
               block
-              disabled={!this.state.userName}
               onClick={this.handleLoginSubmit}
               >
               Start
