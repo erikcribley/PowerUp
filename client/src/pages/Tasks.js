@@ -7,8 +7,6 @@ import API from '../utils/API'
 
 const { Content } = Layout
 
-}
-
 class Tasks extends Component {
   state = {
     tasks: [],
@@ -67,23 +65,23 @@ class Tasks extends Component {
             <Row type='flex' justify='center' gutter={32}>
               <Col xs={12} lg={12} style={{ textAlign: 'center' }}>
                 <Row>
-                  <h1 style={hStyle}>Add a Task</h1>
+                  <h1 className='hStyle'>Add a Task</h1>
                   <Input
-                    style={marginBtm}
+                    className='marginBtm'
                     placeholder='e.g.: Walk the dog'
                     name='newTask'
                     value={this.state.newTask}
                     onChange={this.handleInputChange}
                   />
                   <Button
-                    style={primaryBtn}
+                    className='primaryBtn'
                     type='primary'
                     block
                     disabled={!this.state.newTask}
                     onClick={this.newTask}>
                     Add Task
                   </Button>
-                  <h1 style={hStyle}>Current Tasks</h1>
+                  <h1 className='hStyle'>Current Tasks</h1>
                   <div>
                     {this.state.tasks.map(task => (
                       <TaskItem
