@@ -19,11 +19,11 @@ module.exports = {
       .matches('[A-Z]')
       .withMessage('Password must contain at least 1 uppercase letter'),
 
-    check('name', 'Name may only contain letters and numbers')
-      .not()
-      .isEmpty()
-      .isAlphanumeric()
-      .trim()
+    // check('name', 'Name may only contain letters and numbers')
+    //   .not()
+    //   .isEmpty()
+    //   .isAlphanumeric()
+    //   .trim()
   ],
 
   login: [

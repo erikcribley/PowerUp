@@ -17,6 +17,9 @@ class Gameplay extends Component {
     thrust: 0,
     hp: 0,
     credits: 0,
+    promptID: 0,
+    prompt: '',
+
   }
 
   componentDidMount() {
@@ -39,6 +42,11 @@ class Gameplay extends Component {
       .catch(err => console.error(err))
   }
 
+  // loadPrompt = () => {
+  //   API.getPrompt(this.)
+
+  // }
+
   render() {
     return (
       <div>
@@ -56,6 +64,11 @@ class Gameplay extends Component {
               hp={this.state.hp} 
               credits={this.state.credits}
             />
+
+            {/* <PromptBox
+              promptID={this.state}
+
+            /> */}
 
           </div>
         </Content>
