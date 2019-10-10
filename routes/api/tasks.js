@@ -30,9 +30,9 @@ router
       .then(data => res.status(200).json(data))
       .catch(err => console.error(err))
   })
-  .delete('/tasks', isAuth, (req, res) => {
+  .delete('/tasks/:taskId', isAuth, (req, res) => {
     orm
-      .deleteOne('taskList', 'taskId', Number(req.body.taskId))
+      .deleteOne('taskList', 'taskId', Number(req.params.taskId))
       .then(data => res.status(200).json(data))
       .catch(err => console.error(err))
   })

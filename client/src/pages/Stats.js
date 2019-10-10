@@ -10,28 +10,31 @@ import API from '../utils/API'
 const { Content } = Layout
 
 class StatsPage extends Component {
-  componentDidMount() {
-    API.get().then(res => console.log(res.data))
-  }
+  // componentDidMount() {
+  //   API.get().then(res => console.log(res.data))
+  // }
 
-  render() {
+  render () {
     return (
       <div>
         <TopNav />
 
         <Content>
           <div style={{ marginTop: '3em', minHeight: 280 }}>
-
             <Row type='flex' justify='center' gutter={32}>
-                <Col xs={14} lg={6} style={{ textAlign: "center" }}>
-                  <PlayerImage />
-                </Col>
-                <Col xs={14} lg={6} style={{ textAlign: "center", color: 'white' }}>
-                  <Row style={{letterSpacing: '3px', marginBottom: '2em'}}>
-                    Outpost Cruiser Beta
-                  </Row>
-                  <StatsList />
-                </Col>
+              <Col xs={14} lg={6} style={{ textAlign: 'center' }}>
+                <PlayerImage />
+              </Col>
+              <Col
+                xs={14}
+                lg={6}
+                style={{ textAlign: 'center', color: 'white' }}
+              >
+                <Row style={{ letterSpacing: '3px', marginBottom: '2em' }}>
+                  Outpost Cruiser Beta
+                </Row>
+                <StatsList />
+              </Col>
             </Row>
           </div>
         </Content>

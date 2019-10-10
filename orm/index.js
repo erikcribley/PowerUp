@@ -97,7 +97,7 @@ const orm = {
       connection.query(
         `SELECT taskId, task FROM taskList
          WHERE userId = ? 
-         ORDER BY taskId`,
+         ORDER BY taskId DESC`,
         [userId],
         (err, res) => {
           if (err) {

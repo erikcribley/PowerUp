@@ -56,6 +56,9 @@ router
         if (user.length > 0 && user[0].userPassword === null) {
           return updateHash(req.body.password, user, req, res)
         }
+        if (user.length > 0 && user[0].userPassword) {
+          return res.status(401).send(false)
+        }
         return hash(req, res)
       })
       .catch(err => console.error(err))
