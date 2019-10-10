@@ -15,8 +15,8 @@ export default {
     })
   },
 
-  getTasks: (taskId, numTasks) => {
-    return axios.get(`/tasks/${taskId}/${numTasks}`)
+  getTasks: taskId => {
+    return axios.get('/tasks')
   },
 
   addTasks: task => {
@@ -28,7 +28,7 @@ export default {
   },
 
   deleteTasks: taskId => {
-    return axios.delete('/tasks', { taskId: taskId })
+    return axios.delete(`/tasks/${taskId}`)
   },
 
   getShip: userId => {

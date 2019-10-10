@@ -7,38 +7,6 @@ import API from '../utils/API'
 
 const { Content } = Layout
 
-const marginBtm = {
-  marginBottom: '.5em'
-}
-
-const hStyle = {
-  fontFamily: 'Orbitron, sans-serif',
-  color: 'white',
-  textAlign: 'center',
-  marginTop: '1em'
-}
-
-const primaryBtn = {
-  color: '#0f0f0c',
-  marginBottom: '.5em',
-  backgroundColor: '#00803e',
-  border: '1px solid #00803e'
-}
-
-let item2 = <TaskItem message='a new message' />
-let item3 = <TaskItem message='another message' />
-let item4 = <TaskItem message='one more task' />
-
-let allTasks = [item2, item3, item4]
-
-class TaskList extends Component {
-  constructor(props) {
-    super()
-  }
-  render() {
-    let tasks = allTasks.map(thing => thing)
-    return <h4 className='taskItem'>{tasks}</h4>
-  }
 }
 
 class Tasks extends Component {
@@ -50,6 +18,10 @@ class Tasks extends Component {
 
   componentDidMount() {
     this.loadTasks()
+  }
+
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   loadTasks = () => {
@@ -75,20 +47,21 @@ class Tasks extends Component {
     }
   }
 
-  updateTask = e => {
-    e.preventDefault()
-    if (this.state.updateTask.length > 0) {
-      API.addTasks(e.target.taskId, this.state.updateTask)
-        .then(res => this.loadTasks())
-        .catch(err => console.error(err))
-    }
-  }
+  // Just left this here in case we want to add the function later
+
+  // updateTask = e => {
+  //   e.preventDefault()
+  //   if (this.state.updateTask.length > 0) {
+  //     API.addTasks(e.target.taskId, this.state.updateTask)
+  //       .then(res => this.loadTasks())
+  //       .catch(err => console.error(err))
+  //   }
+  // }
 
   render() {
     return (
       <div>
         <TopNav />
-
         <Content>
           <div style={{ marginTop: '3em', minHeight: 280 }}>
             <Row type='flex' justify='center' gutter={32}>
@@ -98,24 +71,29 @@ class Tasks extends Component {
                   <Input
                     style={marginBtm}
                     placeholder='e.g.: Walk the dog'
-                    name='task'
-                    value={this.state.task}
+                    name='newTask'
+                    value={this.state.newTask}
                     onChange={this.handleInputChange}
                   />
                   <Button
                     style={primaryBtn}
                     type='primary'
                     block
-                    disabled={
-                      !this.state.task &&
-                      this.state.description &&
-                      this.state.stars
-                    }
-                    onClick={this.handleTaskSubmit}>
+                    disabled={!this.state.newTask}
+                    onClick={this.newTask}>
                     Add Task
                   </Button>
                   <h1 style={hStyle}>Current Tasks</h1>
-                  <TaskList />
+                  <div>
+                    {this.state.tasks.map(task => (
+                      <TaskItem
+                        key={task.taskId}
+                        id={task.taskId}
+                        message={task.task}
+                        delete={this.deleteTask}
+                      />
+                    ))}
+                  </div>
                 </Row>
               </Col>
             </Row>

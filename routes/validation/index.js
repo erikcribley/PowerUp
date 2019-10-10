@@ -17,13 +17,7 @@ module.exports = {
       .matches('[a-z]')
       .withMessage('Password must contain at least 1 lowercase letter')
       .matches('[A-Z]')
-      .withMessage('Password must contain at least 1 uppercase letter'),
 
-    // check('name', 'Name may only contain letters and numbers')
-    //   .not()
-    //   .isEmpty()
-    //   .isAlphanumeric()
-    //   .trim()
   ],
 
   login: [
