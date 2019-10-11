@@ -4,8 +4,7 @@ import TopNav from '../components/Header'
 import Foot from '../components/Footer'
 import PlayerImage from '../components/PlayerImage'
 import StatsList from '../components/StatsList'
-
-import API from '../utils/API'
+// import API from '../utils/API'
 
 const { Content } = Layout
 

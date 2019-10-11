@@ -1,5 +1,7 @@
-.taskItem {
-    color: white;
-    text-align: left !important;
-    /* padding: 1em 0 !important; */
+.taskText {
+    text-align: left;
+}
+
+.compBtn {
+    margin-bottom: 0 !important;
 }

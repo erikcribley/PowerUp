@@ -24,11 +24,30 @@ footer {
 }
 
 .logo {
-  /* width: 120px;
-  height: 31px; */
-  /* background: rgba(255, 255, 255, 0.2); */
-  /* margin: 16px 24px 16px 0; */
   float: left;
 }
 
-/* ================================================================ */
+.marginBtm {
+  margin-bottom: .5em;
+}
+
+.hStyle {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.primaryBtn {
+  color: #0f0f0c;
+  margin-bottom: .5em;
+  background-color: #00803e;
+  border: 1px solid #00803e;
+}
+
+.secondaryBtn {
+  color: #00803e;
+  margin-bottom: .5em;
+  background-color: transparent;
+  border: 1px solid #00803e;
+}

@@ -4,24 +4,6 @@ import { Row, Col, Input, Button } from 'antd'
 import Foot from '../components/Footer'
 import API from '../utils/API'
 
-const marginBtm = {
-  marginBottom: '.5em'
-}
-
-const hStyle = {
-  fontFamily: 'Orbitron, sans-serif',
-  color: 'white',
-  textAlign: 'center',
-  marginTop: '1em'
-}
-
-const primaryBtn = {
-  color: '#0f0f0c',
-  marginBottom: '.5em',
-  backgroundColor: '#00803e',
-  border: '1px solid #00803e'
-}
-
 class Register extends Component {
   state = {
     userEmail: '',
@@ -58,7 +40,7 @@ class Register extends Component {
           justify='space-around'
           align='middle'>
           <Col style={{ maxWidth: 300 }}>
-            <h1 style={hStyle}>Register</h1>
+            <h1 className='hStyle'>Register</h1>
             {/* <Input
               style={ marginBtm }
               placeholder='username'
@@ -67,21 +49,21 @@ class Register extends Component {
               onChange={this.handleInputChange}
             /> */}
             <Input
-              style={marginBtm}
+              className='marginBtm'
               placeholder='email'
               name='userEmail'
               value={this.state.userEmail}
               onChange={this.handleInputChange}
             />
             <Input.Password
-              style={marginBtm}
+              className='marginBtm'
               placeholder='password'
               name='password'
               value={this.state.password}
               onChange={this.handleInputChange}
             />
             <Button
-              style={primaryBtn}
+              className='primaryBtn'
               type='primary'
               block
               disabled={!this.state.userEmail && this.state.password}

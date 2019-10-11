@@ -17,6 +17,9 @@ function RightMenu() {
         <Menu.Item>
             <a href="/gameplay">Gameplay</a>
         </Menu.Item>
+        <Menu.Item>
+            <a href="/logout">Log Out</a>
+        </Menu.Item>
       </Menu>
     )
 }
