@@ -63,10 +63,10 @@ class Characters extends Component {
           align='middle'>
           <Col style={{ maxWidth: 300 }}>
             <Input
-            className='marginBtm'
+              className='marginBtm'
               placeholder='username'
               name='userName'
-              onChange={this.handleInputChange}
+              onChange={this.handleInputChange}></Input>
             <Button
               className='primaryBtn'
               type='primary'
