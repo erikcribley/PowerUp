@@ -29,14 +29,9 @@ VALUE
 (9, 'User 2 3rd test value');
 
 USE `project3`;
-INSERT INTO `upgradeType` (`upgradeType`)
+INSERT INTO `defaultShip` (`attack`, `defense`, `speed`, `maxHP`, `name`, `picture`)
 VALUE
-('thrust'),
-('armor'),
-('shield'),
-('lasers');
-
-USE `project3`;
-INSERT INTO `defaultShip` (`attack`, `defense`, `speed`, `maxHP`, `name`)
-VALUE
-(10, 10, 10, 50, 'Starter Ship');
+(10, 10, 10, 50, 'Outpost Cruiser', './images/cruiser-sm.svg'),
+(10, 10, 10, 50, 'Alien Pod', './images/pod.svg'),
+(10, 10, 10, 50, 'Android Sphere', './images/sphere.svg'),
+(10, 10, 10, 50, 'Cyborg Craft', './images/craft.svg');
