@@ -37,6 +37,8 @@ VALUE
 ('lasers');
 
 USE `project3`;
-INSERT INTO `defaultShip` (`attack`, `defense`, `speed`, `maxHP`, `name`)
+INSERT INTO `defaultShip` (`attack`, `defense`, `speed`, `maxHP`, `name`, `picture`)
 VALUE
-(10, 10, 10, 50, 'Starter Ship');
+(10, 10, 10, 50, 'Outpost Cruiser', './images/cruiser-sm.svg'),
+(10, 10, 10, 50, 'Alien Pod', './images/pod.svg'),
+(10, 10, 10, 50, 'Android Sphere', './images/sphere.svg');

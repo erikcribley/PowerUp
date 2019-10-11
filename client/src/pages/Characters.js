@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { Row, Col, Input, Button } from 'antd'
 import CharacterSelect from '../components/CharacterSelect'
 import API from '../utils/API'
@@ -15,54 +16,77 @@ const primaryBtn = {
 }
 
 class Characters extends Component {
-  // componentDidMount() {
-  //   API.get().then(res => console.log(res.data))
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+      ships: [],
+      userName: '',
+      currentShip: {},
+      charCreated: false
+    }
+  }
 
-  state = {
-    userName: ''
+  componentDidMount() {
+    this.loadCharacters()
+  }
+
+  loadCharacters = () => {
+    API.getCharacters()
+      .then(res => this.setState({ ships: res.data, currentShip: res.data[0] }))
+      .catch(err => console.error(err))
+  }
+
+  updateState = (index = 0) => {
+    this.setState({ currentShip: this.state.ships[index] })
   }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  handleLoginSubmit = e => {
+  saveCharacter = e => {
     e.preventDefault()
     if (this.state.userName) {
-      API.login(this.state.userName)
-        .then(res => console.log(res))
+      API.saveCharacter(this.state.userName, this.state.currentShip)
+        .then(res => {
+          if (res.data === true) {
+            this.setState({ charCreated: true })
+          }
+        })
         .catch(err => console.error(err))
     }
   }
 
   render() {
+    if (this.state.charCreated) {
+      return <Redirect to='/stats' />
+    }
     return (
       <div>
-        <CharacterSelect />
+        <CharacterSelect
+          ships={this.state.ships}
+          updateState={this.updateState}
+        />
         <Row
           style={{ marginTop: '3em' }}
           type='flex'
           justify='space-around'
           align='middle'>
-
           <Col style={{ maxWidth: 300 }}>
-
             <Input
-            style={ marginBtm }
-            placeholder='username'
-            name='username'
-            />  
+              style={marginBtm}
+              placeholder='username'
+              name='userName'
+              onChange={this.handleInputChange}
+            />
             <Button
-              style={ primaryBtn }
+              style={primaryBtn}
               type='primary'
               block
               disabled={!this.state.userName}
-              onClick={this.handleLoginSubmit}
-              >
+              onClick={this.saveCharacter}>
               Start
             </Button>
-
           </Col>
         </Row>
       </div>

@@ -48,7 +48,7 @@ class Register extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to='/tasks' />
+      return <Redirect to='/characters' />
     }
     return (
       <div>

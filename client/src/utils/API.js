@@ -33,5 +33,13 @@ export default {
 
   getShip: userId => {
     return axios.get(`/gameplay/${userId}`)
+  },
+
+  getCharacters: () => {
+    return axios.get('/characters')
+  },
+
+  saveCharacter: (name, ship) => {
+    return axios.post('/characters', { name: name, ship: ship })
   }
 }
