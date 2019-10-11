@@ -42,7 +42,7 @@ export default {
   saveCharacter: (name, ship) => {
     return axios.post('/characters', { name: name, ship: ship })
   },
-
+    
   getPrompt: promptId => {
     return axios.get(`/prompt/${promptId}`)
   }
