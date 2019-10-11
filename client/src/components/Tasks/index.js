@@ -1,39 +1,48 @@
 import React, { Component } from 'react'
-import { Button } from 'antd'
+import { Row, Col, Button, Icon } from 'antd'
 import './style.css'
 
 class TaskItem extends Component {
-  // constructor (props) {
-  //   super()
-
-  //   this.state = {
-  //     checked: false
-  //   }
-
-  //   this.handleClick = this.handleClick.bind(this)
-  // }
-
-  // handleClick (e) {
-  //   this.setState({
-  //     checked: !this.state.checked
-  //   })
-  // }
 
   render() {
     return (
-      <div className='row'>
-        <div className='col-md-12'>
+      <div>
+        <Row type='flex' align='middle'>
+        <Col xs={20} sm={20} md={20} lg={20}>
+          <div className='taskText'>
           {this.props.message}
+          </div>
+        </Col>
+        <Col xs={4} sm={4} md={4} lg={4}>
           <Button
-            type='primary'
+            className='secondaryBtn compBtn'
             size='small'
             onClick={() => this.props.delete(this.props.id)}>
-            Completed
+            <Icon type="check" />
           </Button>
+        </Col>
+        </Row>
+        <Row>
           <hr />
-        </div>
+        </Row>
       </div>
     )
+    // return (
+    //   <div className='row'>
+    //     <div className='col-md-6'>
+    //       {this.props.message}
+    //     </div>
+    //     <div className='col-md-6'>
+    //       <Button
+    //         className='secondaryBtn'
+    //         size='small'
+    //         onClick={() => this.props.delete(this.props.id)}>
+    //         Completed
+    //       </Button>
+    //     </div>
+    //     <hr />
+    //   </div>
+    // )
   }
 }
 
