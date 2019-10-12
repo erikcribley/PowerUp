@@ -32,10 +32,10 @@ export default {
   },
 
   getShip: userId => {
-    return axios.get(`/gameplay/${userId}`)
+    return axios.get('/gameplay')
   },
 
   getPrompt: promptId => {
-    return axios.get(`/prompt/${promptId}`)
+    return axios.get('/gameplay')
   }
 }
