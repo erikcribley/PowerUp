@@ -1,7 +1,7 @@
 const mysql = require('mysql')
 
 const opts = process.env.JAWSDB_URL || {
-  host: 'localhost',
+  host: 'localhost:',
   user: 'root',
   password: 'password',
   database: 'project3'
@@ -10,6 +10,7 @@ const opts = process.env.JAWSDB_URL || {
 const connection = mysql.createConnection(opts)
 
 const orm = {
+
   tableAll: table => {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM ??', [table], (err, res) => {
