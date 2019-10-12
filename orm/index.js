@@ -109,6 +109,22 @@ const orm = {
     })
   },
 
+  userStats: userId => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        `SELECT * FROM playerShip
+      WHERE userId = ?`,
+        [userId],
+        (err, res) => {
+          if (err) {
+            return reject(new Error(err))
+          }
+          return resolve(res)
+        }
+      )
+    })
+  },
+
   // can be used to get any column out of users, playerShip, or taskList based on userId
   // just put the columns wanted into an array [U.userEmail, S.attack, T.task, etc]
   // can hard code these in if we want the same columns always or leave it to be selected at time of use

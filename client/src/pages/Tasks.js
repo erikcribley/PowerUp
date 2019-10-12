@@ -9,10 +9,13 @@ const { Content } = Layout
 const { TextArea } = Input
 
 class Tasks extends Component {
-  state = {
-    tasks: [],
-    newTask: '',
-    updateTask: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      tasks: [],
+      newTask: '',
+      updateTask: ''
+    }
   }
 
   componentDidMount() {
