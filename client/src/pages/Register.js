@@ -5,10 +5,13 @@ import Foot from '../components/Footer'
 import API from '../utils/API'
 
 class Register extends Component {
-  state = {
-    userEmail: '',
-    password: '',
-    loggedIn: false
+  constructor(props) {
+    super(props)
+    this.state = {
+      userEmail: '',
+      password: '',
+      loggedIn: false
+    }
   }
 
   handleInputChange = e => {

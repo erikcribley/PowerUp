@@ -8,10 +8,13 @@ import API from '../utils/API'
 const { Content } = Layout
 
 class Tasks extends Component {
-  state = {
-    tasks: [],
-    newTask: '',
-    updateTask: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      tasks: [],
+      newTask: '',
+      updateTask: ''
+    }
   }
 
   componentDidMount() {
@@ -66,6 +69,7 @@ class Tasks extends Component {
               <Col xs={12} lg={12} style={{ textAlign: 'center' }}>
                 <Row>
                   <h1 className='hStyle'>Add a Task</h1>
+                  <Input
                     className='marginBtm'
                     placeholder='e.g.: Walk the dog'
                     name='newTask'
