@@ -5,14 +5,13 @@ import Foot from '../components/Footer'
 import API from '../utils/API'
 
 class Login extends Component {
-  // componentDidMount () {
-  //   API.login('mitch', '1234').then(res => console.log(res.data))
-  // }
-
-  state = {
-    userEmail: '',
-    password: '',
-    loggedIn: false
+  constructor(props) {
+    super(props)
+    this.state = {
+      userEmail: '',
+      password: '',
+      loggedIn: false
+    }
   }
 
   handleInputChange = e => {
@@ -85,7 +84,7 @@ class Login extends Component {
               className='primaryBtn'
               type='primary'
               block
-              href= '/register'>
+              href='/register'>
               Register
             </Button>
           </Col>

@@ -42,7 +42,11 @@ export default {
   saveCharacter: (name, ship) => {
     return axios.post('/characters', { name: name, ship: ship })
   },
-    
+
+  getStats: () => {
+    return axios.get('/stats')
+  },
+
   getPrompt: promptId => {
     return axios.get('/gameplay')
   }

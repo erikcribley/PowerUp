@@ -25,7 +25,6 @@ class Characters extends Component {
       .catch(err => console.error(err))
   }
 
-
   updateState = (index = 0) => {
     this.setState({ currentShip: this.state.ships[index] })
   }
@@ -67,7 +66,8 @@ class Characters extends Component {
               className='marginBtm'
               placeholder='username'
               name='userName'
-              onChange={this.handleInputChange} />
+              onChange={this.handleInputChange}
+            />
             <Button
               className='primaryBtn'
               type='primary'

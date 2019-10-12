@@ -8,10 +8,13 @@ import API from '../utils/API'
 const { Content } = Layout
 
 class Tasks extends Component {
-  state = {
-    tasks: [],
-    newTask: '',
-    updateTask: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      tasks: [],
+      newTask: '',
+      updateTask: ''
+    }
   }
 
   componentDidMount() {
