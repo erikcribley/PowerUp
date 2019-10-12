@@ -82,8 +82,9 @@ router
   })
 
   // Endpoint to logout
-  .get('/logout', (req, res) => {
+  .get('/logout', isAuth, (req, res) => {
     req.logout()
+    req.session.destroy()
     res.send(null)
   })
 

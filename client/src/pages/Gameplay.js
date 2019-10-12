@@ -9,8 +9,8 @@ const { Content } = Layout
 
 class Gameplay extends Component {
   state = {
-    userID: '',
-    shipID: '',
+    userID: 0,
+    shipID: 0,
     shipName: '',
     armor: 0,
     weapon: 0,
@@ -52,9 +52,9 @@ class Gameplay extends Component {
     API.getPrompt(1)
       .then(res =>
         this.setState({
-          prompt: res.data[0].prompt
-          // options: res.options,
-          // events: res.events
+          prompt: res.data[0].prompt,
+          options: res.data[0].options,
+          events: res.data[0].events
         })
       )
       .catch(err => console.error(err))
