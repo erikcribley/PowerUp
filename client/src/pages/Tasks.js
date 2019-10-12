@@ -6,7 +6,6 @@ import Foot from '../components/Footer'
 import API from '../utils/API'
 
 const { Content } = Layout
-const { TextArea } = Input
 
 class Tasks extends Component {
   state = {
@@ -67,7 +66,6 @@ class Tasks extends Component {
               <Col xs={12} lg={12} style={{ textAlign: 'center' }}>
                 <Row>
                   <h1 className='hStyle'>Add a Task</h1>
-                  <TextArea
                     className='marginBtm'
                     placeholder='e.g.: Walk the dog'
                     name='newTask'
