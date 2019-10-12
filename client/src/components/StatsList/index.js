@@ -18,29 +18,29 @@ function StatsList (props) {
 
   const data = [
     {
-      key: 'Attack',
-      stat: 'Attack',
-      data: props.stats.attack
+      key: 'Weapon',
+      stat: 'Weapon',
+      data: props.weapon
     },
     {
-      key: 'Defense',
-      stat: 'Defense',
-      data: props.stats.defense
+      key: 'Shield',
+      stat: 'Shield',
+      data: props.shield
     },
     {
-      key: 'Speed',
-      stat: 'Speed',
-      data: props.stats.speed
+      key: 'Armor',
+      stat: 'Armor',
+      data: props.armor
     },
     {
-      key: 'maxHP',
-      stat: 'HP',
-      data: props.stats.maxHP
+      key: 'Thrust',
+      stat: 'Thrust',
+      data: props.thrust
     },
     {
       key: 'Credits',
       stat: 'Credits',
-      data: props.stats.credits
+      data: props.credits
     }
   ]
   return <Table columns={columns} dataSource={data} />

@@ -12,7 +12,13 @@ class StatsPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      stats: {}
+      shipName: '',
+      armor: 0,
+      weapon: 0,
+      shield: 0,
+      thrust: 0,
+      credits: 0,
+      picture: ''
     }
   }
 
@@ -22,7 +28,17 @@ class StatsPage extends Component {
 
   getStats = () => {
     API.getStats()
-      .then(res => this.setState({ stats: res.data[0] }))
+      .then(res =>
+        this.setState({
+          shipName: res.data[0].name,
+          armor: res.data[0].maxHP,
+          weapon: res.data[0].attack,
+          shield: res.data[0].defense,
+          thrust: res.data[0].speed,
+          credits: res.data[0].credits,
+          picture: res.data[0].picture
+        })
+      )
       .catch(err => console.error(err))
   }
 
@@ -36,8 +52,8 @@ class StatsPage extends Component {
             <Row type='flex' justify='center' gutter={32}>
               <Col xs={14} lg={6} style={{ textAlign: 'center' }}>
                 <PlayerImage
-                  src={this.state.stats.picture}
-                  alt={this.state.stats.name}
+                  src={this.state.picture}
+                  alt={this.state.shipName}
                 />
               </Col>
               <Col
@@ -45,9 +61,16 @@ class StatsPage extends Component {
                 lg={6}
                 style={{ textAlign: 'center', color: 'white' }}>
                 <Row style={{ letterSpacing: '3px', marginBottom: '2em' }}>
-                  {this.state.stats.name}
+                  {this.state.shipName}
                 </Row>
-                <StatsList stats={this.state.stats} />
+                <StatsList
+                  shipName={this.state.shipName}
+                  armor={this.state.armor}
+                  weapon={this.state.weapon}
+                  shield={this.state.shield}
+                  thrust={this.state.thrust}
+                  credits={this.state.credits}
+                />
               </Col>
             </Row>
           </div>
