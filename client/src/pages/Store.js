@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Layout } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
-import API from '../utils/API'
+// import API from '../utils/API'
 
 const { Content } = Layout
 

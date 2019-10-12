@@ -55,6 +55,9 @@ class Navbar extends Component {
                       <Menu.Item>
                         <a href="/gameplay">Gameplay</a>
                       </Menu.Item>
+                      <Menu.Item>
+                        <a href="/logout">Log Out</a>
+                      </Menu.Item>
                     </Menu>
                   </Drawer>
               </div>

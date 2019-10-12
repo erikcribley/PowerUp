@@ -66,12 +66,12 @@ class Tasks extends Component {
               <Col xs={12} lg={12} style={{ textAlign: 'center' }}>
                 <Row>
                   <h1 className='hStyle'>Add a Task</h1>
-                  <Input
                     className='marginBtm'
                     placeholder='e.g.: Walk the dog'
                     name='newTask'
                     value={this.state.newTask}
                     onChange={this.handleInputChange}
+                    autosize
                   />
                   <Button
                     className='primaryBtn'

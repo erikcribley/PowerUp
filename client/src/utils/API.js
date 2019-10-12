@@ -35,6 +35,14 @@ export default {
     return axios.get('/gameplay')
   },
 
+  getCharacters: () => {
+    return axios.get('/characters')
+  },
+
+  saveCharacter: (name, ship) => {
+    return axios.post('/characters', { name: name, ship: ship })
+  },
+    
   getPrompt: promptId => {
     return axios.get('/gameplay')
   }

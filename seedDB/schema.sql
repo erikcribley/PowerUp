@@ -44,7 +44,7 @@ USE `project3`;
 DROP TABLE IF EXISTS `playerShip`;
 CREATE TABLE `playerShip` (
   `shipId` INT AUTO_INCREMENT NOT NULL,
-  `userId` INT NOT NULL,
+  `userId` INT NOT NULL UNIQUE,
   `attack` INT(10) NOT NULL,
   `defense` INT(10) NOT NULL,
   `speed` INT(10) NOT NULL,
