@@ -32,27 +32,29 @@ class Gameplay extends Component {
 
   loadShip = () => {
     API.getShip(this.state.userID)
-      .then(res => this.setState({ 
-        userID: res.userId,
-        shipID: res.shipId,
-        shipName: res.name,
-        armor: res.maxHP,
-        weapon: res.attack,
-        shield: res.defense,
-        thrust: res.speed,
-        hp: res.maxHP,
-        credits: res.credits
-      }))
+      .then(res =>
+        this.setState({
+          userID: res.data[0].userId,
+          shipID: res.data[0].shipId,
+          shipName: res.data[0].name,
+          armor: res.data[0].maxHP,
+          weapon: res.data[0].attack,
+          shield: res.data[0].defense,
+          thrust: res.data[0].speed,
+          hp: res.data[0].maxHP,
+          credits: res.data[0].credits
+        })
+      )
       .catch(err => console.error(err))
   }
 
   loadPrompt = () => {
     API.getPrompt(1)
-      .then(res => 
+      .then(res =>
         this.setState({
-          prompt: res.prompt,
-          options: res.options,
-          events: res.events
+          prompt: res.data[0].prompt
+          // options: res.options,
+          // events: res.events
         })
       )
       .catch(err => console.error(err))
@@ -65,14 +67,12 @@ class Gameplay extends Component {
 
         <Content>
           <div style={{ padding: 24, minHeight: 280 }}>
-
             <Prompts
               promptID={this.state.promptID}
               prompt={this.state.prompt}
               options={this.state.options}
               events={this.state.events}
             />
-
           </div>
         </Content>
 

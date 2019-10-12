@@ -48,6 +48,6 @@ export default {
   },
 
   getPrompt: promptId => {
-    return axios.get('/gameplay')
+    return axios.get(`/gameplay/${promptId}`)
   }
 }

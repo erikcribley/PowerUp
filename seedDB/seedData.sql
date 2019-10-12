@@ -35,3 +35,8 @@ VALUE
 (10, 10, 10, 50, 'Alien Pod', './images/pod.svg'),
 (10, 10, 10, 50, 'Android Sphere', './images/sphere.svg'),
 (10, 10, 10, 50, 'Cyborg Craft', './images/craft.svg');
+
+USE `project3`;
+INSERT INTO `prompts` (`prompt`)
+VALUE
+('This is a test prompt');
