@@ -3,6 +3,7 @@ import { Layout } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
 import StatsList from '../components/StatsList'
+import Prompts from '../components/Prompts'
 import API from '../utils/API'
 const { Content } = Layout
 
@@ -19,11 +20,14 @@ class Gameplay extends Component {
     credits: 0,
     promptID: 0,
     prompt: '',
-
+    options: '',
+    event: '',
+    test: []
   }
 
   componentDidMount() {
     this.loadShip()
+    this.loadPrompt()
   }
 
   loadShip = () => {
@@ -42,10 +46,17 @@ class Gameplay extends Component {
       .catch(err => console.error(err))
   }
 
-  // loadPrompt = () => {
-  //   API.getPrompt(this.)
-
-  // }
+  loadPrompt = () => {
+    API.getPrompt(1)
+      .then(res => 
+        this.setState({
+          prompt: res.prompt,
+          options: res.options,
+          events: res.events
+        })
+      )
+      .catch(err => console.error(err))
+  }
 
   render() {
     return (
@@ -55,20 +66,12 @@ class Gameplay extends Component {
         <Content>
           <div style={{ padding: 24, minHeight: 280 }}>
 
-            <StatsList 
-              shipName={this.state.shipName}
-              armor={this.state.armor}
-              weapons={this.state.armor}
-              shield={this.state.shield}
-              thrust={this.state.thrust}
-              hp={this.state.hp} 
-              credits={this.state.credits}
+            <Prompts
+              promptID={this.state.promptID}
+              prompt={this.state.prompt}
+              options={this.state.options}
+              events={this.state.events}
             />
-
-            {/* <PromptBox
-              promptID={this.state}
-
-            /> */}
 
           </div>
         </Content>
