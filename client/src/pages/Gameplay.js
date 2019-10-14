@@ -9,7 +9,6 @@ const { Content } = Layout
 
 class Gameplay extends Component {
   state = {
-    //ship
     userID: '',
     shipID: '',
     shipName: '',
@@ -20,7 +19,6 @@ class Gameplay extends Component {
     hp: 0,
     credits: 0,
     promptID: 0,
-    //prompts
     prompt: '',
     options: '',
     event: '',
@@ -28,36 +26,37 @@ class Gameplay extends Component {
   }
 
   componentDidMount() {
-    // this.loadShip()
+    this.loadShip()
     this.loadPrompt()
-    console.log(this.state.prompt)
+    console.log(this.state)
   }
 
-  // loadShip = () => {
-  //   API.getShip(this.state.userID)
-  //     .then(res => this.setState({ 
-  //       userID: res.userId,
-  //       shipID: res.shipId,
-  //       shipName: res.name,
-  //       armor: res.maxHP,
-  //       weapon: res.attack,
-  //       shield: res.defense,
-  //       thrust: res.speed,
-  //       hp: res.maxHP,
-  //       credits: res.credits
-  //     }))
-  //     .catch(err => console.error(err))
-  // }
+  loadShip = () => {
+    API.getShip(2)
+      .then(res =>
+        this.setState({
+          userID: res.data[0].userId,
+          shipID: res.data[0].shipId,
+          shipName: res.data[0].shipName,
+          armor: res.data[0].maxHP,
+          weapon: res.data[0].attack,
+          shield: res.data[0].defense,
+          thrust: res.data[0].speed,
+          hp: res.data[0].maxHP,
+          credits: res.data[0].credits
+        })
+      )
+      .catch(err => console.error(err))
+  }
 
   loadPrompt = () => {
     API.getPrompt(1)
-      .then(res => 
-        console.log(res.data[0].prompt)
-        // this.setState({
-        //   prompt: res.data[0].prompt,
-        //   options: res.options,
-        //   events: res.events
-        // })
+      .then(res =>
+        this.setState({
+          prompt: res.data[0].prompt
+          // options: res.options,
+          // events: res.events
+        })
       )
       .catch(err => console.error(err))
   }
