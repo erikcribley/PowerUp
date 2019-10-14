@@ -10,8 +10,16 @@ class Register extends Component {
     this.state = {
       userEmail: '',
       password: '',
-      loggedIn: false
+      loggedIn: ''
     }
+  }
+
+  componentDidMount() {
+    this.loggedIn()
+  }
+
+  loggedIn = () => {
+    this.setState({ loggedIn: sessionStorage.getItem('loggedIn') })
   }
 
   handleInputChange = e => {
@@ -24,7 +32,8 @@ class Register extends Component {
       API.register(this.state.userEmail, this.state.password)
         .then(res => {
           if (res.data === true) {
-            this.setState({ loggedIn: true })
+            sessionStorage.setItem('loggedIn', 'true')
+            return this.loggedIn()
           }
         })
         .catch(err => console.error(err))
@@ -32,7 +41,7 @@ class Register extends Component {
   }
 
   render() {
-    if (this.state.loggedIn) {
+    if (this.state.loggedIn === 'true') {
       return <Redirect to='/characters' />
     }
     return (

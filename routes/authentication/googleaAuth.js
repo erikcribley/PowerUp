@@ -13,7 +13,7 @@ const login = (req, res) => {
           if (err) {
             return console.error(err)
           }
-          return res.status(200).redirect('/tasks')
+          return res.status(200).redirect('/characters')
         }
       )
     })

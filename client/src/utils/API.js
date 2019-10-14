@@ -16,38 +16,42 @@ export default {
   },
 
   getTasks: taskId => {
-    return axios.get('/tasks')
+    return axios.get('/user/tasks')
   },
 
   addTasks: task => {
-    return axios.post('/tasks', { task: task })
+    return axios.post('/user/tasks', { task: task })
   },
 
   updateTasks: (taskId, task) => {
-    return axios.put('/tasks', { taskId: taskId, task: task })
+    return axios.put('/user/tasks', { taskId: taskId, task: task })
   },
 
   deleteTasks: taskId => {
-    return axios.delete(`/tasks/${taskId}`)
+    return axios.delete(`/user/tasks/${taskId}`)
   },
 
   getShip: userId => {
-    return axios.get('/gameplay')
+    return axios.get('/user/gameplay')
   },
 
   getCharacters: () => {
-    return axios.get('/characters')
+    return axios.get('/user/characters')
   },
 
   saveCharacter: (name, ship) => {
-    return axios.post('/characters', { name: name, ship: ship })
+    return axios.post('/user/characters', { name: name, ship: ship })
   },
 
   getStats: () => {
-    return axios.get('/stats')
+    return axios.get('/user/stats')
   },
 
   getPrompt: promptId => {
-    return axios.get(`/gameplay/${promptId}`)
+    return axios.get(`/user/gameplay/${promptId}`)
   }
+
+  // logout: () => {
+  //   return axios.get('/user/logout')
+  // }
 }

@@ -16,12 +16,23 @@ class Characters extends Component {
   }
 
   componentDidMount() {
-    this.loadCharacters()
+    this.checkCharacterExists()
   }
 
   loadCharacters = () => {
     API.getCharacters()
       .then(res => this.setState({ ships: res.data, currentShip: res.data[0] }))
+      .catch(err => console.error(err))
+  }
+
+  checkCharacterExists = () => {
+    API.getStats()
+      .then(res => {
+        if (res.data.length > 0) {
+          return this.setState({ charCreated: true })
+        }
+        this.loadCharacters()
+      })
       .catch(err => console.error(err))
   }
 
@@ -47,6 +58,12 @@ class Characters extends Component {
   }
 
   render() {
+    if (
+      !sessionStorage.getItem('loggedIn') ||
+      sessionStorage.getItem('loggedIn') !== 'true'
+    ) {
+      return <Redirect to='/' />
+    }
     if (this.state.charCreated) {
       return <Redirect to='/stats' />
     }
