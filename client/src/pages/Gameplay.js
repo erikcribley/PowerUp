@@ -20,15 +20,15 @@ class Gameplay extends Component {
     credits: 0,
     promptID: 0,
     prompt: '',
-    options: '',
-    event: '',
-    test: []
+    option1: '',
+    option2: '',
+    event1: '',
+    event2: '',
   }
 
   componentDidMount() {
     this.loadShip()
-    this.loadPrompt()
-    console.log(this.state)
+    this.loadPrompt(1)
   }
 
   loadShip = () => {
@@ -49,13 +49,15 @@ class Gameplay extends Component {
       .catch(err => console.error(err))
   }
 
-  loadPrompt = () => {
-    API.getPrompt(1)
+  loadPrompt = (pid) => {
+    API.getPrompt(pid)
       .then(res =>
         this.setState({
-          prompt: res.data[0].prompt
-          // options: res.options,
-          // events: res.events
+          prompt: res.data[0].prompt,
+          option1: res.data[0].option1,
+          option2: res.data[0].option2,
+          event1: res.data[0].event1,
+          event2: res.data[0].event2
         })
       )
       .catch(err => console.error(err))
@@ -69,10 +71,13 @@ class Gameplay extends Component {
         <Content>
           <div style={{ padding: 24, minHeight: 280 }}>
             <Prompts
+              loadPrompt={this.loadPrompt}
               promptID={this.state.promptID}
               prompt={this.state.prompt}
-              options={this.state.options}
-              events={this.state.events}
+              option1={this.state.option1}
+              option2={this.state.option2}
+              event1={this.state.event1}
+              event2={this.state.event2}
             />
           </div>
         </Content>

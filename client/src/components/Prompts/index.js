@@ -3,8 +3,9 @@ import React from 'react'
 function Prompts (props) {
   return (
     <div>
-      testing
-      {props.prompt}
+      <p> {props.prompt} </p>
+      <button onClick={() => props.loadPrompt(props.event1)}> {props.option1} </button>
+      <button onClick={() => props.loadPrompt(props.event2)}> {props.option2} </button>
     </div>
   )
 }

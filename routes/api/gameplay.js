@@ -12,7 +12,7 @@ router
   })
   .get('/gameplay/:promptId', (req, res) => {
     orm
-      .tableWhere('prompts', 'promptId', Number(1))
+      .tableWhere('prompts', 'promptId', Number(req.params.promptId))
       .then(data => res.status(200).json(data))
   })
 
