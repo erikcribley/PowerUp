@@ -9,8 +9,8 @@ const { Content } = Layout
 
 class Gameplay extends Component {
   state = {
-    userID: '',
-    shipID: '',
+    userID: 0,
+    shipID: 0,
     shipName: '',
     armor: 0,
     weapon: 0,
