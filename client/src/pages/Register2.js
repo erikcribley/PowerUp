@@ -1,0 +1,108 @@
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import { Row, Col, Form, Input, Button } from 'antd'
+import Foot from '../components/Footer'
+import API from '../utils/API'
+
+class NormalLoginForm extends Component {
+  state = {
+    loggedIn: false
+  }
+  
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        API.register(values.email, values.password)
+        .then(res => {
+          if (res.data === true) {
+            this.setState({ loggedIn: true })
+            console.log(this.state.loggedIn)
+          }
+        })
+        .catch(err => console.error(err))
+      }
+    })
+  }
+
+  render() {
+    if (this.state.loggedIn) {
+      return <Redirect to='/tasks' />
+    }
+    const { getFieldDecorator } = this.props.form
+    return (
+      <div>
+        <Row
+          style={{ minHeight: 500 }}
+          type='flex'
+          justify='space-around'
+          align='middle'>
+          <Col style={{ width: 300 }}>
+            <h1 className='hStyle'>Register</h1>
+            <Form onSubmit={this.handleSubmit} className="login-form">
+              <Form.Item>
+                {getFieldDecorator('email', {
+                  rules: [
+                    { type: 'email',
+                      required: true,
+                      message: 'Please enter a valid email address.' }
+                  ]
+                })(
+                  <Input
+                  placeholder='email'
+                  name='userEmail'
+                  onChange={this.handleInputChange}
+                  />
+                )}
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator('password', {
+                  rules: [
+                    { type: 'string',
+                      required: true,
+                      message: <div>Please enter a password.</div> },
+                    { pattern: '[0-9]',
+                      message: <div>Password must contain at least one numeral.</div> },
+                    { pattern: '[a-z]',
+                      message: <div>Password must contain at least one lowercase letter.</div> },
+                    { pattern: '[A-Z]',
+                      message: <div>Password must contain at least one capital letter.</div> },
+                    { min: 8,
+                      message: <div>Password must contain at least 8 characters .</div> }
+                  ]
+                })(
+                  <Input.Password
+                    type="password"
+                    placeholder='password'
+                    name='password'
+                    onChange={this.handleInputChange}
+                  />
+                )}
+              </Form.Item>
+              <Form.Item>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className='primaryBtn'
+                  block
+                  onClick={this.handleLoginSubmit}
+                  >
+                  Register
+                </Button>
+              </Form.Item>
+            </Form>
+          </Col>
+        </Row>
+        <Foot />
+      </div>
+    )
+  }
+}
+
+const RegisterForm = Form.create({ name: 'normal_login' })(NormalLoginForm)
+
+export default RegisterForm

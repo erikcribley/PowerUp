@@ -52,7 +52,19 @@ footer {
   border: 1px solid #00803e;
 }
 
-/* ===== Gameplay styling ===== */
+/* ===== Log In ===== */
+
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}
+
+/* ===== Gameplay ===== */
 
 /* image */
 
@@ -70,11 +82,14 @@ footer {
 
 /* prompt */
 
-.promptBtn {
- max-width: 200px;
-}
-
 #promptText {
   font-family: 'Press Start 2P', monospace;
   margin-bottom: 2em;
+} 
+
+.promptBtn {
+  display: block;
+  color: white;
+  max-width: 200px;
+  margin: auto !important;
 }
