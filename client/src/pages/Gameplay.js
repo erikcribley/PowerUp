@@ -43,7 +43,6 @@ class Gameplay extends Component {
     return (
       <div>
         <TopNav />
-
         <Content>
           <Row type='flex' gutter={20} style={{padding: 24, margin: '0 3em'}}>
             <Col xs={24} sm={24} md={24} lg={16} style={{border: '1px solid white'}}>
@@ -94,22 +93,7 @@ class Gameplay extends Component {
               </div>
             </Col>
           </Row>
-
-          {/* <div style={{ padding: 24, minHeight: 280 }}>
-
-            <StatsList 
-              shipName={this.state.shipName}
-              armor={this.state.armor}
-              weapons={this.state.armor}
-              shield={this.state.shield}
-              thrust={this.state.thrust}
-              hp={this.state.hp} 
-              credits={this.state.credits}
-            />
-
-          </div> */}
         </Content>
-
         <Foot />
       </div>
     )
