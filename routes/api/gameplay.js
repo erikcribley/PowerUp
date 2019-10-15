@@ -6,7 +6,7 @@ const { isAuth } = require('../authentication/passport')
 router
   .get('/gameplay', (req, res) => {
     orm
-      .tableWhere('playership', 'userId', Number(req.user.userId))
+      .tableWhere('playership', 'userId', Number(2))
       .then(data => res.status(200).json(data))
       .catch(err => console.error(err))
   })
