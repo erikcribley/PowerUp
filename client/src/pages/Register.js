@@ -31,7 +31,7 @@ class NormalLoginForm extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to='/tasks' />
+      return <Redirect to='/characters' />
     }
     const { getFieldDecorator } = this.props.form
     return (

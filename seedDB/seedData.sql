@@ -1,10 +1,5 @@
 
 USE `project3`;
-INSERT INTO `users` (`userEmail`, `userPassword`)
-VALUE
-('mitch83083@gmail.com', '1234');
-
-USE `project3`;
 INSERT INTO `taskList` (`userId`, `task`)
 VALUE
 (9, 'Testing user 1'),
@@ -29,14 +24,14 @@ VALUE
 (9, 'User 2 3rd test value');
 
 USE `project3`;
-INSERT INTO `upgradeType` (`upgradeType`)
+INSERT INTO `defaultShip` (`attack`, `defense`, `speed`, `maxHP`, `name`, `picture`)
 VALUE
-('thrust'),
-('armor'),
-('shield'),
-('lasers');
+(10, 10, 10, 50, 'Outpost Cruiser', './images/cruiser-sm.svg'),
+(10, 10, 10, 50, 'Alien Pod', './images/pod.svg'),
+(10, 10, 10, 50, 'Android Sphere', './images/sphere.svg'),
+(10, 10, 10, 50, 'Cyborg Craft', './images/craft.svg');
 
 USE `project3`;
-INSERT INTO `defaultShip` (`attack`, `defense`, `speed`, `maxHP`, `name`)
+INSERT INTO `prompts` (`prompt`)
 VALUE
-(10, 10, 10, 50, 'Starter Ship');
+('This is a test prompt');

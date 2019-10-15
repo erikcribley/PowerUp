@@ -99,7 +99,7 @@ class NormalLoginForm extends Component {
               className='primaryBtn'
               type='primary'
               block
-              href= '/register'>
+              href='/register'>
               Register
             </Button>
           </Col>

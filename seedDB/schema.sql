@@ -44,7 +44,7 @@ USE `project3`;
 DROP TABLE IF EXISTS `playerShip`;
 CREATE TABLE `playerShip` (
   `shipId` INT AUTO_INCREMENT NOT NULL,
-  `userId` INT NOT NULL,
+  `userId` INT NOT NULL UNIQUE,
   `attack` INT(10) NOT NULL,
   `defense` INT(10) NOT NULL,
   `speed` INT(10) NOT NULL,
@@ -83,15 +83,15 @@ DROP TABLE IF EXISTS `prompts`;
 CREATE TABLE `prompts` (
   `promptId` INT AUTO_INCREMENT NOT NULL,
   `prompt` TEXT NOT NULL,
-  `option1` TEXT NOT NULL,
-  `option2` TEXT NOT NULL,
-  `option3` TEXT NOT NULL,
-  `option4` TEXT NOT NULL,
-  `option5` TEXT NOT NULL,
-  `event1` TEXT NOT NULL,
-  `event2` TEXT NOT NULL,
-  `event3` TEXT NOT NULL,
-  `event4` TEXT NOT NULL,
-  `event5` TEXT NOT NULL,
+  -- `option1` TEXT NOT NULL,
+  -- `option2` TEXT NOT NULL,
+  -- `option3` TEXT NOT NULL,
+  -- `option4` TEXT NOT NULL,
+  -- `option5` TEXT NOT NULL,
+  -- `event1` TEXT NOT NULL,
+  -- `event2` TEXT NOT NULL,
+  -- `event3` TEXT NOT NULL,
+  -- `event4` TEXT NOT NULL,
+  -- `event5` TEXT NOT NULL,
   PRIMARY KEY (`promptId`)
 );
