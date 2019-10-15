@@ -9,15 +9,15 @@ class NormalLoginForm extends Component {
     loggedIn: false
   }
 
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+  // handleInputChange = e => {
+  //   this.setState({ [e.target.name]: e.target.value })
+  // }
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        API.register(values.email, values.password)
+        API.login(values.email, values.password)
         .then(res => {
           if (res.data === true) {
             this.setState({ loggedIn: true })
@@ -55,7 +55,7 @@ class NormalLoginForm extends Component {
                   <Input
                   placeholder='email'
                   name='userEmail'
-                  onChange={this.handleInputChange}
+                  // onChange={this.handleInputChange}
                   />
                 )}
               </Form.Item>
@@ -71,7 +71,7 @@ class NormalLoginForm extends Component {
                     type="password"
                     placeholder='password'
                     name='password'
-                    onChange={this.handleInputChange}
+                    // onChange={this.handleInputChange}
                   />
                 )}
               </Form.Item>
@@ -81,7 +81,7 @@ class NormalLoginForm extends Component {
                   htmlType="submit"
                   className='primaryBtn'
                   block
-                  onClick={this.handleLoginSubmit}
+                  // onClick={this.handleLoginSubmit}
                   >
                   Log In
                 </Button>

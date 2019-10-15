@@ -9,9 +9,9 @@ class NormalLoginForm extends Component {
     loggedIn: false
   }
   
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+  // handleInputChange = e => {
+  //   this.setState({ [e.target.name]: e.target.value })
+  // }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -55,7 +55,7 @@ class NormalLoginForm extends Component {
                   <Input
                   placeholder='email'
                   name='userEmail'
-                  onChange={this.handleInputChange}
+                  // onChange={this.handleInputChange}
                   />
                 )}
               </Form.Item>
@@ -79,7 +79,7 @@ class NormalLoginForm extends Component {
                     type="password"
                     placeholder='password'
                     name='password'
-                    onChange={this.handleInputChange}
+                    // onChange={this.handleInputChange}
                   />
                 )}
               </Form.Item>
@@ -89,7 +89,7 @@ class NormalLoginForm extends Component {
                   htmlType="submit"
                   className='primaryBtn'
                   block
-                  onClick={this.handleLoginSubmit}
+                  // onClick={this.handleLoginSubmit}
                   >
                   Register
                 </Button>
