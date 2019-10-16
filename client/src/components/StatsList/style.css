@@ -13,7 +13,10 @@ th {
     color: #0f0f0c;
 }
 
+th {
+    letter-spacing: 3px;
+}
+
 tr {
     color: white;
-    letter-spacing: 3px;
 }
