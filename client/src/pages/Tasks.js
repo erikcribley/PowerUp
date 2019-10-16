@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import { Layout, Row, Col, Input, Button } from 'antd'
 import TopNav from '../components/Header'
 import TaskItem from '../components/Tasks'
@@ -62,12 +62,12 @@ class Tasks extends Component {
   // }
 
   render() {
-    if (
-      !sessionStorage.getItem('loggedIn') ||
-      sessionStorage.getItem('loggedIn') !== 'true'
-    ) {
-      return <Redirect to='/' />
-    }
+    // if (
+    //   !sessionStorage.getItem('loggedIn') ||
+    //   sessionStorage.getItem('loggedIn') !== 'true'
+    // ) {
+    //   return <Redirect to='/' />
+    // }
     return (
       <div>
         <TopNav />

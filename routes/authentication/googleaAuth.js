@@ -38,10 +38,10 @@ const existingUser = (userId, req, res) => {
 }
 
 router
-  .get(
-    '/auth/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] })
-  )
+  // .get(
+  //   '/auth/google',
+  //   passport.authenticate('google', { scope: ['profile', 'email'] })
+  // )
   .get(
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/', session: true }),

@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu } from 'antd'
 import './style.css'
 
-function RightMenu (props) {
+function RightMenu(props) {
   return (
     <Menu mode='horizontal'>
       <Menu.Item>
@@ -18,7 +18,10 @@ function RightMenu (props) {
         <a href='/gameplay'>Gameplay</a>
       </Menu.Item>
       <Menu.Item>
-        <a href='/logout' onClick={() => sessionStorage.clear()}>
+        <a
+          href='/logout'
+          // onClick={() => sessionStorage.clear()}
+        >
           Log Out
         </a>
       </Menu.Item>

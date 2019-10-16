@@ -10,17 +10,17 @@ class Login extends Component {
     this.state = {
       userEmail: '',
       password: '',
-      loggedIn: ''
+      loggedIn: false
     }
   }
 
-  componentDidMount() {
-    this.loggedIn()
-  }
+  // componentDidMount() {
+  //   this.loggedIn()
+  // }
 
-  loggedIn = () => {
-    this.setState({ loggedIn: sessionStorage.getItem('loggedIn') })
-  }
+  // loggedIn = () => {
+  //   this.setState({ loggedIn: sessionStorage.getItem('loggedIn') })
+  // }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value })
@@ -31,9 +31,10 @@ class Login extends Component {
     if (this.state.userEmail && this.state.password) {
       API.login(this.state.userEmail, this.state.password)
         .then(res => {
-          if (res.data === true) {
-            sessionStorage.setItem('loggedIn', 'true')
-            return this.loggedIn()
+          if (res.status === 200) {
+            // sessionStorage.setItem('loggedIn', 'true')
+            // return this.loggedIn()
+            return this.setState({ loggedIn: true })
           }
         })
         .catch(err => console.error(err))
@@ -41,7 +42,7 @@ class Login extends Component {
   }
 
   render() {
-    if (this.state.loggedIn === 'true') {
+    if (this.state.loggedIn) {
       return <Redirect to='/characters' />
     }
     return (
@@ -79,7 +80,7 @@ class Login extends Component {
               className='secondaryBtn'
               type='primary'
               block
-              href='/auth/google'>
+              href='/auth/google/callback'>
               Log In with Google
             </Button>
             {/* <Button

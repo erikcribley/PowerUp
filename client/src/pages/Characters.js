@@ -49,7 +49,7 @@ class Characters extends Component {
     if (this.state.userName) {
       API.saveCharacter(this.state.userName, this.state.currentShip)
         .then(res => {
-          if (res.data === true) {
+          if (res.status === 200) {
             this.setState({ charCreated: true })
           }
         })
@@ -58,12 +58,12 @@ class Characters extends Component {
   }
 
   render() {
-    if (
-      !sessionStorage.getItem('loggedIn') ||
-      sessionStorage.getItem('loggedIn') !== 'true'
-    ) {
-      return <Redirect to='/' />
-    }
+    // if (
+    //   !sessionStorage.getItem('loggedIn') ||
+    //   sessionStorage.getItem('loggedIn') !== 'true'
+    // ) {
+    //   return <Redirect to='/' />
+    // }
     if (this.state.charCreated) {
       return <Redirect to='/stats' />
     }

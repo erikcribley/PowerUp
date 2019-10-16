@@ -21,14 +21,6 @@ class Navbar extends Component {
     })
   }
 
-  // logout = () => {
-  //   // console.log(API)
-  //   sessionStorage.clear()
-  //   API.logout()
-  //     .then()
-  //     .catch(err => console.error(err))
-  // }
-
   render() {
     return (
       <nav className='menuBar'>
@@ -64,7 +56,10 @@ class Navbar extends Component {
                 <a href='/gameplay'>Gameplay</a>
               </Menu.Item>
               <Menu.Item>
-                <a href='/logout' onClick={() => sessionStorage.clear()}>
+                <a
+                  href='/logout'
+                  // onClick={() => sessionStorage.clear()}
+                >
                   Log Out
                 </a>
               </Menu.Item>

@@ -50,8 +50,4 @@ export default {
   getPrompt: promptId => {
     return axios.get(`/user/gameplay/${promptId}`)
   }
-
-  // logout: () => {
-  //   return axios.get('/user/logout')
-  // }
 }

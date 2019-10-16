@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import { Layout } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
@@ -62,12 +62,12 @@ class Gameplay extends Component {
   }
 
   render() {
-    if (
-      !sessionStorage.getItem('loggedIn') ||
-      sessionStorage.getItem('loggedIn') !== 'true'
-    ) {
-      return <Redirect to='/' />
-    }
+    // if (
+    //   !sessionStorage.getItem('loggedIn') ||
+    //   sessionStorage.getItem('loggedIn') !== 'true'
+    // ) {
+    //   return <Redirect to='/' />
+    // }
     return (
       <div>
         <TopNav />
