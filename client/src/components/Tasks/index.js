@@ -13,7 +13,7 @@ class TaskItem extends Component {
           {this.props.message}
           </div>
         </Col>
-        <Col xs={4} sm={4} md={4} lg={4}>
+        <Col xs={4} sm={4} md={4} lg={4} style={{textAlign: 'right'}}>
           <Button
             className='secondaryBtn compBtn'
             size='small'

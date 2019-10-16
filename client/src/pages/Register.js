@@ -1,50 +1,39 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Row, Col, Input, Button } from 'antd'
+import { Row, Col, Form, Input, Button } from 'antd'
 import Foot from '../components/Footer'
 import API from '../utils/API'
 
-class Register extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      userEmail: '',
-      password: '',
-      loggedIn: false
-    }
+class NormalLoginForm extends Component {
+  state = {
+    loggedIn: false
   }
-
-  // componentDidMount() {
-  //   this.loggedIn()
+  
+  // handleInputChange = e => {
+  //   this.setState({ [e.target.name]: e.target.value })
   // }
 
-  // loggedIn = () => {
-  //   this.setState({ loggedIn: sessionStorage.getItem('loggedIn') })
-  // }
-
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  handleLoginSubmit = e => {
-    e.preventDefault()
-    if (this.state.userEmail && this.state.password) {
-      API.register(this.state.userEmail, this.state.password)
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        API.register(values.email, values.password)
         .then(res => {
-          if (res.status === 200) {
-            // sessionStorage.setItem('loggedIn', 'true')
-            // return this.loggedIn()
-            return this.setState({ loggedIn: true })
+          if (res.data === true) {
+            this.setState({ loggedIn: true })
+            console.log(this.state.loggedIn)
           }
         })
         .catch(err => console.error(err))
-    }
+      }
+    })
   }
 
   render() {
     if (this.state.loggedIn) {
       return <Redirect to='/characters' />
     }
+    const { getFieldDecorator } = this.props.form
     return (
       <div>
         <Row
@@ -52,37 +41,60 @@ class Register extends Component {
           type='flex'
           justify='space-around'
           align='middle'>
-          <Col style={{ maxWidth: 300 }}>
+          <Col style={{ width: 300 }}>
             <h1 className='hStyle'>Register</h1>
-            {/* <Input
-              style={ marginBtm }
-              placeholder='username'
-              name='userName'
-              value={this.state.userName}
-              onChange={this.handleInputChange}
-            /> */}
-            <Input
-              className='marginBtm'
-              placeholder='email'
-              name='userEmail'
-              value={this.state.userEmail}
-              onChange={this.handleInputChange}
-            />
-            <Input.Password
-              className='marginBtm'
-              placeholder='password'
-              name='password'
-              value={this.state.password}
-              onChange={this.handleInputChange}
-            />
-            <Button
-              className='primaryBtn'
-              type='primary'
-              block
-              disabled={!this.state.userEmail && this.state.password}
-              onClick={this.handleLoginSubmit}>
-              Register
-            </Button>
+            <Form onSubmit={this.handleSubmit} className="login-form">
+              <Form.Item>
+                {getFieldDecorator('email', {
+                  rules: [
+                    { type: 'email',
+                      required: true,
+                      message: 'Please enter a valid email address.' }
+                  ]
+                })(
+                  <Input
+                  placeholder='email'
+                  name='userEmail'
+                  // onChange={this.handleInputChange}
+                  />
+                )}
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator('password', {
+                  rules: [
+                    { type: 'string',
+                      required: true,
+                      message: <div>Please enter a password.</div> },
+                    { pattern: '[0-9]',
+                      message: <div>Password must contain at least one numeral.</div> },
+                    { pattern: '[a-z]',
+                      message: <div>Password must contain at least one lowercase letter.</div> },
+                    { pattern: '[A-Z]',
+                      message: <div>Password must contain at least one capital letter.</div> },
+                    { min: 8,
+                      message: <div>Password must contain at least 8 characters .</div> }
+                  ]
+                })(
+                  <Input.Password
+                    type="password"
+                    placeholder='password'
+                    name='password'
+                    // onChange={this.handleInputChange}
+                  />
+                )}
+              </Form.Item>
+              <Form.Item>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className='primaryBtn'
+                  block
+                  // onClick={this.handleLoginSubmit}
+                  >
+                  Register
+                </Button>
+              </Form.Item>
+            </Form>
           </Col>
         </Row>
         <Foot />
@@ -91,4 +103,6 @@ class Register extends Component {
   }
 }
 
-export default Register
+const RegisterForm = Form.create({ name: 'normal_login' })(NormalLoginForm)
+
+export default RegisterForm
