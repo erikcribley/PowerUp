@@ -27,12 +27,12 @@ class Gameplay extends Component {
   }
 
   componentDidMount() {
-    this.loadShip()
+    this.loadShip(2)
     this.loadPrompt(1)
   }
 
   loadShip = () => {
-    API.getShip(2)
+    API.getShip()
       .then(res =>
         this.setState({
           userID: res.data[0].userId,
@@ -63,6 +63,41 @@ class Gameplay extends Component {
       .catch(err => console.error(err))
   }
 
+  // random = (num) => {
+  //   return Math.floor((Math.random() * num) + 1);
+  // }
+
+  // pirateShip = {
+  //   weapon: 10,
+  //   sheild: 5,
+  //   thrust: 5,
+  //   armor: 15,
+  //   credits: 4,
+  // }
+
+  // attack = () => {
+  //   const fire = random(10) + this.state.weapon
+  //   const opp = random(10) + this.pirateShip.sheild
+  //   if (fire >= opp) {
+  //     this.pirateShip.armor =- fire
+  //   } else {
+
+  //   }
+  //   return this.setState({
+  //     credits: res.data
+  //   })
+  // }
+
+  // defend = () => {
+  //   const block = random(10) + this.state.sheild
+  //   const opp = random(10) + this.pirateShip.weapon
+  //     if (opp >= block) {
+  //       this.state.hp =- opp
+  //     }
+
+
+  // }
+
   render() {
     return (
       <div>
@@ -70,8 +105,19 @@ class Gameplay extends Component {
 
         <Content>
           <div style={{ padding: 24, minHeight: 280 }}>
+
+            <StatsList 
+              shipName={this.state.shipName}
+              armor={this.state.armor}
+              weapon={this.state.weapon}
+              shield={this.state.shield}
+              thrust={this.state.thrust}
+              hp={this.state.hp} 
+              credits={this.state.credits}
+            /> 
+
             <Prompts
-              loadPrompt={this.loadPrompt}
+              function={this.loadPrompt}
               promptID={this.state.promptID}
               prompt={this.state.prompt}
               option1={this.state.option1}

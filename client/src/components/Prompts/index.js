@@ -4,8 +4,8 @@ function Prompts (props) {
   return (
     <div>
       <p> {props.prompt} </p>
-      <button onClick={() => props.loadPrompt(props.event1)}> {props.option1} </button>
-      <button onClick={() => props.loadPrompt(props.event2)}> {props.option2} </button>
+      <button onClick={function1}> {props.option1} </button>
+      <button onClick={function2}> {props.option2} </button>
     </div>
   )
 }
