@@ -64,6 +64,12 @@ class Gameplay extends Component {
   }
 
   render() {
+    // if (
+    //   !sessionStorage.getItem('loggedIn') ||
+    //   sessionStorage.getItem('loggedIn') !== 'true'
+    // ) {
+    //   return <Redirect to='/' />
+    // }
     return (
       <div>
         <TopNav />

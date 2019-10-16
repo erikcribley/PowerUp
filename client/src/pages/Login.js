@@ -31,7 +31,7 @@ class NormalLoginForm extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to='/tasks' />
+      return <Redirect to='/characters' />
     }
     const { getFieldDecorator } = this.props.form
     return (
@@ -91,7 +91,7 @@ class NormalLoginForm extends Component {
               className='secondaryBtn'
               type='primary'
               block
-              href='/auth/google'>
+              href='/auth/google/callback'>
               Log In with Google
             </Button>
             <h1 className='hStyle'>New User?</h1>
