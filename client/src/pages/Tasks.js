@@ -15,7 +15,8 @@ class Tasks extends Component {
     this.state = {
       tasks: [],
       newTask: '',
-      updateTask: ''
+      updateTask: '',
+      power: 0
     }
   }
 
@@ -35,10 +36,18 @@ class Tasks extends Component {
       .catch(err => console.error(err))
   }
 
+  // deleteTask = id => {
+  //   API.deleteTasks(id)
+  //     .then(res => this.loadTasks())
+  //     .catch(err => console.error(err))
+  // }
+
   deleteTask = id => {
     API.deleteTasks(id)
       .then(res => this.loadTasks())
       .catch(err => console.error(err))
+    let power = this.state.power + 10
+    this.setState({ power })
   }
 
   newTask = e => {
@@ -74,7 +83,10 @@ class Tasks extends Component {
         <Content>
           <div style={{ marginTop: '3em', minHeight: 280 }}>
             <Row type='flex' justify='center' gutter={32}>
-              <Col xs={12} lg={12} style={{ textAlign: 'center' }}>
+              <Col xs={18} lg={12} style={{ textAlign: 'center' }}>
+                <Row>
+                  <h1 id='power'>POWER: {this.state.power}</h1>
+                </Row>
                 <Row>
                   <h1 className='hStyle'>Add a Task</h1>
                   <TextArea
