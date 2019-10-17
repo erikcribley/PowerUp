@@ -9,6 +9,21 @@ h3 {
     letter-spacing: 3px;
 }
 
+/* .ant-carousel ul {
+    height: 100% !important;
+    border: 1px solid white;
+    border-radius: 50px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+.ant-carousel .slick-dots li {
+    height: 100% !important;
+    border-radius: 50px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+} */
+
 .ant-carousel .slick-dots li button {
     height: 16px !important;
     border-radius: 50px !important;
