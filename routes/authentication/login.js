@@ -65,16 +65,23 @@ router
   })
   // Endpoint to login
   // must name the incoming fields username / password
-  .post(
-    '/login',
-    validate.login,
-    validate.result,
-    passport.authenticate('local', { session: true }),
-    isAuth,
-    (_, res) => {
-      res.status(200).send(true)
-    }
-  )
+  .post('/login', validate.login, validate.result, (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      console.log(info.message)
+      if (err) {
+        return res.status(500).send(err)
+      }
+      if (!user) {
+        return res.status(401).send(info.message)
+      }
+      return req.login(user, err => {
+        if (err) {
+          return next(err)
+        }
+        return res.status(200).send(info.message)
+      })
+    })(req, res, next)
+  })
 
   // Endpoint to get current user
   .get('/user', isAuth, (req, res) => {
