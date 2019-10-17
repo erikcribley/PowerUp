@@ -24,6 +24,8 @@ class Gameplay extends Component {
     option2: '',
     event1: '',
     event2: '',
+    param1: '',
+    param2: ''
   }
 
   componentDidMount() {
@@ -57,7 +59,9 @@ class Gameplay extends Component {
           option1: res.data[0].option1,
           option2: res.data[0].option2,
           event1: res.data[0].event1,
-          event2: res.data[0].event2
+          event2: res.data[0].event2,
+          param1: res.data[0].param1,
+          param2: res.data[0].param2
         })
       )
       .catch(err => console.error(err))
@@ -94,9 +98,23 @@ class Gameplay extends Component {
   //     if (opp >= block) {
   //       this.state.hp =- opp
   //     }
-
-
   // }
+
+  getFunction = (fn, param) => {
+    switch (fn) {
+      case "loadPrompt":
+        this.loadPrompt(param)
+        break;
+      // case "attack":
+      //   this.attack()
+      //   break;
+      // case "defend":
+      //   this.defend()
+      //   break;
+      default:
+        console.log("uh oh, spaghettios")
+    }
+  }
 
   render() {
     return (
@@ -116,15 +134,25 @@ class Gameplay extends Component {
               credits={this.state.credits}
             /> 
 
+            {/* <div>
+              <p>{this.state.prompt}</p>
+              <button onClick={() => this.getFunction(this.state.event1, this.state.param1)}> {this.state.option1} </button>
+              <button onClick={() => this.getFunction(this.state.event2, this.state.param2)}> {this.state.option2} </button>
+            </div> */}
+
+
             <Prompts
-              function={this.loadPrompt}
+              getFunction={this.getFunction}
               promptID={this.state.promptID}
               prompt={this.state.prompt}
               option1={this.state.option1}
               option2={this.state.option2}
               event1={this.state.event1}
               event2={this.state.event2}
+              param1={this.state.param1}
+              param2={this.state.param2}
             />
+
           </div>
         </Content>
 

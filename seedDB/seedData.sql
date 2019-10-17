@@ -33,21 +33,25 @@ VALUE
 
 //prompts
 USE `project3`;
-INSERT INTO `prompts` (`prompt`, `description`, `option1`, `option2`, `event1`, `event2`)
+INSERT INTO `prompts` (`prompt`, `description`, `option1`, `option2`, `event1`, `event2`, `param1`, `param2`)
 VALUES
 	(
 		"You've recieved a distress signal from a nearby asteroid.", 
         "1 -- Initial prompt",
         "Respond", 
         "Ignore",
-        "props.loadPrompt(2)", 
-        "props.loadPrompt(3)"
+        "loadPrompt",
+		"loadPrompt",
+        "2", 
+        "3"
 	),
     (
 		"It's an ambush, You're attacked by space pirates!",
         "2 -- Respond to distress signal",
         "Engage",
         "Flee",
+		"loadPrompt",
+		"loadPrompt",
         "4",
         "5"
 	),
@@ -56,6 +60,8 @@ VALUES
 		"3 -- ignore that shit",
         "fly away",
         "faster",
+		"loadPrompt",
+		"loadPrompt",
         "69",
         "68"
 	),
@@ -64,6 +70,8 @@ VALUES
         "4 -- engage",
         "attack",
         "raise shields",
+        "attack",
+        "defend",
         "6",
         "7"
 	),
@@ -72,7 +80,8 @@ VALUES
         "5 - GTFO",
         "run",
         "faster",
+        "thrust",
+        "thrust",
         "8",
         "9"
 	);
-

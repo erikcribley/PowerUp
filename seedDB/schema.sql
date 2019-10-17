@@ -82,11 +82,13 @@ USE `project3`;
 DROP TABLE IF EXISTS `prompts`;
 CREATE TABLE `prompts` (
   `promptId` INT AUTO_INCREMENT NOT NULL,
-  `description` TEXT NOT NULL,
   `prompt` TEXT NOT NULL,
+  `description` TEXT NOT NULL,
   `option1` TEXT NOT NULL,
   `option2` TEXT NOT NULL,
   `event1` TEXT NOT NULL,
   `event2` TEXT NOT NULL,
+  `param1` TEXT NOT NULL,
+  `param2` TEXT NOT NULL,
   PRIMARY KEY (`promptId`)
 );
