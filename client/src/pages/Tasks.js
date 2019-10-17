@@ -15,7 +15,7 @@ class Tasks extends Component {
       tasks: [],
       newTask: '',
       updateTask: '',
-      power: 50
+      power: 0
     }
   }
 
