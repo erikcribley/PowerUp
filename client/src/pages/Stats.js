@@ -57,14 +57,14 @@ class StatsPage extends Component {
         <Content>
           <div style={{ marginTop: '3em', minHeight: 280 }}>
             <Row type='flex' justify='center' gutter={32}>
-              <Col xs={14} lg={6} style={{ textAlign: 'center' }}>
+              <Col xs={18} lg={6} style={{ textAlign: 'center' }}>
                 <PlayerImage
                   src={this.state.picture}
                   alt={this.state.shipName}
                 />
               </Col>
               <Col
-                xs={14}
+                xs={18}
                 lg={6}
                 style={{ textAlign: 'center', color: 'white' }}>
                 <Row style={{ letterSpacing: '3px', marginBottom: '2em' }}>
