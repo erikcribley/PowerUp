@@ -9,22 +9,20 @@ class NormalLoginForm extends Component {
     loggedIn: false
   }
 
-  // handleInputChange = e => {
-  //   this.setState({ [e.target.name]: e.target.value })
-  // }
-
   handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
         API.login(values.email, values.password)
-        .then(res => {
-          if (res.data === true) {
-            this.setState({ loggedIn: true })
-            console.log(this.state.loggedIn)
-          }
-        })
-        .catch(err => console.error(err))
+          .then(res => {
+            // if (res.status === 401) {
+            //   return console.log(res.data)
+            // }
+            if (res.status === 200) {
+              return this.setState({ loggedIn: true })
+            }
+          })
+          .catch(err => console.error(err.response.data))
       }
     })
   }
@@ -43,32 +41,36 @@ class NormalLoginForm extends Component {
           align='middle'>
           <Col style={{ width: 300 }}>
             <h1 className='hStyle'>Log In</h1>
-            <Form onSubmit={this.handleSubmit} className="login-form">
+            <Form onSubmit={this.handleSubmit} className='login-form'>
               <Form.Item>
                 {getFieldDecorator('email', {
                   rules: [
-                    { type: 'email',
+                    {
+                      type: 'email',
                       required: true,
-                      message: 'Please enter a valid email address.' }
+                      message: 'Please enter a valid email address.'
+                    }
                   ]
                 })(
                   <Input
-                  placeholder='email'
-                  name='userEmail'
-                  // onChange={this.handleInputChange}
+                    placeholder='email'
+                    name='userEmail'
+                    // onChange={this.handleInputChange}
                   />
                 )}
               </Form.Item>
               <Form.Item>
                 {getFieldDecorator('password', {
                   rules: [
-                    { type: 'string',
+                    {
+                      type: 'string',
                       required: true,
-                      message: <div>Please enter your password.</div> }
+                      message: <div>Please enter your password.</div>
+                    }
                   ]
                 })(
                   <Input.Password
-                    type="password"
+                    type='password'
                     placeholder='password'
                     name='password'
                     // onChange={this.handleInputChange}
@@ -77,12 +79,12 @@ class NormalLoginForm extends Component {
               </Form.Item>
               <Form.Item>
                 <Button
-                  type="primary"
-                  htmlType="submit"
+                  type='primary'
+                  htmlType='submit'
                   className='primaryBtn'
                   block
                   // onClick={this.handleLoginSubmit}
-                  >
+                >
                   Log In
                 </Button>
               </Form.Item>

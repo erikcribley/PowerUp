@@ -75,13 +75,7 @@ CREATE TABLE `prompts` (
   `prompt` TEXT NOT NULL,
   -- `option1` TEXT NOT NULL,
   -- `option2` TEXT NOT NULL,
-  -- `option3` TEXT NOT NULL,
-  -- `option4` TEXT NOT NULL,
-  -- `option5` TEXT NOT NULL,
   -- `event1` TEXT NOT NULL,
   -- `event2` TEXT NOT NULL,
-  -- `event3` TEXT NOT NULL,
-  -- `event4` TEXT NOT NULL,
-  -- `event5` TEXT NOT NULL,
   PRIMARY KEY (`promptId`)
 );
