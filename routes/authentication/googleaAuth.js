@@ -13,7 +13,7 @@ const login = (req, res) => {
           if (err) {
             return console.error(err)
           }
-          return res.status(200).redirect('/tasks')
+          return res.status(200).redirect('/characters')
         }
       )
     })
@@ -38,10 +38,10 @@ const existingUser = (userId, req, res) => {
 }
 
 router
-  .get(
-    '/auth/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] })
-  )
+  // .get(
+  //   '/auth/google',
+  //   passport.authenticate('google', { scope: ['profile', 'email'] })
+  // )
   .get(
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/', session: true }),

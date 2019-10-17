@@ -23,7 +23,7 @@ class Gameplay extends Component {
     option1: '',
     option2: '',
     event1: '',
-    event2: '',
+    event2: ''
   }
 
   componentDidMount() {
@@ -49,7 +49,7 @@ class Gameplay extends Component {
       .catch(err => console.error(err))
   }
 
-  loadPrompt = (pid) => {
+  loadPrompt = pid => {
     API.getPrompt(pid)
       .then(res =>
         this.setState({
@@ -68,11 +68,16 @@ class Gameplay extends Component {
       <div>
         <TopNav />
         <Content>
-          <Row type='flex' gutter={20} style={{padding: 24, margin: '0 3em'}}>
-            <Col xs={24} sm={24} md={24} lg={16} style={{border: '1px solid white'}}>
-              <div style={{marginTop: 20}}>
+          <Row type='flex' gutter={20} style={{ padding: 24, margin: '0 3em' }}>
+            <Col
+              xs={24}
+              sm={24}
+              md={24}
+              lg={16}
+              style={{ border: '1px solid white' }}>
+              <div style={{ marginTop: 20 }}>
                 <div id='gradient'>
-                  <img src='./images/placeholder.jpg' alt='placeholder'/>
+                  <img src='./images/placeholder.jpg' alt='placeholder' />
                 </div>
                 
                 <Prompts
@@ -92,10 +97,10 @@ class Gameplay extends Component {
                 <StatsList 
                   shipName={this.state.shipName}
                   armor={this.state.armor}
-                  weapons={this.state.armor}
+                  weapon={this.state.weapon}
                   shield={this.state.shield}
                   thrust={this.state.thrust}
-                  hp={this.state.hp} 
+                  hp={this.state.hp}
                   credits={this.state.credits}
                 />
               </div>
