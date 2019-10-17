@@ -110,7 +110,7 @@ class Gameplay extends Component {
                 <StatsList
                   shipName={this.state.shipName}
                   armor={this.state.armor}
-                  weapons={this.state.weapon}
+                  weapon={this.state.weapon}
                   shield={this.state.shield}
                   thrust={this.state.thrust}
                   hp={this.state.hp}

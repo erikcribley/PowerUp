@@ -15,9 +15,6 @@ class NormalLoginForm extends Component {
       if (!err) {
         API.login(values.email, values.password)
           .then(res => {
-            // if (res.status === 401) {
-            //   return console.log(res.data)
-            // }
             if (res.status === 200) {
               return this.setState({ loggedIn: true })
             }
