@@ -24,47 +24,38 @@ class Tasks extends Component {
     this.getStats()
   }
 
-  componentWillUnmount() {
-    this.updateCredits()
-  }
-
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
   getStats = () => {
     API.getStats()
-      .then(res => this.setState({ credits: res.data[0].credits }))
+      .then(res => this.setState({ power: res.data[0].credits }))
       .catch(err => console.error(err))
   }
 
   updateCredits = () => {
-    API.updateCredits(this.state.credits)
-      .then(res => res)
+    API.updateCredits(this.state.power)
+      .then(res => res.data)
       .catch(err => console.error(err))
   }
 
   loadTasks = () => {
     API.getTasks()
       .then(res => {
-        console.log(res.data)
         this.setState({ tasks: res.data, newTask: '', updateTask: '' })
       })
       .catch(err => console.error(err))
   }
 
-  // deleteTask = id => {
-  //   API.deleteTasks(id)
-  //     .then(res => this.loadTasks())
-  //     .catch(err => console.error(err))
-  // }
-
-  deleteTask = id => {
+  deleteTask = (id, itemPower) => {
     API.deleteTasks(id)
-      .then(res => this.loadTasks())
+      .then(res => {
+        this.setState({ power: this.state.power + itemPower })
+        this.loadTasks()
+      })
+      .then(res => this.updateCredits())
       .catch(err => console.error(err))
-    let power = this.state.power + 10
-    this.setState({ power })
   }
 
   newTask = e => {
@@ -123,6 +114,7 @@ class Tasks extends Component {
                         key={task.taskId}
                         id={task.taskId}
                         message={task.task}
+                        power={task.taskCredit}
                         delete={this.deleteTask}
                       />
                     ))}
