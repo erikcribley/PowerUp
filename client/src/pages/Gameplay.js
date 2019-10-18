@@ -40,11 +40,11 @@ class Gameplay extends Component {
           userID: res.data[0].userId,
           shipID: res.data[0].shipId,
           shipName: res.data[0].shipName,
+          maxArmor: res.data[0].maxHP,
           armor: res.data[0].maxHP,
           weapon: res.data[0].attack,
           shield: res.data[0].defense,
           thrust: res.data[0].speed,
-          hp: res.data[0].maxHP,
           credits: res.data[0].credits
         })
       )
@@ -67,50 +67,80 @@ class Gameplay extends Component {
       .catch(err => console.error(err))
   }
 
-  // random = (num) => {
-  //   return Math.floor((Math.random() * num) + 1);
-  // }
+  randomize = (num) => {
+    return Math.floor((Math.random() * num) + 1);
+  }
 
-  // pirateShip = {
-  //   weapon: 10,
-  //   sheild: 5,
-  //   thrust: 5,
-  //   armor: 15,
-  //   credits: 4,
-  // }
+  enemyShip = {
+    weapon: 10,
+    shield: 5,
+    thrust: 5,
+    maxArmor: 15,
+    armor: 15,
+    credits: 4,
+  }
 
-  // attack = () => {
-  //   const fire = random(10) + this.state.weapon
-  //   const opp = random(10) + this.pirateShip.sheild
-  //   if (fire >= opp) {
-  //     this.pirateShip.armor =- fire
-  //   } else {
+  hit = (dmg) => {
+    this.enemyShip.armor -= dmg
+    if (this.enemyShip.armor > (this.enemyShip.maxArmor / 2)) {
+      this.loadPrompt(6)
+    } else if (this.enemyShip.armor <= 0) {
+      this.loadPrompt(8)
+    } else {
+      this.loadPrompt(7)
+    }
+  }
 
-  //   }
-  //   return this.setState({
-  //     credits: res.data
-  //   })
-  // }
+  hurt = (dmg) => {
+    this.setState({
+      armor: this.state.armor - dmg
+    })
+    if (this.state.armor > (this.state.maxArmor / 2)) {
+      this.loadPrompt(11)
+    } else if (this.state.armor <= 0) {
+      this.loadPrompt(13)
+    } else {
+      this.loadPrompt(12)
+    }
+  }
 
-  // defend = () => {
-  //   const block = random(10) + this.state.sheild
-  //   const opp = random(10) + this.pirateShip.weapon
-  //     if (opp >= block) {
-  //       this.state.hp =- opp
-  //     }
-  // }
+  attack = () => {
+    this.setState({
+      credits: this.state.credits - 1
+    })
+    const fire = this.randomize(10) + this.state.weapon
+    const opp = this.randomize(10) + this.enemyShip.shield
+    console.log(this.state.weapon, this.enemyShip.shield)
+    console.log(fire, opp)
+    if (fire >= opp) {
+      this.hit(this.randomize(10)) 
+    } else {
+      this.loadPrompt(9)
+    }
+  }
+
+  defend = (param) => {
+    let defense = (param === '0') ? 0 : this.state.shield
+    const block = this.randomize(10) + defense
+    const opp = this.randomize(10) + this.enemyShip.weapon
+    if (opp >= block) {
+      this.hurt(this.randomize(10))
+    } else {
+      this.loadPrompt(10)
+    }
+  }
 
   getFunction = (fn, param) => {
     switch (fn) {
       case "loadPrompt":
         this.loadPrompt(param)
         break;
-      // case "attack":
-      //   this.attack()
-      //   break;
-      // case "defend":
-      //   this.defend()
-      //   break;
+      case "attack":
+        this.attack()
+        break;
+      case "defend":
+        this.defend(param)
+        break;
       default:
         console.log("uh oh, spaghettios")
     }

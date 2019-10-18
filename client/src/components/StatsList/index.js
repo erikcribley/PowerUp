@@ -28,8 +28,8 @@ function StatsList (props) {
       data: props.shield
     },
     {
-      key: 'Full Armor',
-      stat: 'Full Armor',
+      key: 'Armor',
+      stat: 'Armor',
       data: props.armor
     },
     {
@@ -42,11 +42,6 @@ function StatsList (props) {
       stat: 'Credits',
       data: props.credits
     },
-    {
-      key: 'Current Armor',
-      stat: 'Current Armor',
-      data: props.hp
-    }
 
   ]
   return <Table columns={columns} dataSource={data} />

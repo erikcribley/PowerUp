@@ -72,8 +72,8 @@ VALUES
         "raise shields",
         "attack",
         "defend",
-        "6",
-        "7"
+        "x",
+        "x"
 	),
     (
 		"Super runaway",
@@ -82,6 +82,86 @@ VALUES
         "faster",
         "thrust",
         "thrust",
-        "8",
-        "9"
+        "x",
+        "x"
+	),
+    (
+		"DIRECT HIT!, Enemy vessel is returning fire.",
+        "6 -- hit, return fire",
+        "Raise Shield",
+        "Conserve Power",
+        "defend",
+        "defend",
+        "x",
+        "0"
+	),
+	(
+		"DIRECT HIT!, Enemey vessel is heavily damaged and fleeing",
+        "7 -- hit, enemy flees",
+        "Pursue",
+        "Ignore",
+        "thrust",
+        "loadPrompt",
+        "x",
+        "10"
+	),
+    (
+		"DIRECT HIT! Enemy vessel destroyed",
+        "8 -- hit, enemy destroyed",
+        "Salvage",
+        "Ignore",
+        "loadPrompt",
+        "loadPrompt",
+        "11",
+        "12"
+    ),
+    (
+		"MISS! Enemy vessel is returning fire!",
+        "9 -- miss, return fire",
+		"Raise Shield",
+        "Conserve Power",
+        "defend",
+        "defend",
+        "x",
+        "0"
+	),
+        (
+		"MISSED",
+        "10 --miss, return fire",
+		"Raise Shield",
+        "Conserve Power",
+        "defend",
+        "defend",
+        "x",
+        "0"
+	),
+	(
+		"light damage",
+        "11 -- miss, return fire",
+		"Raise Shield",
+        "Conserve Power",
+        "defend",
+        "defend",
+        "x",
+        "0"
+	),
+	(
+		"severe damage",
+        "12 -- miss, return fire",
+		"Raise Shield",
+        "Conserve Power",
+        "defend",
+        "defend",
+        "x",
+        "0"
+	),
+	(
+		"DEAD",
+        "13 -- miss, return fire",
+		"Raise Shield",
+        "Conserve Power",
+        "defend",
+        "defend",
+        "x",
+        "0"
 	);
