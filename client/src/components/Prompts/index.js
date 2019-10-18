@@ -34,6 +34,7 @@ function Prompts (props) {
           </Button>
         </Col>
       </Row>
+    </div>
   )
 }
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Redirect } from 'react-router-dom'
 import { Layout, Row, Col } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
@@ -44,12 +43,6 @@ class StatsPage extends Component {
   }
 
   render() {
-    // if (
-    //   !sessionStorage.getItem('loggedIn') ||
-    //   sessionStorage.getItem('loggedIn') !== 'true'
-    // ) {
-    //   return <Redirect to='/' />
-    // }
     return (
       <div>
         <TopNav />

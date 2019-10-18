@@ -14,7 +14,7 @@ const login = (req, res) => {
         if (err) {
           return console.error(err)
         }
-        return res.status(200).send(true)
+        return res.status(200).send('Logging in!')
       })
     })
     .catch(err => console.error(err))
@@ -28,7 +28,10 @@ const hash = (req, res) => {
         userEmail: req.body.username,
         userPassword: hash
       })
-      .then(result => login(req, res))
+      .then(result => {
+        orm.newUserTasks(result)
+        return login(req, res)
+      })
       .catch(err => console.error(err))
   })
 }
@@ -51,13 +54,17 @@ router
       .tableWhere('users', 'userEmail', req.body.username)
       .then(user => {
         if (user.length > 0 && user[0].googleId === null) {
-          return res.status(401).send(false)
+          return res
+            .status(401)
+            .send('Email address already in use please login')
         }
         if (user.length > 0 && user[0].userPassword === null) {
           return updateHash(req.body.password, user, req, res)
         }
         if (user.length > 0 && user[0].userPassword) {
-          return res.status(401).send(false)
+          return res
+            .status(401)
+            .send('Email address already in use please login')
         }
         return hash(req, res)
       })
@@ -67,7 +74,6 @@ router
   // must name the incoming fields username / password
   .post('/login', validate.login, validate.result, (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
-      console.log(info.message)
       if (err) {
         return res.status(500).send(err)
       }
@@ -90,10 +96,9 @@ router
 
   // Endpoint to logout
   .get('/logout', isAuth, (req, res) => {
-    console.log(req)
     req.logout()
     req.session.destroy()
-    res.status(200).redirect('unauthorized')
+    res.status(200).redirect('/unauthorized')
   })
 
 module.exports = router

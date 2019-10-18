@@ -58,14 +58,8 @@ class Characters extends Component {
   }
 
   render() {
-    // if (
-    //   !sessionStorage.getItem('loggedIn') ||
-    //   sessionStorage.getItem('loggedIn') !== 'true'
-    // ) {
-    //   return <Redirect to='/' />
-    // }
     if (this.state.charCreated) {
-      return <Redirect to='/stats' />
+      return <Redirect to='/tasks' />
     }
     return (
       <div>
