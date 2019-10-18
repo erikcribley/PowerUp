@@ -41,7 +41,8 @@ function StatsList (props) {
       key: 'Credits',
       stat: 'Credits',
       data: props.credits
-    }
+    },
+
   ]
   return <Table columns={columns} dataSource={data} />
 }
