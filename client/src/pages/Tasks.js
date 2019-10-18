@@ -14,36 +14,54 @@ class Tasks extends Component {
     this.state = {
       tasks: [],
       newTask: '',
-      updateTask: ''
+      updateTask: '',
+      power: 0
     }
   }
 
   componentDidMount() {
     this.loadTasks()
+    this.getStats()
   }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  loadTasks = () => {
-    API.getTasks()
-      .then(res =>
-        this.setState({ tasks: res.data, newTask: '', updateTask: '' })
-      )
+  getStats = () => {
+    API.getStats()
+      .then(res => this.setState({ power: res.data[0].credits }))
       .catch(err => console.error(err))
   }
 
-  deleteTask = id => {
+  updateCredits = () => {
+    API.updateCredits(this.state.power)
+      .then(res => res.data)
+      .catch(err => console.error(err))
+  }
+
+  loadTasks = () => {
+    API.getTasks()
+      .then(res => {
+        this.setState({ tasks: res.data, newTask: '', updateTask: '' })
+      })
+      .catch(err => console.error(err))
+  }
+
+  deleteTask = (id, itemPower) => {
     API.deleteTasks(id)
-      .then(res => this.loadTasks())
+      .then(res => {
+        this.setState({ power: this.state.power + itemPower })
+        this.loadTasks()
+      })
+      .then(res => this.updateCredits())
       .catch(err => console.error(err))
   }
 
   newTask = e => {
     e.preventDefault()
     if (this.state.newTask.length > 0) {
-      API.addTasks(this.state.newTask)
+      API.addTasks(this.state.newTask, 10)
         .then(res => this.loadTasks())
         .catch(err => console.error(err))
     }
@@ -67,7 +85,10 @@ class Tasks extends Component {
         <Content>
           <div style={{ marginTop: '3em', minHeight: 280 }}>
             <Row type='flex' justify='center' gutter={32}>
-              <Col xs={12} lg={12} style={{ textAlign: 'center' }}>
+              <Col xs={18} lg={12} style={{ textAlign: 'center' }}>
+                <Row>
+                  <h1 id='power'>POWER: {this.state.power}</h1>
+                </Row>
                 <Row>
                   <h1 className='hStyle'>Add a Task</h1>
                   <TextArea
@@ -93,6 +114,7 @@ class Tasks extends Component {
                         key={task.taskId}
                         id={task.taskId}
                         message={task.task}
+                        power={task.taskCredit}
                         delete={this.deleteTask}
                       />
                     ))}

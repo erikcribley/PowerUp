@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import { Redirect } from 'react-router-dom'
 import { Layout, Row, Col } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
@@ -28,7 +29,7 @@ class StatsPage extends Component {
 
   getStats = () => {
     API.getStats()
-      .then(res =>
+      .then(res => {
         this.setState({
           shipName: res.data[0].name,
           armor: res.data[0].maxHP,
@@ -38,11 +39,17 @@ class StatsPage extends Component {
           credits: res.data[0].credits,
           picture: res.data[0].picture
         })
-      )
+      })
       .catch(err => console.error(err))
   }
 
   render() {
+    // if (
+    //   !sessionStorage.getItem('loggedIn') ||
+    //   sessionStorage.getItem('loggedIn') !== 'true'
+    // ) {
+    //   return <Redirect to='/' />
+    // }
     return (
       <div>
         <TopNav />
@@ -50,14 +57,14 @@ class StatsPage extends Component {
         <Content>
           <div style={{ marginTop: '3em', minHeight: 280 }}>
             <Row type='flex' justify='center' gutter={32}>
-              <Col xs={14} lg={6} style={{ textAlign: 'center' }}>
+              <Col xs={18} lg={6} style={{ textAlign: 'center' }}>
                 <PlayerImage
                   src={this.state.picture}
                   alt={this.state.shipName}
                 />
               </Col>
               <Col
-                xs={14}
+                xs={18}
                 lg={6}
                 style={{ textAlign: 'center', color: 'white' }}>
                 <Row style={{ letterSpacing: '3px', marginBottom: '2em' }}>

@@ -3,24 +3,23 @@ import { Row, Col, Button, Icon } from 'antd'
 import './style.css'
 
 class TaskItem extends Component {
-
-  render() {
+  render () {
     return (
       <div>
         <Row type='flex' align='middle'>
-        <Col xs={20} sm={20} md={20} lg={20}>
-          <div className='taskText'>
-          {this.props.message}
-          </div>
-        </Col>
-        <Col xs={4} sm={4} md={4} lg={4}>
-          <Button
-            className='secondaryBtn compBtn'
-            size='small'
-            onClick={() => this.props.delete(this.props.id)}>
-            <Icon type="check" />
-          </Button>
-        </Col>
+          <Col xs={20} sm={20} md={20} lg={20}>
+            <div className='taskText'>{this.props.message}</div>
+          </Col>
+          <Col xs={4} sm={4} md={4} lg={4} style={{ textAlign: 'right' }}>
+            <Button
+              className='secondaryBtn compBtn'
+              size='small'
+              onClick={() =>
+                this.props.delete(this.props.id, this.props.power)}
+            >
+              <Icon type='check' />
+            </Button>
+          </Col>
         </Row>
         <Row>
           <hr />
