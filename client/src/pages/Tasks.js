@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Layout, Row, Col, Input, Button } from 'antd'
+// import { Redirect } from 'react-router-dom'
+import { Layout, Row, Col, Input, Button, Radio } from 'antd'
 import TopNav from '../components/Header'
 import TaskItem from '../components/Tasks'
 import Foot from '../components/Footer'
@@ -56,6 +57,8 @@ class Tasks extends Component {
       })
       .then(res => this.updateCredits())
       .catch(err => console.error(err))
+    let power = this.state.power + 1
+    this.setState({ power })
   }
 
   newTask = e => {
@@ -99,6 +102,14 @@ class Tasks extends Component {
                     onChange={this.handleInputChange}
                     autosize
                   />
+                  <h1 className='hStyle'>Assign Task Value</h1> 
+                    <div style={{marginBottom: '3em'}}>
+                      <Radio.Group defaultValue="a" buttonStyle="solid">
+                        <Radio.Button className='valueBtn' value="a">1</Radio.Button>
+                        <Radio.Button className='valueBtn' value="b">2</Radio.Button>
+                        <Radio.Button className='valueBtn' value="c">3</Radio.Button>
+                      </Radio.Group>
+                    </div>
                   <Button
                     className='primaryBtn'
                     type='primary'

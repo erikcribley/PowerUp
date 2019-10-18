@@ -162,16 +162,20 @@ class Gameplay extends Component {
                 <div id='gradient'>
                   <img src='./images/placeholder.jpg' alt='placeholder' />
                 </div>
+                
+            <Prompts
+              getFunction={this.getFunction}
+              promptID={this.state.promptID}
+              prompt={this.state.prompt}
+              option1={this.state.option1}
+              option2={this.state.option2}
+              event1={this.state.event1}
+              event2={this.state.event2}
+              param1={this.state.param1}
+              param2={this.state.param2}
+            />
 
-                <Prompts
-                  loadPrompt={this.loadPrompt}
-                  promptID={this.state.promptID}
-                  prompt={this.state.prompt}
-                  option1={this.state.option1}
-                  option2={this.state.option2}
-                  event1={this.state.event1}
-                  event2={this.state.event2}
-                />
+
               </div>
 
               <div style={{ padding: 24, minHeight: 280 }}>
