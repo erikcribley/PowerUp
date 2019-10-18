@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import { Redirect } from 'react-router-dom'
 import { Layout, Row, Col } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
@@ -28,7 +29,7 @@ class StatsPage extends Component {
 
   getStats = () => {
     API.getStats()
-      .then(res =>
+      .then(res => {
         this.setState({
           shipName: res.data[0].name,
           armor: res.data[0].maxHP,
@@ -38,11 +39,17 @@ class StatsPage extends Component {
           credits: res.data[0].credits,
           picture: res.data[0].picture
         })
-      )
+      })
       .catch(err => console.error(err))
   }
 
   render() {
+    // if (
+    //   !sessionStorage.getItem('loggedIn') ||
+    //   sessionStorage.getItem('loggedIn') !== 'true'
+    // ) {
+    //   return <Redirect to='/' />
+    // }
     return (
       <div>
         <TopNav />

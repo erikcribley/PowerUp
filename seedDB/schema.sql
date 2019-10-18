@@ -10,7 +10,6 @@ CREATE TABLE `users` (
   `userEmail` VARCHAR(100) NOT NULL UNIQUE,
   `userPassword` VARCHAR(150),
   `googleId` VARCHAR(100),
-  `name` VARCHAR(100),
   `userCreation` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userId`)
 );
@@ -57,13 +56,6 @@ CREATE TABLE `playerShip` (
   REFERENCES `users` (`userId`)
   );
 
--- DROP TABLE IF EXISTS `upgradeType`;
--- CREATE TABLE `upgradeType` (
---   `upgradeTypeId` INT AUTO_INCREMENT NOT NULL,
---   `upgradeType` VARCHAR(45) NOT NULL,
---   PRIMARY KEY (`upgradeTypeId`)
--- );
-
 USE `project3`;
 DROP TABLE IF EXISTS `upgrades`;
 CREATE TABLE `upgrades` (
@@ -73,9 +65,7 @@ CREATE TABLE `upgrades` (
   `bonus` INT(10) NOT NULL,
   `cost` INT(10) NOT NULL,
   `damage` INT(10),
-  PRIMARY KEY (`upgradeId`),
-  CONSTRAINT `FK_003` FOREIGN KEY `fkIdx_003` (`upgradeTypeId`)
-  REFERENCES `upgradeType` (`upgradeTypeId`)
+  PRIMARY KEY (`upgradeId`)
 );
 
 USE `project3`;

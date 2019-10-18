@@ -9,7 +9,7 @@ const isAuth = (req, res, next) => {
   if (req.isAuthenticated()) {
     next()
   } else {
-    res.status(401).redirect('/')
+    res.status(401).redirect('/unauthorized')
   }
 }
 
@@ -38,7 +38,7 @@ passport.use(
           if (!res) {
             return done(null, false, { message: 'Invalid Password' })
           }
-          const userData = { userId: user[0].userId, name: user[0].name }
+          const userData = { userId: user[0].userId }
           return done(null, userData)
         })
       })
@@ -52,7 +52,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
-      scope: ['email']
+      scope: ['profile', 'email']
     },
 
     (accessToken, refreshToken, profile, done) => {
