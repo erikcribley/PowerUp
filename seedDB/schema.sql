@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS `taskList`;
 CREATE TABLE `taskList` (
   `taskId` INT AUTO_INCREMENT NOT NULL,
   `userId` INT NOT NULL,
+  `taskCredit` INT(10) NOT NULL,
   `task` TEXT NOT NULL,
   `taskCreation` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`taskId`),

@@ -19,12 +19,16 @@ export default {
     return axios.get('/user/tasks')
   },
 
-  addTasks: task => {
-    return axios.post('/user/tasks', { task: task })
+  addTasks: (task, taskCredit) => {
+    return axios.post('/user/tasks', { task: task, taskCredit: taskCredit })
   },
 
   updateTasks: (taskId, task) => {
     return axios.put('/user/tasks', { taskId: taskId, task: task })
+  },
+
+  updateCredits: credits => {
+    return axios.put('/user/credits', { credits: credits })
   },
 
   deleteTasks: taskId => {

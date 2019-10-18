@@ -52,6 +52,16 @@ footer {
   border: 1px solid #00803e;
 }
 
+/* ===== Tables ===== */
+
+/* tr.ant-table-row.ant-table-row-level-0:hover {
+  background: transparent;
+} */
+
+/* .ant-table-tbody > tr {
+  background: transparent;
+} */
+
 /* ===== Log In ===== */
 
 #components-form-demo-normal-login .login-form {
@@ -84,7 +94,9 @@ footer {
 
 #promptText {
   font-family: 'Press Start 2P', monospace;
-  margin-bottom: 2em;
+  margin: 2em;
+  /* margin-top: 1em; */
+  /* margin-bottom: 2em; */
 } 
 
 .promptBtn {
@@ -92,4 +104,20 @@ footer {
   color: white;
   max-width: 200px;
   margin: auto !important;
+}
+
+/* ===== Tasks ===== */
+
+#power {
+  color: #00803e;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18pt;
+}
+
+.valueBtn {
+  width: 75px;
+  font-family: 'Press Start 2P', monospace;
+  color: #00803e;
+  background-color: transparent;
+  border: 1px solid #00803e;
 }

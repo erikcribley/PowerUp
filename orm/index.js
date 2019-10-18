@@ -5,12 +5,12 @@ const opts = process.env.JAWSDB_URL || {
   user: 'root',
   password: 'password',
   database: 'project3',
+  multipleStatements: true
 }
 
 const connection = mysql.createConnection(opts)
 
 const orm = {
-
   tableAll: table => {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM ??', [table], (err, res) => {
@@ -96,7 +96,7 @@ const orm = {
   taskPages: userId => {
     return new Promise((resolve, reject) => {
       connection.query(
-        `SELECT taskId, task FROM taskList
+        `SELECT taskId, task, taskCredit FROM taskList
          WHERE userId = ? 
          ORDER BY taskId DESC`,
         [userId],

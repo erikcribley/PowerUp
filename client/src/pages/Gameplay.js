@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Layout, Row, Col, Button } from 'antd'
+import { Layout, Row, Col } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
 import StatsList from '../components/StatsList'
@@ -51,7 +51,7 @@ class Gameplay extends Component {
       .catch(err => console.error(err))
   }
 
-  loadPrompt = (pid) => {
+  loadPrompt = pid => {
     API.getPrompt(pid)
       .then(res =>
         this.setState({
@@ -147,84 +147,22 @@ class Gameplay extends Component {
   }
 
   render() {
-    // if (
-    //   !sessionStorage.getItem('loggedIn') ||
-    //   sessionStorage.getItem('loggedIn') !== 'true'
-    // ) {
-    //   return <Redirect to='/' />
-    // }
     return (
       <div>
         <TopNav />
         <Content>
-          <Row type='flex' gutter={20} style={{padding: 24, margin: '0 3em'}}>
-            <Col xs={24} sm={24} md={24} lg={16} style={{border: '1px solid white'}}>
-              <div style={{marginTop: 20}}>
+          <Row type='flex' gutter={20} style={{ padding: 24, margin: '0 3em' }}>
+            <Col
+              xs={24}
+              sm={24}
+              md={24}
+              lg={16}
+              style={{ border: '1px solid white' }}>
+              <div style={{ marginTop: 20 }}>
                 <div id='gradient'>
-                  <img src='./images/placeholder.jpg' alt='placeholder'/>
+                  <img src='./images/placeholder.jpg' alt='placeholder' />
                 </div>
-                <div style={{minHeight: 200}}>
-                  <Row>
-                    <Col>
-                      <div id='promptText'>
-                      Prompt text goes here...
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={24} sm={24} md={12} lg={12}>
-                      <Button
-                        className='primaryBtn promptBtn'
-                        block
-                        >
-                        Choice 1
-                      </Button>
-                    </Col>
-                    <Col xs={24} sm={24} md={12} lg={12}>
-                      <Button
-                        className='primaryBtn promptBtn'
-                        block
-                        >
-                        Choice 2
-                      </Button>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col xs={24} sm={24} md={24} lg={8} style={{border: '1px solid white'}}>
-              <div style={{minHeight: 200, marginTop: 20}}>
-                <StatsList 
-                  shipName={this.state.shipName}
-                  armor={this.state.armor}
-                  weapons={this.state.armor}
-                  shield={this.state.shield}
-                  thrust={this.state.thrust}
-                  hp={this.state.hp} 
-                  credits={this.state.credits}
-                />
-              </div>
-            </Col>
-          </Row>
-          <div style={{ padding: 24, minHeight: 280 }}>
-
-            <StatsList 
-              shipName={this.state.shipName}
-              armor={this.state.armor}
-              weapon={this.state.weapon}
-              shield={this.state.shield}
-              thrust={this.state.thrust}
-              hp={this.state.hp} 
-              credits={this.state.credits}
-            /> 
-
-            {/* <div>
-              <p>{this.state.prompt}</p>
-              <button onClick={() => this.getFunction(this.state.event1, this.state.param1)}> {this.state.option1} </button>
-              <button onClick={() => this.getFunction(this.state.event2, this.state.param2)}> {this.state.option2} </button>
-            </div> */}
-
-
+                
             <Prompts
               getFunction={this.getFunction}
               promptID={this.state.promptID}
@@ -237,7 +175,23 @@ class Gameplay extends Component {
               param2={this.state.param2}
             />
 
-          </div>
+
+              </div>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={8}>
+              <div style={{minHeight: 200, marginTop: 20}}>
+                <StatsList 
+                  shipName={this.state.shipName}
+                  armor={this.state.armor}
+                  weapon={this.state.weapon}
+                  shield={this.state.shield}
+                  thrust={this.state.thrust}
+                  hp={this.state.hp}
+                  credits={this.state.credits}
+                />
+              </div>
+            </Col>
+          </Row>
         </Content>
         <Foot />
       </div>
