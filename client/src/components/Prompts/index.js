@@ -1,16 +1,6 @@
 import React from 'react'
 import { Row, Col, Button } from 'antd'
 
-// function Prompts (props) {
-//   return (
-//     <div>
-//       <p> {props.prompt} </p>
-//       <button onClick={() => props.loadPrompt(props.event1)}> {props.option1} </button>
-//       <button onClick={() => props.loadPrompt(props.event2)}> {props.option2} </button>
-//     </div>
-//   )
-// }
-
 function Prompts (props) {
   return (
     <div style={{minHeight: 200}}>
@@ -27,7 +17,7 @@ function Prompts (props) {
           <Button
             className='primaryBtn promptBtn'
             block
-            onClick={() => props.loadPrompt(props.event1)}
+            onClick={() => props.getFunction(props.event1, props.param1)}
             >
             {/* {props.option1} */}
             Option 1
@@ -37,14 +27,13 @@ function Prompts (props) {
           <Button
             className='primaryBtn promptBtn'
             block
-            onClick={() => props.loadPrompt(props.event2)}
+            onClick={() => props.getFunction(props.event2, props.param2)}
             >
             {/* {props.option2} */}
             Option 2
           </Button>
         </Col>
       </Row>
-    </div>
   )
 }
 
