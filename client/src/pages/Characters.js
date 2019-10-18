@@ -59,7 +59,7 @@ class Characters extends Component {
 
   render() {
     if (this.state.charCreated) {
-      return <Redirect to='/stats' />
+      return <Redirect to='/tasks' />
     }
     return (
       <div>
