@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS `taskList`;
 CREATE TABLE `taskList` (
   `taskId` INT AUTO_INCREMENT NOT NULL,
   `userId` INT NOT NULL,
+  `taskCredit` INT(10) NOT NULL,
   `task` TEXT NOT NULL,
   `taskCreation` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`taskId`),
@@ -73,9 +74,12 @@ DROP TABLE IF EXISTS `prompts`;
 CREATE TABLE `prompts` (
   `promptId` INT AUTO_INCREMENT NOT NULL,
   `prompt` TEXT NOT NULL,
-  -- `option1` TEXT NOT NULL,
-  -- `option2` TEXT NOT NULL,
-  -- `event1` TEXT NOT NULL,
-  -- `event2` TEXT NOT NULL,
+  `description` TEXT NOT NULL,
+  `option1` TEXT NOT NULL,
+  `option2` TEXT NOT NULL,
+  `event1` TEXT NOT NULL,
+  `event2` TEXT NOT NULL,
+  `param1` TEXT NOT NULL,
+  `param2` TEXT NOT NULL,
   PRIMARY KEY (`promptId`)
 );
