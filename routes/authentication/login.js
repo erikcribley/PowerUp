@@ -71,7 +71,7 @@ router
     validate.result,
     passport.authenticate('local', { session: true }),
     isAuth,
-    (req, res) => {
+    (_, res) => {
       res.status(200).send(true)
     }
   )
@@ -83,9 +83,10 @@ router
 
   // Endpoint to logout
   .get('/logout', isAuth, (req, res) => {
+    console.log(req)
     req.logout()
     req.session.destroy()
-    res.send(null)
+    res.status(200).redirect('unauthorized')
   })
 
 module.exports = router

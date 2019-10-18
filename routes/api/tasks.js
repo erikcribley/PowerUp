@@ -3,13 +3,13 @@ const orm = require('../../orm')
 const { isAuth } = require('../authentication/passport')
 
 router
-  .get('/tasks', isAuth, (req, res) => {
+  .get('/user/tasks', isAuth, (req, res) => {
     orm
       .taskPages(Number(req.user.userId))
       .then(data => res.status(200).json(data))
       .catch(err => console.error(err))
   })
-  .post('/tasks', isAuth, (req, res) => {
+  .post('/user/tasks', isAuth, (req, res) => {
     orm
       .insertOne('taskList', {
         userId: Number(req.user.userId),
@@ -18,7 +18,7 @@ router
       .then(data => res.status(200).json(data))
       .catch(err => console.error(err))
   })
-  .put('/tasks', isAuth, (req, res) => {
+  .put('/user/tasks', isAuth, (req, res) => {
     orm
       .updateOne(
         'taskList',
@@ -30,7 +30,7 @@ router
       .then(data => res.status(200).json(data))
       .catch(err => console.error(err))
   })
-  .delete('/tasks/:taskId', isAuth, (req, res) => {
+  .delete('/user/tasks/:taskId', isAuth, (req, res) => {
     orm
       .deleteOne('taskList', 'taskId', Number(req.params.taskId))
       .then(data => res.status(200).json(data))
