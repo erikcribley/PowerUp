@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Redirect } from 'react-router-dom'
 import { Layout, Row, Col, Input, Button } from 'antd'
 import TopNav from '../components/Header'
 import TaskItem from '../components/Tasks'
@@ -22,17 +21,35 @@ class Tasks extends Component {
 
   componentDidMount() {
     this.loadTasks()
+    this.getStats()
+  }
+
+  componentWillUnmount() {
+    this.updateCredits()
   }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  getStats = () => {
+    API.getStats()
+      .then(res => this.setState({ credits: res.data[0].credits }))
+      .catch(err => console.error(err))
+  }
+
+  updateCredits = () => {
+    API.updateCredits(this.state.credits)
+      .then(res => res)
+      .catch(err => console.error(err))
+  }
+
   loadTasks = () => {
     API.getTasks()
-      .then(res =>
+      .then(res => {
+        console.log(res.data)
         this.setState({ tasks: res.data, newTask: '', updateTask: '' })
-      )
+      })
       .catch(err => console.error(err))
   }
 
@@ -53,7 +70,7 @@ class Tasks extends Component {
   newTask = e => {
     e.preventDefault()
     if (this.state.newTask.length > 0) {
-      API.addTasks(this.state.newTask)
+      API.addTasks(this.state.newTask, 10)
         .then(res => this.loadTasks())
         .catch(err => console.error(err))
     }
@@ -71,12 +88,6 @@ class Tasks extends Component {
   // }
 
   render() {
-    // if (
-    //   !sessionStorage.getItem('loggedIn') ||
-    //   sessionStorage.getItem('loggedIn') !== 'true'
-    // ) {
-    //   return <Redirect to='/' />
-    // }
     return (
       <div>
         <TopNav />
