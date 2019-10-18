@@ -54,14 +54,13 @@ footer {
 
 /* ===== Tables ===== */
 
-/* testing
-tr {
-  color: blue;
+/* tr.ant-table-row.ant-table-row-level-0:hover {
+  background: transparent;
 } */
 
-tr:hover {
-  background-color: transparent !important;
-}
+/* .ant-table-tbody > tr {
+  background: transparent;
+} */
 
 /* ===== Log In ===== */
 
@@ -113,4 +112,12 @@ tr:hover {
   color: #00803e;
   font-family: 'Press Start 2P', monospace;
   font-size: 18pt;
+}
+
+.valueBtn {
+  width: 75px;
+  font-family: 'Press Start 2P', monospace;
+  color: #00803e;
+  background-color: transparent;
+  border: 1px solid #00803e;
 }
