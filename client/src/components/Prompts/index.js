@@ -7,8 +7,8 @@ function Prompts (props) {
       <Row>
         <Col>
           <div id='promptText'>
-          {/* <p> {props.prompt} </p> */}
-          <p> Prompt text goes here... </p>
+          <p> {props.prompt} </p>
+          {/* <p> Prompt text goes here... </p> */}
           </div>
         </Col>
       </Row>
@@ -19,8 +19,7 @@ function Prompts (props) {
             block
             onClick={() => props.getFunction(props.event1, props.param1)}
             >
-            {/* {props.option1} */}
-            Option 1
+            {props.option1}
           </Button>
         </Col>
         <Col xs={24} sm={24} md={12} lg={12} style={{marginBottom: '1em'}}>
@@ -29,8 +28,7 @@ function Prompts (props) {
             block
             onClick={() => props.getFunction(props.event2, props.param2)}
             >
-            {/* {props.option2} */}
-            Option 2
+            {props.option2}
           </Button>
         </Col>
       </Row>

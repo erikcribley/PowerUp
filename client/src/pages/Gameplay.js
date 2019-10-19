@@ -29,9 +29,24 @@ class Gameplay extends Component {
   }
 
   componentDidMount() {
-    this.loadShip(2)
-    this.loadPrompt(1)
+    this.restart()
   }
+
+  restart = () => {
+    this.loadShip()
+    this.loadPrompt(1)
+    this.enemyShip.reset()
+  }
+
+  gameOver = () => {
+    if (this.state.credits <= 0) {
+      this.loadPrompt(14)
+    }
+  }
+
+  // exit = () => {
+
+  // }
 
   loadShip = () => {
     API.getShip()
@@ -77,12 +92,21 @@ class Gameplay extends Component {
     thrust: 5,
     maxArmor: 15,
     armor: 15,
-    credits: 4
+    credits: 4,
+    reset: function () {
+      this.weapon = 10;
+      this.shield = 5;
+      this.thrust = 5;
+      this.maxArmor = 15;
+      this.armor = 15;
+      this.credits = 4;
+    }
   }
 
-  hit = dmg => {
-    this.enemyShip.armor -= dmg
-    if (this.enemyShip.armor > this.enemyShip.maxArmor / 2) {
+  hit = async (dmg) => {
+    const registerDmg = this.enemyShip.armor -= dmg
+    await registerDmg
+    if (this.enemyShip.armor > (this.enemyShip.maxArmor / 2)) {
       this.loadPrompt(6)
     } else if (this.enemyShip.armor <= 0) {
       this.loadPrompt(8)
@@ -91,11 +115,12 @@ class Gameplay extends Component {
     }
   }
 
-  hurt = dmg => {
+  hurt = async (dmg) => {
     this.setState({
       armor: this.state.armor - dmg
     })
-    if (this.state.armor > this.state.maxArmor / 2) {
+    await this.setState
+    if (this.state.armor > (this.state.maxArmor / 2)) {
       this.loadPrompt(11)
     } else if (this.state.armor <= 0) {
       this.loadPrompt(13)
@@ -104,14 +129,13 @@ class Gameplay extends Component {
     }
   }
 
-  attack = () => {
+  attack = async () => {
     this.setState({
       credits: this.state.credits - 1
     })
+    await this.setState()
     const fire = this.randomize(10) + this.state.weapon
     const opp = this.randomize(10) + this.enemyShip.shield
-    console.log(this.state.weapon, this.enemyShip.shield)
-    console.log(fire, opp)
     if (fire >= opp) {
       this.hit(this.randomize(10))
     } else {
@@ -119,14 +143,30 @@ class Gameplay extends Component {
     }
   }
 
-  defend = param => {
-    let defense = param === '0' ? 0 : this.state.shield
+  defend = async (param) => {
+    let defense = (param === '0') ? 0 : this.state.shield
+      if(param !== '0') {
+        this.setState({
+          credits: this.state.credits - 1
+        })
+      }
+    await defense
     const block = this.randomize(10) + defense
     const opp = this.randomize(10) + this.enemyShip.weapon
     if (opp >= block) {
       this.hurt(this.randomize(10))
     } else {
       this.loadPrompt(10)
+    }
+  }
+
+  thrust = () => {
+    let speed = this.randomize(10) + this.state.thrust
+    let opp = this.randomize(10) + this.enemyShip.thrust
+    if (opp >= speed) {
+      this.loadPrompt(100)
+    } else {
+      this.loadPrompt(101)
     }
   }
 
@@ -140,7 +180,16 @@ class Gameplay extends Component {
         break
       case 'defend':
         this.defend(param)
-        break
+        break;
+      case "thrust":
+        this.thrust()
+        break;
+      case "restart":
+        this.restart()
+        break;
+      case "exit":
+        this.exit()
+        break;
       default:
         console.log('uh oh, spaghettios')
     }
@@ -174,7 +223,6 @@ class Gameplay extends Component {
               param1={this.state.param1}
               param2={this.state.param2}
             />
-
 
               </div>
 
