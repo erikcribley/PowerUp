@@ -93,20 +93,20 @@ class Gameplay extends Component {
     maxArmor: 15,
     armor: 15,
     credits: 4,
-    reset: function () {
-      this.weapon = 10;
-      this.shield = 5;
-      this.thrust = 5;
-      this.maxArmor = 15;
-      this.armor = 15;
-      this.credits = 4;
+    reset: function() {
+      this.weapon = 10
+      this.shield = 5
+      this.thrust = 5
+      this.maxArmor = 15
+      this.armor = 15
+      this.credits = 4
     }
   }
 
-  hit = async (dmg) => {
-    const registerDmg = this.enemyShip.armor -= dmg
+  hit = async dmg => {
+    const registerDmg = (this.enemyShip.armor -= dmg)
     await registerDmg
-    if (this.enemyShip.armor > (this.enemyShip.maxArmor / 2)) {
+    if (this.enemyShip.armor > this.enemyShip.maxArmor / 2) {
       this.loadPrompt(6)
     } else if (this.enemyShip.armor <= 0) {
       this.loadPrompt(8)
@@ -115,12 +115,12 @@ class Gameplay extends Component {
     }
   }
 
-  hurt = async (dmg) => {
+  hurt = async dmg => {
     this.setState({
       armor: this.state.armor - dmg
     })
     await this.setState
-    if (this.state.armor > (this.state.maxArmor / 2)) {
+    if (this.state.armor > this.state.maxArmor / 2) {
       this.loadPrompt(11)
     } else if (this.state.armor <= 0) {
       this.loadPrompt(13)
@@ -143,13 +143,13 @@ class Gameplay extends Component {
     }
   }
 
-  defend = async (param) => {
-    let defense = (param === '0') ? 0 : this.state.shield
-      if(param !== '0') {
-        this.setState({
-          credits: this.state.credits - 1
-        })
-      }
+  defend = async param => {
+    let defense = param === '0' ? 0 : this.state.shield
+    if (param !== '0') {
+      this.setState({
+        credits: this.state.credits - 1
+      })
+    }
     await defense
     const block = this.randomize(10) + defense
     const opp = this.randomize(10) + this.enemyShip.weapon
@@ -180,16 +180,16 @@ class Gameplay extends Component {
         break
       case 'defend':
         this.defend(param)
-        break;
-      case "thrust":
+        break
+      case 'thrust':
         this.thrust()
-        break;
-      case "restart":
+        break
+      case 'restart':
         this.restart()
-        break;
-      case "exit":
+        break
+      case 'exit':
         this.exit()
-        break;
+        break
       default:
         console.log('uh oh, spaghettios')
     }
@@ -201,29 +201,23 @@ class Gameplay extends Component {
         <TopNav />
         <Content>
           <Row type='flex' gutter={20} style={{ padding: 24, margin: '0 3em' }}>
-            <Col
-              xs={24}
-              sm={24}
-              md={24}
-              lg={16}
-              >
+            <Col xs={24} sm={24} md={24} lg={16}>
               <div style={{ marginTop: 20 }}>
                 <div id='gradient'>
                   <img src='./images/placeholder.jpg' alt='placeholder' />
                 </div>
-                
-            <Prompts
-              getFunction={this.getFunction}
-              promptID={this.state.promptID}
-              prompt={this.state.prompt}
-              option1={this.state.option1}
-              option2={this.state.option2}
-              event1={this.state.event1}
-              event2={this.state.event2}
-              param1={this.state.param1}
-              param2={this.state.param2}
-            />
 
+                <Prompts
+                  getFunction={this.getFunction}
+                  promptID={this.state.promptID}
+                  prompt={this.state.prompt}
+                  option1={this.state.option1}
+                  option2={this.state.option2}
+                  event1={this.state.event1}
+                  event2={this.state.event2}
+                  param1={this.state.param1}
+                  param2={this.state.param2}
+                />
               </div>
 
               <div style={{ padding: 24, minHeight: 280 }}>
@@ -237,23 +231,6 @@ class Gameplay extends Component {
                   credits={this.state.credits}
                 />
               </div>
-              {/* <div>
-              <p>{this.state.prompt}</p>
-              <button onClick={() => this.getFunction(this.state.event1, this.state.param1)}> {this.state.option1} </button>
-              <button onClick={() => this.getFunction(this.state.event2, this.state.param2)}> {this.state.option2} </button>
-            </div> */}
-
-              {/* <Prompts
-                getFunction={this.getFunction}
-                promptID={this.state.promptID}
-                prompt={this.state.prompt}
-                option1={this.state.option1}
-                option2={this.state.option2}
-                event1={this.state.event1}
-                event2={this.state.event2}
-                param1={this.state.param1}
-                param2={this.state.param2}
-              /> */}
             </Col>
           </Row>
         </Content>
