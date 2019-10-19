@@ -38,7 +38,11 @@ class Gameplay extends Component {
     this.enemyShip.reset()
   }
 
-  gameOver = () => {
+  gameOver = async () => {
+    this.setState({
+      credits: this.state.credits - 1
+    })
+    await this.setState
     if (this.state.credits <= 0) {
       this.loadPrompt(14)
     }
@@ -89,10 +93,10 @@ class Gameplay extends Component {
   enemyShip = {
     weapon: 10,
     shield: 5,
-    thrust: 5,
+    thrust: 10,
     maxArmor: 15,
     armor: 15,
-    credits: 4,
+    credits: 
     reset: function() {
       this.weapon = 10
       this.shield = 5
@@ -129,11 +133,8 @@ class Gameplay extends Component {
     }
   }
 
-  attack = async () => {
-    this.setState({
-      credits: this.state.credits - 1
-    })
-    await this.setState()
+  attack = () => {
+    this.gameOver()
     const fire = this.randomize(10) + this.state.weapon
     const opp = this.randomize(10) + this.enemyShip.shield
     if (fire >= opp) {
@@ -143,14 +144,11 @@ class Gameplay extends Component {
     }
   }
 
-  defend = async param => {
-    let defense = param === '0' ? 0 : this.state.shield
-    if (param !== '0') {
-      this.setState({
-        credits: this.state.credits - 1
-      })
-    }
-    await defense
+  defend = (param) => {
+    let defense = (param === '0') ? 0 : this.state.shield
+      if(param !== '0') {
+        this.gameOver()
+      }
     const block = this.randomize(10) + defense
     const opp = this.randomize(10) + this.enemyShip.weapon
     if (opp >= block) {
@@ -160,13 +158,50 @@ class Gameplay extends Component {
     }
   }
 
-  thrust = () => {
-    let speed = this.randomize(10) + this.state.thrust
+  flee = (param) => {
+    let flight = (param === '0') ? 0 : this.state.thrust
+      if(param !== '0') {
+        this.gameOver()
+      }
+    let speed = this.randomize(10) + flight
     let opp = this.randomize(10) + this.enemyShip.thrust
     if (opp >= speed) {
-      this.loadPrompt(100)
+      this.loadPrompt(15)
     } else {
-      this.loadPrompt(101)
+      this.loadPrompt(16)
+    }
+  }
+
+  pursue = (param) => {
+    let flight = (param === '0') ? 0 : this.state.thrust
+      if(param !== '0') {
+        this.gameOver()
+      }
+    let speed = this.randomize(10) + flight
+    let opp = this.randomize(10) + this.enemyShip.thrust
+    if (opp >= speed) {
+      this.loadPrompt(18)
+    } else {
+      this.loadPrompt(19)
+    }
+  }
+
+  upgrade = (param) => {
+    switch (param) {
+      case "weapon":
+        this.setState({
+          weapon: this.state.weapon + 5
+        })
+        this.loadPrompt(21)
+        break;
+      case "thrust":
+        this.setState({
+          thrust: this.state.thrust + 5 
+        })
+        this.loadPrompt(22)
+        break;
+      default:
+        console.log("uh oh, spaghettios")
     }
   }
 
@@ -180,14 +215,20 @@ class Gameplay extends Component {
         break
       case 'defend':
         this.defend(param)
-        break
-      case 'thrust':
-        this.thrust()
-        break
-      case 'restart':
+        break;
+      case "flee":
+        this.flee(param)
+        break;
+      case "pursue":
+        this.pursue(param)
+        break;
+      case "restart":
         this.restart()
-        break
-      case 'exit':
+        break;
+      case "upgrade":
+        this.upgrade(param)
+        break;
+      case "exit":
         this.exit()
         break
       default:
