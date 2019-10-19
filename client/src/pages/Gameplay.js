@@ -67,8 +67,8 @@ class Gameplay extends Component {
       .catch(err => console.error(err))
   }
 
-  randomize = (num) => {
-    return Math.floor((Math.random() * num) + 1);
+  randomize = num => {
+    return Math.floor(Math.random() * num + 1)
   }
 
   enemyShip = {
@@ -77,12 +77,12 @@ class Gameplay extends Component {
     thrust: 5,
     maxArmor: 15,
     armor: 15,
-    credits: 4,
+    credits: 4
   }
 
-  hit = (dmg) => {
+  hit = dmg => {
     this.enemyShip.armor -= dmg
-    if (this.enemyShip.armor > (this.enemyShip.maxArmor / 2)) {
+    if (this.enemyShip.armor > this.enemyShip.maxArmor / 2) {
       this.loadPrompt(6)
     } else if (this.enemyShip.armor <= 0) {
       this.loadPrompt(8)
@@ -91,11 +91,11 @@ class Gameplay extends Component {
     }
   }
 
-  hurt = (dmg) => {
+  hurt = dmg => {
     this.setState({
       armor: this.state.armor - dmg
     })
-    if (this.state.armor > (this.state.maxArmor / 2)) {
+    if (this.state.armor > this.state.maxArmor / 2) {
       this.loadPrompt(11)
     } else if (this.state.armor <= 0) {
       this.loadPrompt(13)
@@ -113,14 +113,14 @@ class Gameplay extends Component {
     console.log(this.state.weapon, this.enemyShip.shield)
     console.log(fire, opp)
     if (fire >= opp) {
-      this.hit(this.randomize(10)) 
+      this.hit(this.randomize(10))
     } else {
       this.loadPrompt(9)
     }
   }
 
-  defend = (param) => {
-    let defense = (param === '0') ? 0 : this.state.shield
+  defend = param => {
+    let defense = param === '0' ? 0 : this.state.shield
     const block = this.randomize(10) + defense
     const opp = this.randomize(10) + this.enemyShip.weapon
     if (opp >= block) {
@@ -132,17 +132,17 @@ class Gameplay extends Component {
 
   getFunction = (fn, param) => {
     switch (fn) {
-      case "loadPrompt":
+      case 'loadPrompt':
         this.loadPrompt(param)
-        break;
-      case "attack":
+        break
+      case 'attack':
         this.attack()
-        break;
-      case "defend":
+        break
+      case 'defend':
         this.defend(param)
-        break;
+        break
       default:
-        console.log("uh oh, spaghettios")
+        console.log('uh oh, spaghettios')
     }
   }
 
@@ -177,10 +177,9 @@ class Gameplay extends Component {
 
 
               </div>
-            </Col>
-            <Col xs={24} sm={24} md={24} lg={8}>
-              <div style={{minHeight: 200, marginTop: 20}}>
-                <StatsList 
+
+              <div style={{ padding: 24, minHeight: 280 }}>
+                <StatsList
                   shipName={this.state.shipName}
                   armor={this.state.armor}
                   weapon={this.state.weapon}
@@ -190,6 +189,23 @@ class Gameplay extends Component {
                   credits={this.state.credits}
                 />
               </div>
+              {/* <div>
+              <p>{this.state.prompt}</p>
+              <button onClick={() => this.getFunction(this.state.event1, this.state.param1)}> {this.state.option1} </button>
+              <button onClick={() => this.getFunction(this.state.event2, this.state.param2)}> {this.state.option2} </button>
+            </div> */}
+
+              {/* <Prompts
+                getFunction={this.getFunction}
+                promptID={this.state.promptID}
+                prompt={this.state.prompt}
+                option1={this.state.option1}
+                option2={this.state.option2}
+                event1={this.state.event1}
+                event2={this.state.event2}
+                param1={this.state.param1}
+                param2={this.state.param2}
+              /> */}
             </Col>
           </Row>
         </Content>
