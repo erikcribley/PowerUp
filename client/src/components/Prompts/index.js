@@ -3,7 +3,7 @@ import { Row, Col, Button } from 'antd'
 
 function Prompts (props) {
   return (
-    <div style={{minHeight: 200}}>
+    <div style={{minHeight: 200, border: '1px #00803e solid'}}>
       <Row>
         <Col>
           <div id='promptText'>
@@ -34,6 +34,7 @@ function Prompts (props) {
           </Button>
         </Col>
       </Row>
+    </div>
   )
 }
 
