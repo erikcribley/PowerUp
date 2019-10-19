@@ -162,50 +162,30 @@ class Gameplay extends Component {
                 <div id='gradient'>
                   <img src='./images/placeholder.jpg' alt='placeholder' />
                 </div>
-                
-            <Prompts
-              getFunction={this.getFunction}
-              promptID={this.state.promptID}
-              prompt={this.state.prompt}
-              option1={this.state.option1}
-              option2={this.state.option2}
-              event1={this.state.event1}
-              event2={this.state.event2}
-              param1={this.state.param1}
-              param2={this.state.param2}
-            />
-
-
+                <Prompts
+                  getFunction={this.getFunction}
+                  promptID={this.state.promptID}
+                  prompt={this.state.prompt}
+                  option1={this.state.option1}
+                  option2={this.state.option2}
+                  event1={this.state.event1}
+                  event2={this.state.event2}
+                  param1={this.state.param1}
+                  param2={this.state.param2}
+                />
               </div>
-
-              <div style={{ padding: 24, minHeight: 280 }}>
-                <StatsList
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={8}>
+              <div style={{minHeight: 200, marginTop: 20}}>
+                <StatsList 
                   shipName={this.state.shipName}
                   armor={this.state.armor}
                   weapon={this.state.weapon}
                   shield={this.state.shield}
                   thrust={this.state.thrust}
                   hp={this.state.hp}
-                  credits={this.state.credits}
-                />
+                  credits={this.state.credits}/>
               </div>
-              {/* <div>
-              <p>{this.state.prompt}</p>
-              <button onClick={() => this.getFunction(this.state.event1, this.state.param1)}> {this.state.option1} </button>
-              <button onClick={() => this.getFunction(this.state.event2, this.state.param2)}> {this.state.option2} </button>
-            </div> */}
-
-              {/* <Prompts
-                getFunction={this.getFunction}
-                promptID={this.state.promptID}
-                prompt={this.state.prompt}
-                option1={this.state.option1}
-                option2={this.state.option2}
-                event1={this.state.event1}
-                event2={this.state.event2}
-                param1={this.state.param1}
-                param2={this.state.param2}
-              /> */}
             </Col>
           </Row>
         </Content>
