@@ -157,7 +157,7 @@ class Gameplay extends Component {
               sm={24}
               md={24}
               lg={16}
-              style={{ border: '1px solid white' }}>
+              >
               <div style={{ marginTop: 20 }}>
                 <div id='gradient'>
                   <img src='./images/placeholder.jpg' alt='placeholder' />
