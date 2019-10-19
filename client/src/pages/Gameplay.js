@@ -86,8 +86,8 @@ class Gameplay extends Component {
       .catch(err => console.error(err))
   }
 
-  randomize = (num) => {
-    return Math.floor((Math.random() * num) + 1);
+  randomize = num => {
+    return Math.floor(Math.random() * num + 1)
   }
 
   enemyShip = {
@@ -96,21 +96,21 @@ class Gameplay extends Component {
     thrust: 10,
     maxArmor: 15,
     armor: 15,
-    credits: 4,
-    reset: function () {
-      this.weapon = 10;
-      this.shield = 5;
-      this.thrust = 10;
-      this.maxArmor = 15;
-      this.armor = 10;
-      this.credits = 4;
+    credits: 
+    reset: function() {
+      this.weapon = 10
+      this.shield = 5
+      this.thrust = 5
+      this.maxArmor = 15
+      this.armor = 15
+      this.credits = 4
     }
   }
 
-  hit = async (dmg) => {
-    const registerDmg = this.enemyShip.armor -= dmg
+  hit = async dmg => {
+    const registerDmg = (this.enemyShip.armor -= dmg)
     await registerDmg
-    if (this.enemyShip.armor > (this.enemyShip.maxArmor / 2)) {
+    if (this.enemyShip.armor > this.enemyShip.maxArmor / 2) {
       this.loadPrompt(6)
     } else if (this.enemyShip.armor <= 0) {
       this.loadPrompt(8)
@@ -119,12 +119,12 @@ class Gameplay extends Component {
     }
   }
 
-  hurt = async (dmg) => {
+  hurt = async dmg => {
     this.setState({
       armor: this.state.armor - dmg
     })
     await this.setState
-    if (this.state.armor > (this.state.maxArmor / 2)) {
+    if (this.state.armor > this.state.maxArmor / 2) {
       this.loadPrompt(11)
     } else if (this.state.armor <= 0) {
       this.loadPrompt(13)
@@ -138,7 +138,7 @@ class Gameplay extends Component {
     const fire = this.randomize(10) + this.state.weapon
     const opp = this.randomize(10) + this.enemyShip.shield
     if (fire >= opp) {
-      this.hit(this.randomize(10)) 
+      this.hit(this.randomize(10))
     } else {
       this.loadPrompt(9)
     }
@@ -207,13 +207,13 @@ class Gameplay extends Component {
 
   getFunction = (fn, param) => {
     switch (fn) {
-      case "loadPrompt":
+      case 'loadPrompt':
         this.loadPrompt(param)
-        break;
-      case "attack":
+        break
+      case 'attack':
         this.attack()
-        break;
-      case "defend":
+        break
+      case 'defend':
         this.defend(param)
         break;
       case "flee":
@@ -230,9 +230,9 @@ class Gameplay extends Component {
         break;
       case "exit":
         this.exit()
-        break;
+        break
       default:
-        console.log("uh oh, spaghettios")
+        console.log('uh oh, spaghettios')
     }
   }
 
@@ -242,34 +242,27 @@ class Gameplay extends Component {
         <TopNav />
         <Content>
           <Row type='flex' gutter={20} style={{ padding: 24, margin: '0 3em' }}>
-            <Col
-              xs={24}
-              sm={24}
-              md={24}
-              lg={16}
-              style={{ border: '1px solid white' }}>
+            <Col xs={24} sm={24} md={24} lg={16}>
               <div style={{ marginTop: 20 }}>
                 <div id='gradient'>
                   <img src='./images/placeholder.jpg' alt='placeholder' />
                 </div>
-                
-            <Prompts
-              getFunction={this.getFunction}
-              promptID={this.state.promptID}
-              prompt={this.state.prompt}
-              option1={this.state.option1}
-              option2={this.state.option2}
-              event1={this.state.event1}
-              event2={this.state.event2}
-              param1={this.state.param1}
-              param2={this.state.param2}
-            />
 
+                <Prompts
+                  getFunction={this.getFunction}
+                  promptID={this.state.promptID}
+                  prompt={this.state.prompt}
+                  option1={this.state.option1}
+                  option2={this.state.option2}
+                  event1={this.state.event1}
+                  event2={this.state.event2}
+                  param1={this.state.param1}
+                  param2={this.state.param2}
+                />
               </div>
-            </Col>
-            <Col xs={24} sm={24} md={24} lg={8}>
-              <div style={{minHeight: 200, marginTop: 20}}>
-                <StatsList 
+
+              <div style={{ padding: 24, minHeight: 280 }}>
+                <StatsList
                   shipName={this.state.shipName}
                   armor={this.state.armor}
                   weapon={this.state.weapon}

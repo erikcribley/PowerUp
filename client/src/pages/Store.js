@@ -7,10 +7,6 @@ import Foot from '../components/Footer'
 const { Content } = Layout
 
 class Store extends Component {
-  // componentDidMount() {
-  //   API.get().then(res => console.log(res.data))
-  // }
-
   render() {
     return (
       <div>
@@ -18,9 +14,9 @@ class Store extends Component {
 
         <Content>
           <div style={{ padding: 24, minHeight: 280 }}>
-
-            <h1 style={{padding: 24, color: 'white', textAlign: 'center'}}>Waiting on parts from the space station...</h1>
-          
+            <h1 style={{ padding: 24, color: 'white', textAlign: 'center' }}>
+              Waiting on parts from the space station...
+            </h1>
           </div>
         </Content>
 

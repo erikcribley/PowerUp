@@ -17,7 +17,7 @@ router
         defense: Number(req.body.ship.defense),
         speed: Number(req.body.ship.speed),
         maxHP: Number(req.body.ship.maxHP),
-        credits: 100,
+        credits: 5,
         name: req.body.name,
         picture: req.body.ship.picture
       })

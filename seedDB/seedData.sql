@@ -1,27 +1,10 @@
 
 USE `project3`;
-INSERT INTO `taskList` (`userId`, `task`)
+INSERT INTO `startingTasks` (`taskCredit`, `task`)
 VALUE
-(9, 'Testing user 1'),
-(9, 'still testing user 1'),
-(9, '3rd test for user 1'),
-(9, 'Testing user 2'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 test'),
-(9, 'User 2 3rd test value');
+(3, 'Then you can use power to advance through the game!'),
+(3, 'Each time you complete a task you gain power.'),
+(3, 'Start by creating a task of your own!');
 
 USE `project3`;
 INSERT INTO `defaultShip` (`attack`, `defense`, `speed`, `maxHP`, `name`, `picture`)
@@ -147,7 +130,7 @@ VALUES
 	(
 		"Enemy hits, you've taken light damage",
         "11 -- hit, severe damage",
-		"Return Fire",
+		    "Return Fire",
         "Flee",
         "attack",
         "thrust",
@@ -156,9 +139,9 @@ VALUES
         "placeholder.jpg"
 	),
 	(
-		"Enemy hits, you've taken severe damage",
+		    "Enemy hits, you've taken severe damage",
         "12 -- hit, severe damage",
-		"Return fire",
+		    "Return fire",
         "Flee",
         "attack",
         "thrust",
@@ -167,9 +150,9 @@ VALUES
         "placeholder.jpg"
 	),
 	(
-		"Enemy hits, your ship is destroyed",
+		    "Enemy hits, your ship is destroyed",
         "13 -- hits, destroyed",
-		"Restart",
+		    "Restart",
         "exit",
         "restart",
         "exit",
@@ -177,8 +160,8 @@ VALUES
         "x",
         "placeholder.jpg"
 	),
-    (
-		"You've ran out of credits. Ship is disabled",
+  (
+		    "You've ran out of credits. Ship is disabled",
         "14 -- credits === 0",
         "Restart",
         "exit",
@@ -188,10 +171,10 @@ VALUES
         "x",
         "placeholder.jpg"
 	),
-    (
-		"Evasion failed, enemy ship in pursuit",
+  (
+	    	"Evasion failed, enemy ship in pursuit",
         "15 -- enemy pursuit",
-		"attack",
+		    "attack",
         "raise shields",
         "attack",
         "defend",
@@ -200,18 +183,18 @@ VALUES
         "placeholder.jpg"
 	),
     (
-		"Evasion successful",
+		    "Evasion successful",
         "16 -- evaded enemy ship",
         "something",
         "something else",
         "loadPrompt",
         "loadPrompt",
-		"99",
+		    "99",
         "99",
         "placeholder.jpg"
 	),
     (
-		"Pursue enemy ship",
+		    "Pursue enemy ship",
         "17 -- pursue enemy ship",
         "use thrust",
         "conserve power",
@@ -221,19 +204,19 @@ VALUES
         "0",
         "placeholder.jpg"
 	),
-    (
-		"Enemy ship has escaped",
+  (
+		    "Enemy ship has escaped",
         "18 -- enemy ship escapes",
-		"something",
+		    "something",
         "something else",
         "loadPrompt",
         "loadPrompt",
-		"99",
+		    "99",
         "99",
         "placeholder.jpg"
 	),
 	(
-		"Enemy ship in range",
+		    "Enemy ship in range",
         "19 -- successful pursuit",
         "attack",
         "something else",
@@ -243,8 +226,8 @@ VALUES
         "99",
         "placeholder.jpg"
 	),
-    (
-		"Salvage",
+   (
+		    "Salvage",
         "20 -- get upgrades from destroyed ship",
         "upgrade weapon",
         "upgrade thrust",
@@ -254,8 +237,8 @@ VALUES
         "thrust",
         "placeholder.jpg"
 	),
-    (
-		"Weapon upgraded",
+   (
+		    "Weapon upgraded",
         "21 -- weapon upgrade",
         "something",
         "something else",
@@ -265,8 +248,8 @@ VALUES
         "99",
         "placeholder.jpg"
 	),
-    (
-		"Thrust upgraded",
+  (
+	    	"Thrust upgraded",
         "22 -- thrust upgrade",
         "something",
         "something else",

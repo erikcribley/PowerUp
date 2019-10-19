@@ -2,7 +2,7 @@ import React from 'react'
 import { Table } from 'antd'
 import './style.css'
 
-function StatsList (props) {
+function StatsList(props) {
   const columns = [
     {
       title: 'Stat',
@@ -38,11 +38,10 @@ function StatsList (props) {
       data: props.thrust
     },
     {
-      key: 'Credits',
-      stat: 'Credits',
+      key: 'Power',
+      stat: 'Power',
       data: props.credits
-    },
-
+    }
   ]
   return <Table columns={columns} dataSource={data} />
 }
