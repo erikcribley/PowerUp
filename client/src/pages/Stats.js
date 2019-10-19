@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Redirect } from 'react-router-dom'
 import { Layout, Row, Col } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
@@ -44,12 +43,6 @@ class StatsPage extends Component {
   }
 
   render() {
-    // if (
-    //   !sessionStorage.getItem('loggedIn') ||
-    //   sessionStorage.getItem('loggedIn') !== 'true'
-    // ) {
-    //   return <Redirect to='/' />
-    // }
     return (
       <div>
         <TopNav />
@@ -67,7 +60,7 @@ class StatsPage extends Component {
                 xs={18}
                 lg={6}
                 style={{ textAlign: 'center', color: 'white' }}>
-                <Row style={{ letterSpacing: '3px', marginBottom: '2em' }}>
+                <Row id='shipName'>
                   {this.state.shipName}
                 </Row>
                 <StatsList

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Redirect } from 'react-router-dom'
 import { Layout, Row, Col, Input, Button, Radio } from 'antd'
 import TopNav from '../components/Header'
 import TaskItem from '../components/Tasks'
@@ -15,6 +14,7 @@ class Tasks extends Component {
     this.state = {
       tasks: [],
       newTask: '',
+      newTaskPower: 0,
       updateTask: '',
       power: 0
     }
@@ -49,37 +49,24 @@ class Tasks extends Component {
       .catch(err => console.error(err))
   }
 
-  deleteTask = (id, itemPower) => {
+  deleteTask = (id, taskPower) => {
     API.deleteTasks(id)
       .then(res => {
-        this.setState({ power: this.state.power + itemPower })
+        this.setState({ power: this.state.power + taskPower })
         this.loadTasks()
       })
       .then(res => this.updateCredits())
       .catch(err => console.error(err))
-    let power = this.state.power + 1
-    this.setState({ power })
   }
 
   newTask = e => {
     e.preventDefault()
     if (this.state.newTask.length > 0) {
-      API.addTasks(this.state.newTask, 10)
+      API.addTasks(this.state.newTask, this.state.newTaskPower)
         .then(res => this.loadTasks())
         .catch(err => console.error(err))
     }
   }
-
-  // Just left this here in case we want to add the function later
-
-  // updateTask = e => {
-  //   e.preventDefault()
-  //   if (this.state.updateTask.length > 0) {
-  //     API.addTasks(e.target.taskId, this.state.updateTask)
-  //       .then(res => this.loadTasks())
-  //       .catch(err => console.error(err))
-  //   }
-  // }
 
   render() {
     return (
@@ -102,14 +89,24 @@ class Tasks extends Component {
                     onChange={this.handleInputChange}
                     autosize
                   />
-                  <h1 className='hStyle'>Assign Task Value</h1> 
-                    <div style={{marginBottom: '3em'}}>
-                      <Radio.Group defaultValue="a" buttonStyle="solid">
-                        <Radio.Button className='valueBtn' value="a">1</Radio.Button>
-                        <Radio.Button className='valueBtn' value="b">2</Radio.Button>
-                        <Radio.Button className='valueBtn' value="c">3</Radio.Button>
-                      </Radio.Group>
-                    </div>
+                  <h1 className='hStyle'>Assign Task Value</h1>
+                  <div style={{ marginBottom: '3em' }}>
+                    <Radio.Group
+                      defaultValue={1}
+                      buttonStyle='solid'
+                      name='newTaskPower'
+                      onChange={this.handleInputChange}>
+                      <Radio.Button className='valueBtn' value={1}>
+                        1
+                      </Radio.Button>
+                      <Radio.Button className='valueBtn' value={2}>
+                        2
+                      </Radio.Button>
+                      <Radio.Button className='valueBtn' value={3}>
+                        3
+                      </Radio.Button>
+                    </Radio.Group>
+                  </div>
                   <Button
                     className='primaryBtn'
                     type='primary'

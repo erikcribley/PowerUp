@@ -52,9 +52,25 @@ footer {
   border: 1px solid #00803e;
 }
 
+.ant-input {
+  font-weight: 700;
+}
+
 /* ===== Tables ===== */
 
-/* tr.ant-table-row.ant-table-row-level-0:hover {
+/* .ant-table-tbody > tr.ant-table-row-level-1:hover > td {
+  background: transparent;
+} */
+
+/* .ant-table-body > tr {
+  background-color: transparent;
+} */
+
+/* tr.ant-table-row:hover {
+  background: transparent;
+} */
+
+/* tr:hover {
   background: transparent;
 } */
 
@@ -72,6 +88,15 @@ footer {
 }
 #components-form-demo-normal-login .login-form-button {
   width: 100%;
+}
+
+/* ===== Stats ===== */
+
+#shipName {
+  margin-bottom: 2em;
+  font-size: 1.25em;
+  letter-spacing: 3px;
+  font-family: 'Press Start 2P', monospace;
 }
 
 /* ===== Gameplay ===== */

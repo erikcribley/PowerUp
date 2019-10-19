@@ -8,23 +8,18 @@ class NormalLoginForm extends Component {
   state = {
     loggedIn: false
   }
-  
-  // handleInputChange = e => {
-  //   this.setState({ [e.target.name]: e.target.value })
-  // }
 
   handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
         API.register(values.email, values.password)
-        .then(res => {
-          if (res.data === true) {
-            this.setState({ loggedIn: true })
-            console.log(this.state.loggedIn)
-          }
-        })
-        .catch(err => console.error(err))
+          .then(res => {
+            if (res.status === 200) {
+              this.setState({ loggedIn: true })
+            }
+          })
+          .catch(err => console.error(err.response.data))
       }
     })
   }
@@ -43,54 +38,69 @@ class NormalLoginForm extends Component {
           align='middle'>
           <Col style={{ width: 300 }}>
             <h1 className='hStyle'>Register</h1>
-            <Form onSubmit={this.handleSubmit} className="login-form">
+            <Form onSubmit={this.handleSubmit} className='login-form'>
               <Form.Item>
                 {getFieldDecorator('email', {
                   rules: [
-                    { type: 'email',
+                    {
+                      type: 'email',
                       required: true,
-                      message: 'Please enter a valid email address.' }
+                      message: 'Please enter a valid email address.'
+                    }
                   ]
-                })(
-                  <Input
-                  placeholder='email'
-                  name='userEmail'
-                  // onChange={this.handleInputChange}
-                  />
-                )}
+                })(<Input placeholder='email' name='userEmail' />)}
               </Form.Item>
               <Form.Item>
                 {getFieldDecorator('password', {
                   rules: [
-                    { type: 'string',
+                    {
+                      type: 'string',
                       required: true,
-                      message: <div>Please enter a password.</div> },
-                    { pattern: '[0-9]',
-                      message: <div>Password must contain at least one numeral.</div> },
-                    { pattern: '[a-z]',
-                      message: <div>Password must contain at least one lowercase letter.</div> },
-                    { pattern: '[A-Z]',
-                      message: <div>Password must contain at least one capital letter.</div> },
-                    { min: 8,
-                      message: <div>Password must contain at least 8 characters .</div> }
+                      message: <div>Please enter a password.</div>
+                    },
+                    {
+                      pattern: '[0-9]',
+                      message: (
+                        <div>Password must contain at least one numeral.</div>
+                      )
+                    },
+                    {
+                      pattern: '[a-z]',
+                      message: (
+                        <div>
+                          Password must contain at least one lowercase letter.
+                        </div>
+                      )
+                    },
+                    {
+                      pattern: '[A-Z]',
+                      message: (
+                        <div>
+                          Password must contain at least one capital letter.
+                        </div>
+                      )
+                    },
+                    {
+                      min: 8,
+                      message: (
+                        <div>Password must contain at least 8 characters .</div>
+                      )
+                    }
                   ]
                 })(
                   <Input.Password
-                    type="password"
+                    type='password'
                     placeholder='password'
                     name='password'
-                    // onChange={this.handleInputChange}
                   />
                 )}
               </Form.Item>
               <Form.Item>
                 <Button
-                  type="primary"
-                  htmlType="submit"
+                  type='primary'
+                  htmlType='submit'
                   className='primaryBtn'
-                  block
-                  // onClick={this.handleLoginSubmit}
-                  >
+                  block>
                   Register
                 </Button>
               </Form.Item>

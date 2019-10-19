@@ -28,6 +28,13 @@ CREATE TABLE `taskList` (
 );
 
 USE `project3`;
+DROP TABLE IF EXISTS `startingTasks`;
+CREATE TABLE `startingTasks` (
+  `taskCredit` INT(10) NOT NULL,
+  `task` TEXT NOT NULL
+);
+
+USE `project3`;
 DROP TABLE IF EXISTS `defaultShip`;
 CREATE TABLE `defaultShip` (
   `defaultShipId` INT AUTO_INCREMENT NOT NULL,
