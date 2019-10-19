@@ -81,5 +81,6 @@ CREATE TABLE `prompts` (
   `event2` TEXT NOT NULL,
   `param1` TEXT NOT NULL,
   `param2` TEXT NOT NULL,
+  `image` TEXT NOT NULL,
   PRIMARY KEY (`promptId`)
 );

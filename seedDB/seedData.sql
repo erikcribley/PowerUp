@@ -31,9 +31,8 @@ VALUE
 (10, 10, 10, 50, 'Android Sphere', './images/sphere.svg'),
 (10, 10, 10, 50, 'Cyborg Craft', './images/craft.svg');
 
-//prompts
 USE `project3`;
-INSERT INTO `prompts` (`prompt`, `description`, `option1`, `option2`, `event1`, `event2`, `param1`, `param2`)
+INSERT INTO `prompts` (`prompt`, `description`, `option1`, `option2`, `event1`, `event2`, `param1`, `param2`, `image`)
 VALUES
 	(
 		"You've recieved a distress signal from a nearby asteroid.", 
@@ -43,7 +42,8 @@ VALUES
         "loadPrompt",
 		"loadPrompt",
         "2", 
-        "3"
+        "3",
+        "placeholder.jpg"
 	),
     (
 		"It's an ambush, You're attacked by space pirates!",
@@ -53,7 +53,8 @@ VALUES
 		"loadPrompt",
 		"loadPrompt",
         "4",
-        "5"
+        "5",
+        "placeholder.jpg"
 	),
     (
 		"Fuck that noise",
@@ -62,8 +63,9 @@ VALUES
         "faster",
 		"loadPrompt",
 		"loadPrompt",
-        "69",
-        "68"
+        "99",
+        "99",
+        "placeholder.jpg"
 	),
     (
 		"Engage",
@@ -73,17 +75,19 @@ VALUES
         "attack",
         "defend",
         "x",
-        "x"
+        "x",
+        "placeholder.jpg"
 	),
     (
-		"Super runaway",
-        "5 - GTFO",
-        "run",
-        "faster",
-        "thrust",
-        "thrust",
+		"Take evasive action",
+        "5 -- flee enemy ship",
+        "use thrust",
+        "conserve power",
+        "flee",
+        "flee",
         "x",
-        "x"
+        "0",
+        "placeholder.jpg"
 	),
     (
 		"DIRECT HIT!, Enemy vessel is returning fire.",
@@ -93,17 +97,19 @@ VALUES
         "defend",
         "defend",
         "x",
-        "0"
+        "0",
+        "placeholder.jpg"
 	),
 	(
 		"DIRECT HIT!, Enemey vessel is heavily damaged and fleeing",
         "7 -- hit, enemy flees",
         "Pursue",
         "Ignore",
-        "thrust",
         "loadPrompt",
-        "x",
-        "10"
+        "loadPrompt",
+        "17",
+        "99",
+        "placeholder.jpg"
 	),
     (
 		"DIRECT HIT! Enemy vessel destroyed",
@@ -112,8 +118,9 @@ VALUES
         "Ignore",
         "loadPrompt",
         "loadPrompt",
-        "11",
-        "12"
+        "20",
+        "99",
+        "placeholder.jpg"
     ),
     (
 		"MISS! Enemy vessel is returning fire!",
@@ -123,45 +130,150 @@ VALUES
         "defend",
         "defend",
         "x",
-        "0"
+        "0",
+        "placeholder.jpg"
 	),
         (
-		"MISSED",
-        "10 --miss, return fire",
-		"Raise Shield",
-        "Conserve Power",
-        "defend",
-        "defend",
+		"Enemy fires, and misses",
+        "10 --enemy missed",
+		"return fire",
+        "flee",
+        "attack",
+        "thrust",
         "x",
-        "0"
+        "x",
+        "placeholder.jpg"
 	),
 	(
-		"light damage",
-        "11 -- miss, return fire",
-		"Raise Shield",
-        "Conserve Power",
-        "defend",
-        "defend",
+		"Enemy hits, you've taken light damage",
+        "11 -- hit, severe damage",
+		"Return Fire",
+        "Flee",
+        "attack",
+        "thrust",
         "x",
-        "0"
+        "x",
+        "placeholder.jpg"
 	),
 	(
-		"severe damage",
-        "12 -- miss, return fire",
-		"Raise Shield",
-        "Conserve Power",
-        "defend",
-        "defend",
-        "x",
-        "0"
+		"Enemy hits, you've taken severe damage",
+        "12 -- hit, severe damage",
+		"Return fire",
+        "Flee",
+        "attack",
+        "thrust",
+        "0",
+        "0",
+        "placeholder.jpg"
 	),
 	(
-		"DEAD",
-        "13 -- miss, return fire",
-		"Raise Shield",
-        "Conserve Power",
-        "defend",
+		"Enemy hits, your ship is destroyed",
+        "13 -- hits, destroyed",
+		"Restart",
+        "exit",
+        "restart",
+        "exit",
+        "x",
+        "x",
+        "placeholder.jpg"
+	),
+    (
+		"You've ran out of credits. Ship is disabled",
+        "14 -- credits === 0",
+        "Restart",
+        "exit",
+        "restart",
+        "exit",
+        "x",
+        "x",
+        "placeholder.jpg"
+	),
+    (
+		"Evasion failed, enemy ship in pursuit",
+        "15 -- enemy pursuit",
+		"attack",
+        "raise shields",
+        "attack",
         "defend",
         "x",
-        "0"
+        "x",
+        "placeholder.jpg"
+	),
+    (
+		"Evasion successful",
+        "16 -- evaded enemy ship",
+        "something",
+        "something else",
+        "loadPrompt",
+        "loadPrompt",
+		"99",
+        "99",
+        "placeholder.jpg"
+	),
+    (
+		"Pursue enemy ship",
+        "17 -- pursue enemy ship",
+        "use thrust",
+        "conserve power",
+        "pursue",
+        "pursue",
+        "x",
+        "0",
+        "placeholder.jpg"
+	),
+    (
+		"Enemy ship has escaped",
+        "18 -- enemy ship escapes",
+		"something",
+        "something else",
+        "loadPrompt",
+        "loadPrompt",
+		"99",
+        "99",
+        "placeholder.jpg"
+	),
+	(
+		"Enemy ship in range",
+        "19 -- successful pursuit",
+        "attack",
+        "something else",
+        "attack",
+        "loadPrompt",
+        "x",
+        "99",
+        "placeholder.jpg"
+	),
+    (
+		"Salvage",
+        "20 -- get upgrades from destroyed ship",
+        "upgrade weapon",
+        "upgrade thrust",
+        "upgrade",
+        "upgrade",
+        "weapon",
+        "thrust",
+        "placeholder.jpg"
+	),
+    (
+		"Weapon upgraded",
+        "21 -- weapon upgrade",
+        "something",
+        "something else",
+        "loadPrompt",
+        "loadPrompt",
+        "99",
+        "99",
+        "placeholder.jpg"
+	),
+    (
+		"Thrust upgraded",
+        "22 -- thrust upgrade",
+        "something",
+        "something else",
+        "loadPrompt",
+        "loadPrompt",
+        "99",
+        "99",
+        "placeholder.jpg"
 	);
+    
