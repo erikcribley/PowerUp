@@ -67,7 +67,7 @@ class StatsPage extends Component {
                 xs={18}
                 lg={6}
                 style={{ textAlign: 'center', color: 'white' }}>
-                <Row style={{ letterSpacing: '3px', marginBottom: '2em' }}>
+                <Row id='shipName'>
                   {this.state.shipName}
                 </Row>
                 <StatsList
