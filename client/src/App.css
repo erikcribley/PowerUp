@@ -56,6 +56,10 @@ footer {
   font-weight: 700;
 }
 
+.ant-row-flex {
+  padding: 0px !important;
+}
+
 /* ===== Tables ===== */
 
 /* .ant-table-tbody > tr.ant-table-row-level-1:hover > td {
