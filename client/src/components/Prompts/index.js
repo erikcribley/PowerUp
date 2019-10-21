@@ -8,7 +8,6 @@ function Prompts (props) {
         <Col>
           <div id='promptText'>
           <p> {props.prompt} </p>
-          {/* <p> Prompt text goes here... </p> */}
           </div>
         </Col>
       </Row>

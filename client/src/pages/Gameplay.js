@@ -48,9 +48,9 @@ class Gameplay extends Component {
     }
   }
 
-  // exit = () => {
-
-  // }
+  exit = () => {
+    window.location.href = '/tasks'
+  }
 
   loadShip = () => {
     API.getShip()
@@ -80,7 +80,8 @@ class Gameplay extends Component {
           event1: res.data[0].event1,
           event2: res.data[0].event2,
           param1: res.data[0].param1,
-          param2: res.data[0].param2
+          param2: res.data[0].param2,
+          image: res.data[0].image
         })
       )
       .catch(err => console.error(err))
@@ -94,21 +95,19 @@ class Gameplay extends Component {
     weapon: 10,
     shield: 5,
     thrust: 10,
-    maxArmor: 15,
-    armor: 15,
-    credits: 
+    maxArmor: 10,
+    armor: 10,
     reset: function() {
       this.weapon = 10
       this.shield = 5
-      this.thrust = 5
-      this.maxArmor = 15
-      this.armor = 15
-      this.credits = 4
+      this.thrust = 10
+      this.maxArmor = 10
+      this.armor = 10
     }
   }
 
   hit = async dmg => {
-    const registerDmg = (this.enemyShip.armor -= dmg)
+    const registerDmg = this.enemyShip.armor -= dmg
     await registerDmg
     if (this.enemyShip.armor > this.enemyShip.maxArmor / 2) {
       this.loadPrompt(6)
@@ -135,8 +134,8 @@ class Gameplay extends Component {
 
   attack = () => {
     this.gameOver()
-    const fire = this.randomize(10) + this.state.weapon
-    const opp = this.randomize(10) + this.enemyShip.shield
+    const fire = this.randomize(20) + this.state.weapon
+    const opp = this.randomize(20) + this.enemyShip.shield
     if (fire >= opp) {
       this.hit(this.randomize(10))
     } else {
@@ -149,8 +148,8 @@ class Gameplay extends Component {
       if(param !== '0') {
         this.gameOver()
       }
-    const block = this.randomize(10) + defense
-    const opp = this.randomize(10) + this.enemyShip.weapon
+    const block = this.randomize(20) + defense
+    const opp = this.randomize(20) + this.enemyShip.weapon
     if (opp >= block) {
       this.hurt(this.randomize(10))
     } else {
@@ -163,8 +162,8 @@ class Gameplay extends Component {
       if(param !== '0') {
         this.gameOver()
       }
-    let speed = this.randomize(10) + flight
-    let opp = this.randomize(10) + this.enemyShip.thrust
+    let speed = this.randomize(20) + flight
+    let opp = this.randomize(20) + this.enemyShip.thrust
     if (opp >= speed) {
       this.loadPrompt(15)
     } else {
@@ -177,12 +176,24 @@ class Gameplay extends Component {
       if(param !== '0') {
         this.gameOver()
       }
-    let speed = this.randomize(10) + flight
-    let opp = this.randomize(10) + this.enemyShip.thrust
+    let speed = this.randomize(20) + flight
+    let opp = this.randomize(20) + this.enemyShip.thrust
     if (opp >= speed) {
       this.loadPrompt(18)
     } else {
       this.loadPrompt(19)
+    }
+  }
+
+  repair = async () => {
+    if (this.state.armor < this.state.maxArmor) {
+      this.setState({
+        armor: this.state.maxArmor
+      })
+      await this.setState
+      this.loadPrompt(26)
+    } else {
+      this.loadPrompt(27)
     }
   }
 
@@ -200,6 +211,19 @@ class Gameplay extends Component {
         })
         this.loadPrompt(22)
         break;
+      case "shield":
+        this.setState({
+          sheild: this.state.sheild + 5
+        })
+        this.loadPrompt(23)
+        break;
+      case "armor":
+        this.setState({
+          maxArmor: this.state.maxArmor + 5,
+          armor: this.state.armor +5
+        })
+        this.loadPrompt(24)
+        break;
       default:
         console.log("uh oh, spaghettios")
     }
@@ -209,10 +233,10 @@ class Gameplay extends Component {
     switch (fn) {
       case 'loadPrompt':
         this.loadPrompt(param)
-        break
+        break;
       case 'attack':
         this.attack()
-        break
+        break;
       case 'defend':
         this.defend(param)
         break;
@@ -230,7 +254,10 @@ class Gameplay extends Component {
         break;
       case "exit":
         this.exit()
-        break
+        break;
+      case "repair":
+        this.repair()
+        break;
       default:
         console.log('uh oh, spaghettios')
     }
@@ -245,7 +272,7 @@ class Gameplay extends Component {
             <Col xs={24} sm={24} md={24} lg={16}>
               <div style={{ marginTop: 20 }}>
                 <div id='gradient'>
-                  <img src='./images/placeholder.jpg' alt='placeholder' />
+                  <img src={this.state.image} alt='space adventure' />
                 </div>
 
                 <Prompts
@@ -268,7 +295,6 @@ class Gameplay extends Component {
                   weapon={this.state.weapon}
                   shield={this.state.shield}
                   thrust={this.state.thrust}
-                  hp={this.state.hp}
                   credits={this.state.credits}
                 />
               </div>
