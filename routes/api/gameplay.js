@@ -1,8 +1,6 @@
 const router = require('express').Router()
 const orm = require('../../orm')
-const { isAuth } = require('../authentication/passport')
 
-// Can replace req.user.userId with whatever userId number for testing
 router
   .get('/user/gameplay', (req, res) => {
     orm

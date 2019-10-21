@@ -9,24 +9,24 @@ VALUE
 USE `project3`;
 INSERT INTO `defaultShip` (`attack`, `defense`, `speed`, `maxHP`, `name`, `picture`)
 VALUE
-(10, 10, 10, 50, 'Outpost Cruiser', './images/cruiser-sm.svg'),
-(10, 10, 10, 50, 'Alien Pod', './images/pod.svg'),
-(10, 10, 10, 50, 'Android Sphere', './images/sphere.svg'),
-(10, 10, 10, 50, 'Cyborg Craft', './images/craft.svg');
+(5, 5, 10, 10, 'Outpost Cruiser', './images/cruiser-sm.svg'),
+(5, 5, 5, 15, 'Alien Pod', './images/pod.svg'),
+(5, 10, 5, 10, 'Android Sphere', './images/sphere.svg'),
+(10, 5, 5, 10, 'Cyborg Craft', './images/craft.svg');
 
 USE `project3`;
 INSERT INTO `prompts` (`prompt`, `description`, `option1`, `option2`, `event1`, `event2`, `param1`, `param2`, `image`)
 VALUES
 	(
 		"You've recieved a distress signal from a nearby asteroid.", 
-        "1 -- Initial prompt",
-        "Respond", 
-        "Ignore",
-        "loadPrompt",
+		"1 -- Initial prompt",
+		"Respond", 
+		"Ignore",
 		"loadPrompt",
-        "2", 
-        "3",
-        "placeholder.jpg"
+		"loadPrompt",
+		"2", 
+		"2",
+		"./images/placeholder.jpg"
 	),
     (
 		"It's an ambush, You're attacked by space pirates!",
@@ -37,10 +37,10 @@ VALUES
 		"loadPrompt",
         "4",
         "5",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
     (
-		"Fuck that noise",
+		"Nope",
 		"3 -- ignore that shit",
         "fly away",
         "faster",
@@ -48,29 +48,29 @@ VALUES
 		"loadPrompt",
         "99",
         "99",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
     (
 		"Engage",
         "4 -- engage",
-        "attack",
-        "raise shields",
+        "Attack",
+        "Raise shields",
         "attack",
         "defend",
         "x",
         "x",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
     (
 		"Take evasive action",
         "5 -- flee enemy ship",
-        "use thrust",
-        "conserve power",
+        "Use Thrust",
+        "Conserve Power",
         "flee",
         "flee",
         "x",
         "0",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
     (
 		"DIRECT HIT!, Enemy vessel is returning fire.",
@@ -81,18 +81,18 @@ VALUES
         "defend",
         "x",
         "0",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
 	(
-		"DIRECT HIT!, Enemey vessel is heavily damaged and fleeing",
+		"DIRECT HIT!, Enemy vessel is heavily damaged and fleeing",
         "7 -- hit, enemy flees",
         "Pursue",
         "Ignore",
         "loadPrompt",
         "loadPrompt",
         "17",
-        "99",
-        "placeholder.jpg"
+        "25",
+        "./images/placeholder.jpg"
 	),
     (
 		"DIRECT HIT! Enemy vessel destroyed",
@@ -102,8 +102,8 @@ VALUES
         "loadPrompt",
         "loadPrompt",
         "20",
-        "99",
-        "placeholder.jpg"
+        "25",
+        "./images/placeholder.jpg"
     ),
     (
 		"MISS! Enemy vessel is returning fire!",
@@ -114,120 +114,120 @@ VALUES
         "defend",
         "x",
         "0",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
         (
 		"Enemy fires, and misses",
         "10 --enemy missed",
-		"return fire",
-        "flee",
+		"Return Fire",
+        "Flee",
         "attack",
-        "thrust",
+        "loadPrompt",
         "x",
-        "x",
-        "placeholder.jpg"
+        "5",
+        "./images/placeholder.jpg"
 	),
 	(
 		"Enemy hits, you've taken light damage",
         "11 -- hit, severe damage",
-		    "Return Fire",
+		"Return Fire",
         "Flee",
         "attack",
-        "thrust",
+        "loadPrompt",
         "x",
-        "x",
-        "placeholder.jpg"
+        "5",
+        "./images/placeholder.jpg"
 	),
 	(
-		    "Enemy hits, you've taken severe damage",
+		"Enemy hits, you've taken severe damage",
         "12 -- hit, severe damage",
-		    "Return fire",
+		"Return fire",
         "Flee",
         "attack",
-        "thrust",
-        "0",
-        "0",
-        "placeholder.jpg"
+        "loadPrompt",
+        "x",
+        "5",
+        "./images/placeholder.jpg"
 	),
 	(
-		    "Enemy hits, your ship is destroyed",
+		"Enemy hits, your ship is destroyed",
         "13 -- hits, destroyed",
-		    "Restart",
-        "exit",
+		"Restart",
+        "Exit",
         "restart",
         "exit",
         "x",
         "x",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
-  (
-		    "You've ran out of credits. Ship is disabled",
+    (
+		"You've ran out of credits. Ship is disabled",
         "14 -- credits === 0",
         "Restart",
-        "exit",
+        "Exit",
         "restart",
         "exit",
         "x",
         "x",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
-  (
-	    	"Evasion failed, enemy ship in pursuit",
+    (
+		"Evasion failed, enemy ship in pursuit",
         "15 -- enemy pursuit",
-		    "attack",
-        "raise shields",
-        "attack",
+		"Raise Shield",
+        "Conserve Power",
+        "defend",
         "defend",
         "x",
-        "x",
-        "placeholder.jpg"
+        "0",
+        "./images/placeholder.jpg"
 	),
     (
-		    "Evasion successful",
+		"Evasion successful. Repair ship?",
         "16 -- evaded enemy ship",
-        "something",
-        "something else",
+        "Yes",
+        "No",
+        "repair",
         "loadPrompt",
-        "loadPrompt",
-		    "99",
-        "99",
-        "placeholder.jpg"
+        "x",
+        "2",
+        "./images/placeholder.jpg"
 	),
     (
-		    "Pursue enemy ship",
+		"Pursue enemy ship",
         "17 -- pursue enemy ship",
-        "use thrust",
-        "conserve power",
+        "Use Thrust",
+        "Conserve Power",
         "pursue",
         "pursue",
         "x",
         "0",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
-  (
-		    "Enemy ship has escaped",
+    (
+		"Enemy ship has escaped. Repair ship?",
         "18 -- enemy ship escapes",
-		    "something",
-        "something else",
+        "Yes",
+        "No",
+        "repair",
         "loadPrompt",
-        "loadPrompt",
-		    "99",
-        "99",
-        "placeholder.jpg"
+        "x",
+        "2",
+        "./images/placeholder.jpg"
 	),
 	(
-		    "Enemy ship in range",
+		"Enemy ship in range",
         "19 -- successful pursuit",
-        "attack",
-        "something else",
+        "Attack",
+        "Let them go",
         "attack",
         "loadPrompt",
         "x",
-        "99",
-        "placeholder.jpg"
+        "25",
+        "./images/placeholder.jpg"
 	),
-   (
-		    "Salvage",
+    (
+		"Salvage",
         "20 -- get upgrades from destroyed ship",
         "upgrade weapon",
         "upgrade thrust",
@@ -235,28 +235,82 @@ VALUES
         "upgrade",
         "weapon",
         "thrust",
-        "placeholder.jpg"
+        "./images/placeholder.jpg"
 	),
-   (
-		    "Weapon upgraded",
+    (
+		"Weapon upgraded. Repair ship?",
         "21 -- weapon upgrade",
-        "something",
-        "something else",
+        "Yes",
+        "No",
+        "repair",
         "loadPrompt",
-        "loadPrompt",
-        "99",
-        "99",
-        "placeholder.jpg"
+        "x",
+        "2",
+        "./images/placeholder.jpg"
 	),
-  (
-	    	"Thrust upgraded",
+    (
+		"Thrust upgraded. Repair ship?",
         "22 -- thrust upgrade",
-        "something",
-        "something else",
+        "Yes",
+        "No",
+        "repair",
         "loadPrompt",
+        "x",
+        "2",
+        "./images/placeholder.jpg"
+	),
+	(
+		"Shield upgraded. Repair ship?",
+        "23 -- shield upgrade",
+        "Yes",
+        "No",
+        "repair",
         "loadPrompt",
-        "99",
-        "99",
-        "placeholder.jpg"
+        "x",
+        "2",
+        "./images/placeholder.jpg"
+	),
+	(
+		"Armor upgraded. Repair ship?",
+        "24 -- armor upgrade",
+        "Yes",
+        "No",
+        "repair",
+        "loadPrompt",
+        "x",
+        "2",
+        "./images/placeholder.jpg"
+	),
+    (
+		"Repair ship?",
+        "25 -- repair ship?",
+        "Yes",
+        "No",
+        "repair",
+        "loadPrompt",
+        "x",
+        "2",
+        "./images/placeholder.jpg"
+	),
+    (
+		"Ship repaired. Continue mission?",
+        "26 -- repaired",
+        "Yes",
+        "Exit", 
+        "loadPrompt",
+        "exit",
+        "2",
+        "x",
+        "./images/placeholder.jpg"
+	),
+    (
+		"Repairs not needed. Continue mission?",
+        "26 -- alreadyrepaired",
+        "Yes",
+        "Exit", 
+        "loadPrompt",
+        "exit",
+        "2",
+        "x",
+        "./images/placeholder.jpg"
 	);
-    
