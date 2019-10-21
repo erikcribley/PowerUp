@@ -87,11 +87,11 @@ class NormalLoginForm extends Component {
               </Form.Item>
             </Form>
             <Button
-              className='secondaryBtn'
+              className='primaryBtn'
               type='primary'
               block
               href='/auth/google/callback'>
-              Log In with Google
+              or Log In with Google
             </Button>
             <h1 className='hStyle'>New User?</h1>
             <Button
