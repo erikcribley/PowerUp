@@ -14,7 +14,7 @@ class Tasks extends Component {
     this.state = {
       tasks: [],
       newTask: '',
-      newTaskPower: 0,
+      newTaskPower: 1,
       updateTask: '',
       power: 0
     }
