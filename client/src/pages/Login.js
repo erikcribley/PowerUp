@@ -48,13 +48,7 @@ class NormalLoginForm extends Component {
                       message: 'Please enter a valid email address.'
                     }
                   ]
-                })(
-                  <Input
-                    placeholder='email'
-                    name='userEmail'
-                    // onChange={this.handleInputChange}
-                  />
-                )}
+                })(<Input placeholder='email' name='userEmail' />)}
               </Form.Item>
               <Form.Item>
                 {getFieldDecorator('password', {
@@ -70,7 +64,6 @@ class NormalLoginForm extends Component {
                     type='password'
                     placeholder='password'
                     name='password'
-                    // onChange={this.handleInputChange}
                   />
                 )}
               </Form.Item>
@@ -79,9 +72,7 @@ class NormalLoginForm extends Component {
                   type='primary'
                   htmlType='submit'
                   className='primaryBtn'
-                  block
-                  // onClick={this.handleLoginSubmit}
-                >
+                  block>
                   Log In
                 </Button>
               </Form.Item>

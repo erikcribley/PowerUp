@@ -29,8 +29,27 @@ class Gameplay extends Component {
   }
 
   componentDidMount() {
-    this.loadShip(2)
+    this.restart()
+  }
+
+  restart = () => {
+    this.loadShip()
     this.loadPrompt(1)
+    this.enemyShip.reset()
+  }
+
+  gameOver = async () => {
+    this.setState({
+      credits: this.state.credits - 1
+    })
+    await this.setState
+    if (this.state.credits <= 0) {
+      this.loadPrompt(14)
+    }
+  }
+
+  exit = () => {
+    window.location.href = '/tasks'
   }
 
   loadShip = () => {
@@ -61,7 +80,8 @@ class Gameplay extends Component {
           event1: res.data[0].event1,
           event2: res.data[0].event2,
           param1: res.data[0].param1,
-          param2: res.data[0].param2
+          param2: res.data[0].param2,
+          image: res.data[0].image
         })
       )
       .catch(err => console.error(err))
@@ -74,14 +94,21 @@ class Gameplay extends Component {
   enemyShip = {
     weapon: 10,
     shield: 5,
-    thrust: 5,
-    maxArmor: 15,
-    armor: 15,
-    credits: 4
+    thrust: 10,
+    maxArmor: 10,
+    armor: 10,
+    reset: function() {
+      this.weapon = 10
+      this.shield = 5
+      this.thrust = 10
+      this.maxArmor = 10
+      this.armor = 10
+    }
   }
 
-  hit = dmg => {
-    this.enemyShip.armor -= dmg
+  hit = async dmg => {
+    const registerDmg = this.enemyShip.armor -= dmg
+    await registerDmg
     if (this.enemyShip.armor > this.enemyShip.maxArmor / 2) {
       this.loadPrompt(6)
     } else if (this.enemyShip.armor <= 0) {
@@ -91,10 +118,11 @@ class Gameplay extends Component {
     }
   }
 
-  hurt = dmg => {
+  hurt = async dmg => {
     this.setState({
       armor: this.state.armor - dmg
     })
+    await this.setState
     if (this.state.armor > this.state.maxArmor / 2) {
       this.loadPrompt(11)
     } else if (this.state.armor <= 0) {
@@ -105,13 +133,9 @@ class Gameplay extends Component {
   }
 
   attack = () => {
-    this.setState({
-      credits: this.state.credits - 1
-    })
-    const fire = this.randomize(10) + this.state.weapon
-    const opp = this.randomize(10) + this.enemyShip.shield
-    console.log(this.state.weapon, this.enemyShip.shield)
-    console.log(fire, opp)
+    this.gameOver()
+    const fire = this.randomize(20) + this.state.weapon
+    const opp = this.randomize(20) + this.enemyShip.shield
     if (fire >= opp) {
       this.hit(this.randomize(10))
     } else {
@@ -119,10 +143,13 @@ class Gameplay extends Component {
     }
   }
 
-  defend = param => {
-    let defense = param === '0' ? 0 : this.state.shield
-    const block = this.randomize(10) + defense
-    const opp = this.randomize(10) + this.enemyShip.weapon
+  defend = (param) => {
+    let defense = (param === '0') ? 0 : this.state.shield
+      if(param !== '0') {
+        this.gameOver()
+      }
+    const block = this.randomize(20) + defense
+    const opp = this.randomize(20) + this.enemyShip.weapon
     if (opp >= block) {
       this.hurt(this.randomize(10))
     } else {
@@ -130,17 +157,107 @@ class Gameplay extends Component {
     }
   }
 
+  flee = (param) => {
+    let flight = (param === '0') ? 0 : this.state.thrust
+      if(param !== '0') {
+        this.gameOver()
+      }
+    let speed = this.randomize(20) + flight
+    let opp = this.randomize(20) + this.enemyShip.thrust
+    if (opp >= speed) {
+      this.loadPrompt(15)
+    } else {
+      this.loadPrompt(16)
+    }
+  }
+
+  pursue = (param) => {
+    let flight = (param === '0') ? 0 : this.state.thrust
+      if(param !== '0') {
+        this.gameOver()
+      }
+    let speed = this.randomize(20) + flight
+    let opp = this.randomize(20) + this.enemyShip.thrust
+    if (opp >= speed) {
+      this.loadPrompt(18)
+    } else {
+      this.loadPrompt(19)
+    }
+  }
+
+  repair = async () => {
+    if (this.state.armor < this.state.maxArmor) {
+      this.setState({
+        armor: this.state.maxArmor
+      })
+      await this.setState
+      this.loadPrompt(26)
+    } else {
+      this.loadPrompt(27)
+    }
+  }
+
+  upgrade = (param) => {
+    switch (param) {
+      case "weapon":
+        this.setState({
+          weapon: this.state.weapon + 5
+        })
+        this.loadPrompt(21)
+        break;
+      case "thrust":
+        this.setState({
+          thrust: this.state.thrust + 5 
+        })
+        this.loadPrompt(22)
+        break;
+      case "shield":
+        this.setState({
+          sheild: this.state.sheild + 5
+        })
+        this.loadPrompt(23)
+        break;
+      case "armor":
+        this.setState({
+          maxArmor: this.state.maxArmor + 5,
+          armor: this.state.armor +5
+        })
+        this.loadPrompt(24)
+        break;
+      default:
+        console.log("uh oh, spaghettios")
+    }
+  }
+
   getFunction = (fn, param) => {
     switch (fn) {
       case 'loadPrompt':
         this.loadPrompt(param)
-        break
+        break;
       case 'attack':
         this.attack()
-        break
+        break;
       case 'defend':
         this.defend(param)
-        break
+        break;
+      case "flee":
+        this.flee(param)
+        break;
+      case "pursue":
+        this.pursue(param)
+        break;
+      case "restart":
+        this.restart()
+        break;
+      case "upgrade":
+        this.upgrade(param)
+        break;
+      case "exit":
+        this.exit()
+        break;
+      case "repair":
+        this.repair()
+        break;
       default:
         console.log('uh oh, spaghettios')
     }
@@ -152,15 +269,10 @@ class Gameplay extends Component {
         <TopNav />
         <Content>
           <Row type='flex' gutter={20} style={{ padding: 24, margin: '0 3em' }}>
-            <Col
-              xs={24}
-              sm={24}
-              md={24}
-              lg={16}
-              >
+            <Col xs={24} sm={24} md={24} lg={16}>
               <div style={{ marginTop: 20 }}>
                 <div id='gradient'>
-                  <img src='./images/placeholder.jpg' alt='placeholder' />
+                  <img src={this.state.image} alt='space adventure' />
                 </div>
                 <Prompts
                   getFunction={this.getFunction}
@@ -183,8 +295,8 @@ class Gameplay extends Component {
                   weapon={this.state.weapon}
                   shield={this.state.shield}
                   thrust={this.state.thrust}
-                  hp={this.state.hp}
-                  credits={this.state.credits}/>
+                  credits={this.state.credits}
+                />
               </div>
             </Col>
           </Row>
