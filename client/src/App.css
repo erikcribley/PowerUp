@@ -52,31 +52,96 @@ footer {
   border: 1px solid #00803e;
 }
 
-.ant-input {
-  font-weight: 700;
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+  color: #0f0f0c;
+  background-color: #00c05d;
+  border-color: #00c05d;
 }
+
+/* .ant-input {
+  color: white;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background-color: transparent !important;
+  border-color: #00803e
+} */
+
+/* .ant-input:hover,
+.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+  border-color: #00803e;
+} */
+
+.ant-row-flex {
+  padding: 0px !important;
+}
+
+/* ===== Inputs ===== */
+
+.ant-input {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-variant: tabular-nums;
+  list-style: none;
+  -webkit-font-feature-settings: 'tnum';
+          font-feature-settings: 'tnum';
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 32px;
+  padding: 4px 11px;
+  /* color: rgba(0, 0, 0, 0.65); */
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  /* background-color: #fff; */
+  background-color: transparent !important;
+  background-image: none;
+  border: 1px solid #00803e;
+  border-radius: 4px;
+  /* -webkit-transition: all 0.3s;
+  transition: all 0.3s; */
+}
+.ant-input::-moz-placeholder {
+  color: #00803e;
+  opacity: 1;
+}
+.ant-input:-ms-input-placeholder {
+  color: #00803e;
+}
+.ant-input::-webkit-input-placeholder {
+  color: #00803e;
+}
+.ant-input:hover {
+  border-color: #00803e;
+  border-right-width: 1px !important;
+}
+.ant-input:focus {
+  border-color: #00803e;
+  border-right-width: 1px !important;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 2px rgba(0, 128, 62, .25);
+          box-shadow: 0 0 0 2px rgba(0, 128, 62, .25);
+}
+.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+  border-color: #00803e;
+  border-right-width: 1px !important;
+}
+
+
+
 
 /* ===== Tables ===== */
 
-/* .ant-table-tbody > tr.ant-table-row-level-1:hover > td {
+.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
+.ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
+.ant-table-thead > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
   background: transparent;
-} */
-
-/* .ant-table-body > tr {
-  background-color: transparent;
-} */
-
-/* tr.ant-table-row:hover {
-  background: transparent;
-} */
-
-/* tr:hover {
-  background: transparent;
-} */
-
-/* .ant-table-tbody > tr {
-  background: transparent;
-} */
+}
 
 /* ===== Log In ===== */
 
