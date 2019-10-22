@@ -95,8 +95,9 @@ class Gameplay extends Component {
     weapon: 10,
     shield: 5,
     thrust: 10,
-    maxArmor: 10,
-    armor: 10,
+    maxArmor: 15,
+    armor: 15,
+    credits: 4,
     reset: function() {
       this.weapon = 10
       this.shield = 5
@@ -143,13 +144,13 @@ class Gameplay extends Component {
     }
   }
 
-  defend = (param) => {
-    let defense = (param === '0') ? 0 : this.state.shield
-      if(param !== '0') {
-        this.gameOver()
-      }
-    const block = this.randomize(20) + defense
-    const opp = this.randomize(20) + this.enemyShip.weapon
+  defend = param => {
+    let defense = param === '0' ? 0 : this.state.shield
+    if (param !== '0') {
+      this.gameOver()
+    }
+    const block = this.randomize(10) + defense
+    const opp = this.randomize(10) + this.enemyShip.weapon
     if (opp >= block) {
       this.hurt(this.randomize(10))
     } else {
@@ -157,13 +158,13 @@ class Gameplay extends Component {
     }
   }
 
-  flee = (param) => {
-    let flight = (param === '0') ? 0 : this.state.thrust
-      if(param !== '0') {
-        this.gameOver()
-      }
-    let speed = this.randomize(20) + flight
-    let opp = this.randomize(20) + this.enemyShip.thrust
+  flee = param => {
+    let flight = param === '0' ? 0 : this.state.thrust
+    if (param !== '0') {
+      this.gameOver()
+    }
+    let speed = this.randomize(10) + flight
+    let opp = this.randomize(10) + this.enemyShip.thrust
     if (opp >= speed) {
       this.loadPrompt(15)
     } else {
@@ -171,13 +172,13 @@ class Gameplay extends Component {
     }
   }
 
-  pursue = (param) => {
-    let flight = (param === '0') ? 0 : this.state.thrust
-      if(param !== '0') {
-        this.gameOver()
-      }
-    let speed = this.randomize(20) + flight
-    let opp = this.randomize(20) + this.enemyShip.thrust
+  pursue = param => {
+    let flight = param === '0' ? 0 : this.state.thrust
+    if (param !== '0') {
+      this.gameOver()
+    }
+    let speed = this.randomize(10) + flight
+    let opp = this.randomize(10) + this.enemyShip.thrust
     if (opp >= speed) {
       this.loadPrompt(18)
     } else {
@@ -185,47 +186,22 @@ class Gameplay extends Component {
     }
   }
 
-  repair = async () => {
-    if (this.state.armor < this.state.maxArmor) {
-      this.setState({
-        armor: this.state.maxArmor
-      })
-      await this.setState
-      this.loadPrompt(26)
-    } else {
-      this.loadPrompt(27)
-    }
-  }
-
-  upgrade = (param) => {
+  upgrade = param => {
     switch (param) {
-      case "weapon":
+      case 'weapon':
         this.setState({
           weapon: this.state.weapon + 5
         })
         this.loadPrompt(21)
-        break;
-      case "thrust":
+        break
+      case 'thrust':
         this.setState({
-          thrust: this.state.thrust + 5 
+          thrust: this.state.thrust + 5
         })
         this.loadPrompt(22)
-        break;
-      case "shield":
-        this.setState({
-          sheild: this.state.sheild + 5
-        })
-        this.loadPrompt(23)
-        break;
-      case "armor":
-        this.setState({
-          maxArmor: this.state.maxArmor + 5,
-          armor: this.state.armor +5
-        })
-        this.loadPrompt(24)
-        break;
+        break
       default:
-        console.log("uh oh, spaghettios")
+        console.log('uh oh, spaghettios')
     }
   }
 
@@ -239,20 +215,20 @@ class Gameplay extends Component {
         break;
       case 'defend':
         this.defend(param)
-        break;
-      case "flee":
+        break
+      case 'flee':
         this.flee(param)
-        break;
-      case "pursue":
+        break
+      case 'pursue':
         this.pursue(param)
-        break;
-      case "restart":
+        break
+      case 'restart':
         this.restart()
-        break;
-      case "upgrade":
+        break
+      case 'upgrade':
         this.upgrade(param)
-        break;
-      case "exit":
+        break
+      case 'exit':
         this.exit()
         break;
       case "repair":

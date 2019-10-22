@@ -80,6 +80,7 @@ class Characters extends Component {
               onChange={this.handleInputChange}
             />
             <Button
+              style={{ marginTop: '1em' }}
               className='primaryBtn'
               type='primary'
               block
