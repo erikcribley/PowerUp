@@ -58,6 +58,12 @@ footer {
   border-color: #00c05d;
 }
 
+.ant-btn:hover, .ant-btn:focus {
+  color: #0f0f0c;
+  background-color: #00c05d;
+  border-color: #00c05d;
+}
+
 /* .ant-input {
   color: white;
   font-weight: 500;
@@ -207,4 +213,13 @@ footer {
   color: #00803e;
   background-color: transparent;
   border: 1px solid #00803e;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover,
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
+.ant-radio-button-wrapper:hover {
+  color: #0f0f0c;
+  background-color: #00c05d;
+  border: 1px solid #00c05d;
+  box-shadow: none;
 }
