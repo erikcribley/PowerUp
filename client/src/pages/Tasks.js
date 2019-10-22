@@ -89,7 +89,7 @@ class Tasks extends Component {
                     onChange={this.handleInputChange}
                     autosize
                   />
-                  <h1 className='hStyle'>Assign Task Value</h1>
+                  <h1 className='hStyle'>Assign Power Value</h1>
                   <div style={{ marginBottom: '3em' }}>
                     <Radio.Group
                       defaultValue={1}
