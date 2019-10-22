@@ -1,5 +1,7 @@
 .taskText {
     text-align: left;
+    font-weight: 500;
+    letter-spacing: 1px;  
 }
 
 .compBtn {

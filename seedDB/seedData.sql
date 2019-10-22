@@ -26,7 +26,7 @@ VALUES
 		"loadPrompt",
 		"2", 
 		"2",
-		"./images/placeholder.jpg"
+		"./images/asteroid.jpg"
 	),
     (
 		"It's an ambush, You're attacked by space pirates!",
@@ -37,7 +37,7 @@ VALUES
 		"loadPrompt",
         "4",
         "5",
-        "./images/placeholder.jpg"
+        "./images/pirates.jpg"
 	),
     (
 		"Nope",
@@ -48,7 +48,7 @@ VALUES
 		"loadPrompt",
         "99",
         "99",
-        "./images/placeholder.jpg"
+        "./images/flee.jpg"
 	),
     (
 		"Engage",
@@ -59,7 +59,7 @@ VALUES
         "defend",
         "x",
         "x",
-        "./images/placeholder.jpg"
+        "./images/fight.jpg"
 	),
     (
 		"Take evasive action",
@@ -70,7 +70,7 @@ VALUES
         "flee",
         "x",
         "0",
-        "./images/placeholder.jpg"
+        "./images/flee.jpg"
 	),
     (
 		"DIRECT HIT!, Enemy vessel is returning fire.",
@@ -81,7 +81,7 @@ VALUES
         "defend",
         "x",
         "0",
-        "./images/placeholder.jpg"
+        "./images/fight.jpg"
 	),
 	(
 		"DIRECT HIT!, Enemy vessel is heavily damaged and fleeing",
@@ -92,7 +92,7 @@ VALUES
         "loadPrompt",
         "17",
         "25",
-        "./images/placeholder.jpg"
+        "./images/pursue.jpg"
 	),
     (
 		"DIRECT HIT! Enemy vessel destroyed",
@@ -103,7 +103,7 @@ VALUES
         "loadPrompt",
         "20",
         "25",
-        "./images/placeholder.jpg"
+        "./images/explosion.jpg"
     ),
     (
 		"MISS! Enemy vessel is returning fire!",
@@ -114,7 +114,7 @@ VALUES
         "defend",
         "x",
         "0",
-        "./images/placeholder.jpg"
+        "./images/fight.jpg"
 	),
         (
 		"Enemy fires, and misses",
@@ -125,7 +125,7 @@ VALUES
         "loadPrompt",
         "x",
         "5",
-        "./images/placeholder.jpg"
+        "./images/fight.jpg"
 	),
 	(
 		"Enemy hits, you've taken light damage",
@@ -136,7 +136,7 @@ VALUES
         "loadPrompt",
         "x",
         "5",
-        "./images/placeholder.jpg"
+        "./images/fight.jpg"
 	),
 	(
 		"Enemy hits, you've taken severe damage",
@@ -147,7 +147,7 @@ VALUES
         "loadPrompt",
         "x",
         "5",
-        "./images/placeholder.jpg"
+        "./images/fight.jpg"
 	),
 	(
 		"Enemy hits, your ship is destroyed",
@@ -158,7 +158,7 @@ VALUES
         "exit",
         "x",
         "x",
-        "./images/placeholder.jpg"
+        "./images/explosion.jpg"
 	),
     (
 		"You've ran out of credits. Ship is disabled",
@@ -169,7 +169,7 @@ VALUES
         "exit",
         "x",
         "x",
-        "./images/placeholder.jpg"
+        "./images/pause.jpg"
 	),
     (
 		"Evasion failed, enemy ship in pursuit",
@@ -180,7 +180,7 @@ VALUES
         "defend",
         "x",
         "0",
-        "./images/placeholder.jpg"
+        "./images/fight.jpg"
 	),
     (
 		"Evasion successful. Repair ship?",
@@ -191,7 +191,7 @@ VALUES
         "loadPrompt",
         "x",
         "2",
-        "./images/placeholder.jpg"
+        "./images/repair.jpg"
 	),
     (
 		"Pursue enemy ship",
@@ -202,7 +202,7 @@ VALUES
         "pursue",
         "x",
         "0",
-        "./images/placeholder.jpg"
+        "./images/pursue.jpg"
 	),
     (
 		"Enemy ship has escaped. Repair ship?",
@@ -213,7 +213,7 @@ VALUES
         "loadPrompt",
         "x",
         "2",
-        "./images/placeholder.jpg"
+        "./images/repair.jpg"
 	),
 	(
 		"Enemy ship in range",
@@ -224,7 +224,7 @@ VALUES
         "loadPrompt",
         "x",
         "25",
-        "./images/placeholder.jpg"
+        "./images/range.jpg"
 	),
     (
 		"Salvage",
@@ -235,7 +235,7 @@ VALUES
         "upgrade",
         "weapon",
         "thrust",
-        "./images/placeholder.jpg"
+        "./images/repair.jpg"
 	),
     (
 		"Weapon upgraded. Repair ship?",
@@ -246,7 +246,7 @@ VALUES
         "loadPrompt",
         "x",
         "2",
-        "./images/placeholder.jpg"
+        "./images/repair.jpg"
 	),
     (
 		"Thrust upgraded. Repair ship?",
@@ -257,7 +257,7 @@ VALUES
         "loadPrompt",
         "x",
         "2",
-        "./images/placeholder.jpg"
+        "./images/repair.jpg"
 	),
 	(
 		"Shield upgraded. Repair ship?",
@@ -268,7 +268,7 @@ VALUES
         "loadPrompt",
         "x",
         "2",
-        "./images/placeholder.jpg"
+        "./images/repair.jpg"
 	),
 	(
 		"Armor upgraded. Repair ship?",
@@ -279,7 +279,7 @@ VALUES
         "loadPrompt",
         "x",
         "2",
-        "./images/placeholder.jpg"
+        "./images/repair.jpg"
 	),
     (
 		"Repair ship?",
@@ -290,7 +290,7 @@ VALUES
         "loadPrompt",
         "x",
         "2",
-        "./images/placeholder.jpg"
+        "./images/repair.jpg"
 	),
     (
 		"Ship repaired. Continue mission?",
@@ -301,7 +301,7 @@ VALUES
         "exit",
         "2",
         "x",
-        "./images/placeholder.jpg"
+        "./images/repair.jpg"
 	),
     (
 		"Repairs not needed. Continue mission?",
@@ -312,5 +312,5 @@ VALUES
         "exit",
         "2",
         "x",
-        "./images/placeholder.jpg"
+        "./images/pause.jpg"
 	);

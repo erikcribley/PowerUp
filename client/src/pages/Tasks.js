@@ -80,7 +80,7 @@ class Tasks extends Component {
                   <h1 id='power'>POWER: {this.state.power}</h1>
                 </Row>
                 <Row>
-                  <h1 className='hStyle'>Add a Task</h1>
+                  <h1 className='hStyle'>Enter a Task</h1>
                   <TextArea
                     className='marginBtm'
                     placeholder='e.g.: Walk the dog'
