@@ -1,4 +1,4 @@
-# **Power Up**
+![**Power Up**](./client/public/images/Power-Up-logo.png)
 
 ## **About**
 
@@ -7,8 +7,9 @@
 
 ## **Contents**
 
-- [**Check out the live project**](#Power-Up)
+- [**Check out the live project**](https://powerup5000.herokuapp.com/)
 - [**Libraries**](##Libraries)
+- [**Contributers**](##Contributers)
 
 ## **Libraries**
 
@@ -32,7 +33,9 @@
 - [**Passport-Google-OAuth20**](https://www.npmjs.com/package/passport-google-oauth20)
 - [**React-Router-Dom**](https://www.npmjs.com/package/react-router-dom)
 
-## Contributers
+## **Future Additions**
+
+## **Contributers**
 
 - [**erikcribley**](https://github.com/erikcribley)
 - [**mfxod**](https://github.com/mfxod)
