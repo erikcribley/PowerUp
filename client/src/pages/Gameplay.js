@@ -248,9 +248,9 @@ class Gameplay extends Component {
             <Col xs={24} sm={24} md={24} lg={16}>
               <div style={{ marginTop: 20 }}>
                 <div id='gradient'>
+                  {/* <img src='./images/placeholder.jpg' alt='space adventure' /> */}
                   <img src={this.state.image} alt='space adventure' />
                 </div>
-
                 <Prompts
                   getFunction={this.getFunction}
                   promptID={this.state.promptID}
@@ -263,9 +263,10 @@ class Gameplay extends Component {
                   param2={this.state.param2}
                 />
               </div>
-
-              <div style={{ padding: 24, minHeight: 280 }}>
-                <StatsList
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={8}>
+              <div style={{minHeight: 200, marginTop: 20}}>
+                <StatsList 
                   shipName={this.state.shipName}
                   armor={this.state.armor}
                   weapon={this.state.weapon}
