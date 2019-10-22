@@ -1,8 +1,8 @@
 .menuBar {
     /* background-image: linear-gradient(transparent, rgba(0, 128, 62, .25)); */
-    background-image: linear-gradient(rgba(0, 128, 62, .25), transparent);
-    /* background-color: #0f0f0c; */
-    border-bottom: solid 1px #00803e;
+    /* background-image: linear-gradient(rgba(0, 128, 62, .25), transparent); */
+    background-color: #181815;
+    /* border-bottom: solid 1px #00803e; */
     overflow: auto;
 }
 
