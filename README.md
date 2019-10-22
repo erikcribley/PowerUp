@@ -27,9 +27,9 @@ A gamified productivity app using to-do list task completion to power a space-th
 * [**React-Router-Dom**](https://www.npmjs.com/package/react-router-dom)
 
 ## Contributors
-* Mitch Webster [**https://github.com/mitchwebster1**](https://github.com/mitchwebster1)
-* Erik Cribley [**https://github.com/erikcribley**](https://github.com/erikcribley)
-* Matt O'Donnell [**https://github.com/mfxod**](https://github.com/mfxod)
+* **Mitch Webster** [**https://github.com/mitchwebster1**](https://github.com/mitchwebster1)
+* **Erik Cribley** [**https://github.com/erikcribley**](https://github.com/erikcribley)
+* **Matt O'Donnell** [**https://github.com/mfxod**](https://github.com/mfxod)
 
 ## How To
 1. Log in through the app or using your Google account
