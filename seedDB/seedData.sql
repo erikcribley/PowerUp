@@ -18,7 +18,7 @@ USE `project3`;
 INSERT INTO `prompts` (`prompt`, `description`, `option1`, `option2`, `event1`, `event2`, `param1`, `param2`, `image`)
 VALUES
 	(
-		"You've recieved a distress signal from a nearby asteroid.", 
+		"You've received a distress signal from a nearby asteroid.", 
 		"1 -- Initial prompt",
 		"Respond", 
 		"Ignore",
@@ -305,7 +305,7 @@ VALUES
 	),
     (
 		"Repairs not needed. Continue mission?",
-        "26 -- alreadyrepaired",
+        "27 -- alreadyrepaired",
         "Yes",
         "Exit", 
         "loadPrompt",

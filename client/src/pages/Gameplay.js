@@ -221,6 +221,17 @@ class Gameplay extends Component {
     }
   }
 
+  repair = () => {
+    if (this.state.armor < 20) {
+      this.setState({
+        armor: this.state.armor + 5,
+        credits: this.state.credits - 1
+      })
+      return this.loadPrompt(26)
+    }
+    return this.loadPrompt(27)
+  }
+
   getFunction = (fn, param) => {
     switch (fn) {
       case 'loadPrompt':
