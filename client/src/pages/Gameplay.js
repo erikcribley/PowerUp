@@ -81,7 +81,7 @@ class Gameplay extends Component {
       this.state.armor,
       this.state.credits
     )
-      .then(res => console.log(res))
+      .then(res => res)
       .catch(err => console.error(err))
   }
 
