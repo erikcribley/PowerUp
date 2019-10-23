@@ -35,8 +35,7 @@ router
     orm
       .updateOne(
         'playerShip',
-        'credits',
-        req.body.credits,
+        { credits: req.body.credits },
         'userId',
         req.user.userId
       )

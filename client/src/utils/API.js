@@ -35,10 +35,6 @@ export default {
     return axios.delete(`/user/tasks/${taskId}`)
   },
 
-  getShip: userId => {
-    return axios.get('/user/gameplay')
-  },
-
   getCharacters: () => {
     return axios.get('/user/characters')
   },
@@ -51,7 +47,21 @@ export default {
     return axios.get('/user/stats')
   },
 
+  getShip: userId => {
+    return axios.get('/user/gameplay')
+  },
+
   getPrompt: promptId => {
     return axios.get(`/user/gameplay/${promptId}`)
+  },
+
+  updateShip: (weapon, shield, thrust, armor, credits) => {
+    return axios.put('/user/gameplay', {
+      attack: weapon,
+      defense: shield,
+      speed: thrust,
+      maxHP: armor,
+      credits: credits
+    })
   }
 }

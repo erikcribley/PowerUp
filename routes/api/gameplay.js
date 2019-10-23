@@ -14,5 +14,22 @@ router
       .then(data => res.status(200).json(data))
       .catch(err => console.error(err))
   })
+  .put('/user/gameplay', (req, res) => {
+    orm
+      .updateOne(
+        'playerShip',
+        {
+          attack: req.body.attack,
+          defense: req.body.defense,
+          speed: req.body.speed,
+          maxHP: req.body.maxHP,
+          credits: req.body.credits
+        },
+        'userId',
+        req.user.userId
+      )
+      .then(data => res.status(200).json(data))
+      .catch(err => console.error(err))
+  })
 
 module.exports = router

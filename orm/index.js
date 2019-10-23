@@ -66,7 +66,7 @@ const orm = {
   updateOne: (table, column, value, whereCol, whereVal) => {
     return new Promise((resolve, reject) => {
       connection.query(
-        'UPDATE ?? SET ?? = ? WHERE ?? = ?',
+        'UPDATE ?? SET ? WHERE ?? = ?',
         [table, column, value, whereCol, whereVal],
         (err, res) => {
           if (err) {

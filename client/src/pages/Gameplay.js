@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { Layout, Row, Col } from 'antd'
 import TopNav from '../components/Header'
 import Foot from '../components/Footer'
@@ -9,6 +10,7 @@ const { Content } = Layout
 
 class Gameplay extends Component {
   state = {
+    exit: false,
     userID: 0,
     shipID: 0,
     shipName: '',
@@ -34,7 +36,7 @@ class Gameplay extends Component {
 
   restart = () => {
     this.loadShip()
-    this.loadPrompt(1)
+    // this.loadPrompt(1)
     this.enemyShip.reset()
   }
 
@@ -49,7 +51,7 @@ class Gameplay extends Component {
   }
 
   exit = () => {
-    window.location.href = '/tasks'
+    this.setState({ exit: true })
   }
 
   loadShip = () => {
@@ -68,9 +70,23 @@ class Gameplay extends Component {
         })
       )
       .catch(err => console.error(err))
+      .finally(this.loadPrompt(1))
+  }
+
+  updateShip = () => {
+    API.updateShip(
+      this.state.weapon,
+      this.state.shield,
+      this.state.thrust,
+      this.state.armor,
+      this.state.credits
+    )
+      .then(res => console.log(res))
+      .catch(err => console.error(err))
   }
 
   loadPrompt = pid => {
+    this.updateShip()
     API.getPrompt(pid)
       .then(res =>
         this.setState({
@@ -108,7 +124,7 @@ class Gameplay extends Component {
   }
 
   hit = async dmg => {
-    const registerDmg = this.enemyShip.armor -= dmg
+    const registerDmg = (this.enemyShip.armor -= dmg)
     await registerDmg
     if (this.enemyShip.armor > this.enemyShip.maxArmor / 2) {
       this.loadPrompt(6)
@@ -209,10 +225,10 @@ class Gameplay extends Component {
     switch (fn) {
       case 'loadPrompt':
         this.loadPrompt(param)
-        break;
+        break
       case 'attack':
         this.attack()
-        break;
+        break
       case 'defend':
         this.defend(param)
         break
@@ -230,16 +246,19 @@ class Gameplay extends Component {
         break
       case 'exit':
         this.exit()
-        break;
-      case "repair":
+        break
+      case 'repair':
         this.repair()
-        break;
+        break
       default:
         console.log('uh oh, spaghettios')
     }
   }
 
   render() {
+    if (this.state.exit) {
+      return <Redirect to='/tasks' />
+    }
     return (
       <div>
         <TopNav />
@@ -265,8 +284,8 @@ class Gameplay extends Component {
               </div>
             </Col>
             <Col xs={24} sm={24} md={24} lg={8}>
-              <div style={{minHeight: 200, marginTop: 20}}>
-                <StatsList 
+              <div style={{ minHeight: 200, marginTop: 20 }}>
+                <StatsList
                   shipName={this.state.shipName}
                   armor={this.state.armor}
                   weapon={this.state.weapon}
