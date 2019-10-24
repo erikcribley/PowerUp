@@ -25,7 +25,7 @@ VALUES
 		"loadPrompt",
 		"loadPrompt",
 		"2", 
-		"2",
+		"3",
 		"./images/asteroid.jpg"
 	),
     (
@@ -40,14 +40,14 @@ VALUES
         "./images/pirates.jpg"
 	),
     (
-		"Nope",
-		"3 -- ignore that shit",
-        "fly away",
-        "faster",
-		"loadPrompt",
-		"loadPrompt",
-        "99",
-        "99",
+		"You've flown into an unexpected radiation cloud",
+		"3 -- unexpected and certain death",
+        "flee",
+        "raise shields",
+		"cloud",
+		"cloud",
+        "x",
+        "x",
         "./images/flee.jpg"
 	),
     (
@@ -150,7 +150,7 @@ VALUES
         "./images/fight.jpg"
 	),
 	(
-		"Enemy hits, your ship is destroyed",
+		"Your ship is destroyed",
         "13 -- hits, destroyed",
 		"Restart",
         "Exit",
@@ -190,7 +190,7 @@ VALUES
         "repair",
         "loadPrompt",
         "x",
-        "2",
+        "3",
         "./images/repair.jpg"
 	),
     (
@@ -212,7 +212,7 @@ VALUES
         "repair",
         "loadPrompt",
         "x",
-        "2",
+        "3",
         "./images/repair.jpg"
 	),
 	(
@@ -245,7 +245,7 @@ VALUES
         "repair",
         "loadPrompt",
         "x",
-        "2",
+        "3",
         "./images/repair.jpg"
 	),
     (
@@ -256,7 +256,7 @@ VALUES
         "repair",
         "loadPrompt",
         "x",
-        "2",
+        "3",
         "./images/repair.jpg"
 	),
 	(
@@ -267,7 +267,7 @@ VALUES
         "repair",
         "loadPrompt",
         "x",
-        "2",
+        "3",
         "./images/repair.jpg"
 	),
 	(
@@ -278,7 +278,7 @@ VALUES
         "repair",
         "loadPrompt",
         "x",
-        "2",
+        "3",
         "./images/repair.jpg"
 	),
     (
@@ -289,7 +289,7 @@ VALUES
         "repair",
         "loadPrompt",
         "x",
-        "2",
+        "3",
         "./images/repair.jpg"
 	),
     (
@@ -299,7 +299,7 @@ VALUES
         "Exit", 
         "loadPrompt",
         "exit",
-        "2",
+        "3",
         "x",
         "./images/repair.jpg"
 	),
@@ -310,7 +310,7 @@ VALUES
         "Exit", 
         "loadPrompt",
         "exit",
-        "2",
+        "3",
         "x",
         "./images/pause.jpg"
 	);
