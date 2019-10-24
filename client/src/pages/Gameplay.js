@@ -198,6 +198,14 @@ class Gameplay extends Component {
     }
   }
 
+  cloud = () => {
+    this.gameOver()
+    this.setState({
+      armor: 0
+    })
+    this.loadPrompt(13)
+  }
+
   upgrade = param => {
     switch (param) {
       case "weapon":
@@ -256,8 +264,11 @@ class Gameplay extends Component {
       case 'exit':
         this.exit()
         break;
-      case "repair":
+      case 'repair':
         this.repair()
+        break;
+      case 'cloud':
+        this.cloud()
         break;
       default:
         console.log('uh oh, spaghettios')
