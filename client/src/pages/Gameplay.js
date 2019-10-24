@@ -25,7 +25,8 @@ class Gameplay extends Component {
     event1: '',
     event2: '',
     param1: '',
-    param2: ''
+    param2: '',
+    image: ''
   }
 
   componentDidMount() {
@@ -95,9 +96,8 @@ class Gameplay extends Component {
     weapon: 10,
     shield: 5,
     thrust: 10,
-    maxArmor: 15,
-    armor: 15,
-    credits: 4,
+    maxArmor: 10,
+    armor: 10,
     reset: function() {
       this.weapon = 10
       this.shield = 5
@@ -186,22 +186,47 @@ class Gameplay extends Component {
     }
   }
 
+  repair = async () => {
+    if (this.state.armor < this.state.maxArmor) {
+      this.setState({
+        armor: this.state.maxArmor
+      })
+      await this.setState
+      this.loadPrompt(26)
+    } else {
+      this.loadPrompt(27)
+    }
+  }
+
   upgrade = param => {
     switch (param) {
-      case 'weapon':
+      case "weapon":
         this.setState({
           weapon: this.state.weapon + 5
         })
         this.loadPrompt(21)
-        break
-      case 'thrust':
+        break;
+      case "thrust":
         this.setState({
-          thrust: this.state.thrust + 5
+          thrust: this.state.thrust + 5 
         })
         this.loadPrompt(22)
-        break
+        break;
+      case "shield":
+        this.setState({
+          sheild: this.state.sheild + 5
+        })
+        this.loadPrompt(23)
+        break;
+      case "armor":
+        this.setState({
+          maxArmor: this.state.maxArmor + 5,
+          armor: this.state.armor +5
+        })
+        this.loadPrompt(24)
+        break;
       default:
-        console.log('uh oh, spaghettios')
+        console.log("uh oh, spaghettios")
     }
   }
 
@@ -248,9 +273,9 @@ class Gameplay extends Component {
             <Col xs={24} sm={24} md={24} lg={16}>
               <div style={{ marginTop: 20 }}>
                 <div id='gradient'>
-                  {/* <img src='./images/placeholder.jpg' alt='space adventure' /> */}
                   <img src={this.state.image} alt='space adventure' />
                 </div>
+
                 <Prompts
                   getFunction={this.getFunction}
                   promptID={this.state.promptID}
